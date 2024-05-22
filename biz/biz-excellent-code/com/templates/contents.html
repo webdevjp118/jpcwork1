@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>コンテンツ管理 | 管理画面</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="common/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet" href="common/AdminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="common/css/common.css">
+<link rel="shortcut icon" href="common/img/favicon.ico">
+
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+
+
+{include file="common/header_.tpl"}
+
+{include file="common/side.tpl"}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+<h1>コンテンツ管理</h1>
+
+<ol class="breadcrumb">
+<li><a href="admin.html"><i class="fa fa-dashboard"></i> Home</a></li>
+<li class="active">コンテンツ管理</li>
+</ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+
+<div class="row">
+<div class="col-xs-12">
+
+
+<div class="box box-default same_height">
+
+<div class="box-header with-border">
+<i class="fa fa-search"></i>
+<h3 class="box-title">コンテンツの新規作成</h3>
+</div><!-- /.box-header -->
+
+<div class="box-body">
+
+<div class="row">
+<div class="col-sm-4 col-xs-12">
+{if $admin.auth6.1}
+<a href="contents-edit.html" class="btn btn-warning"><i class="fa fa-plus-square"></i> 新規作成</a>
+{/if}
+</div>
+
+</div><!-- /.row wrap -->
+</div><!-- /.box-body -->
+
+</div><!-- /.box -->
+</div>
+
+
+<div class="col-xs-12">
+<div class="box box-default">
+<div class="box-body">
+
+
+{if $list}
+<table id="table_summary" class="table table-bordered table-hover" summary="表">
+<thead>
+<tr>
+<th>登録日付</th>
+<th>タイトル</th>
+<th>カテゴリ</th>
+<th>URL</th>
+<th>公開・非公開</th>
+<th>参照</th>
+{if $admin.auth6.2}
+<th>編集</th>
+{/if}
+{if $admin.auth6.3}
+<th>削除</th>
+{/if}
+</tr>
+</thead>
+<tbody>
+{assign var="class" value="bg01"}
+{foreach from=$list item="item"}
+<tr>
+<td>{$item.contents_date|date_format:"%Y/%m/%d"}</td>
+<td>{$item.title}</td>
+<td>{$item.kind}</td>
+<td>{$item.url}</td>
+<td>{if $item.status==1}公開{else}非公開{/if}</td>
+<td>
+	{if $item.url}
+	<a href="../contents/{$item.kind_url}/{$item.url}.html" target="_blank" class="btn btn-block btn-default btn-xs"><i class="fa fa-external-link"></i> 参照</a>
+	{else}
+	<a href="../contents/{$item.kind_v}/{$item.seq}" target="_blank" class="btn btn-block btn-default btn-xs"><i class="fa fa-external-link"></i> 参照</a>
+	{/if}
+</td>
+{if $admin.auth6.2}
+<td>
+<a href="contents-edit.html&id={$item.seq}" class="btn btn-block btn-default btn-xs"><i class="fa fa-pencil"></i> 編集</a>
+</td>
+{/if}
+{if $admin.auth6.3}
+<td>
+<a href="javascript:do_delete({$item.seq})" class="btn btn-block btn-default btn-xs"><i class="fa fa-trash"></i> 削除</a>
+</td>
+{/if}
+</tr>
+{if $class=="bg01"}
+{assign var="class" value="bg02"}
+{else}
+{assign var="class" value="bg01"}
+{/if}
+{/foreach}
+</tbody>
+</table>
+{else}
+<p>登録情報がありません。</p>
+{/if}
+
+
+{if $list}
+<div class="paging">
+
+<div class="row">
+<div class="col-sm-5">
+<div class="dataTables_info" id="table_summary_info" role="status" aria-live="polite">対象件数({$total}件)</div>
+</div>
+
+<div class="col-sm-7">
+<div class="dataTables_paginate paging_simple_numbers" id="table_summary_paginate">
+<ul class="pagination">
+
+{if $pager.prev}
+<li class="paginate_button previous disabled" id="table_summary_previous">
+<a href="javascript:do_page({$pager.prev.no})" aria-controls="table_summary" data-dt-idx="{$pager.prev.no}" tabindex="0">前の10件</a>
+</li>
+{/if}
+
+{if $pager.prev_skip}
+<!--li class="pagination_skip">
+<a href="javascript:do_page({$pager.top.no})">{$pager.top.name}</a>&nbsp;…&nbsp;
+</li-->
+{/if}
+
+{foreach from=$pager.list item="item"}
+{if $item.link}
+<li class="paginate_button"><a href="javascript:do_page({$item.no})" aria-controls="table_summary" data-dt-idx="{$item.name}" tabindex="0">{$item.name}</a></li>
+{else}
+<li class="paginate_button active"><span>{$item.name}</span></li>
+{/if}
+{/foreach}
+
+{if $pager.next_skip}
+<!--li class="pagination_skip">
+<a href="javascript:do_page({$pager.last.no})">{$pager.last.name}</a>&nbsp;…&nbsp;
+</li-->
+{/if}
+
+{if $pager.next}
+<li class="paginate_button next" id="table_summary_next">
+<a href="javascript:do_page({$pager.next.no})" aria-controls="table_summary" data-dt-idx="{$pager.next.no}" tabindex="0">次の10件</a>
+</li>
+{/if}
+
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+{/if}
+
+</div><!-- /.col -->
+</div><!-- /.row -->
+</section><!-- /.content -->
+
+</div><!-- /.content-wrapper -->
+
+
+
+{include file="common/footer_.tpl"}
+
+
+
+
+
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="common/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="common/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="common/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script src="common/AdminLTE/js/app.min.js"></script>
+<script src="common/AdminLTE/js/demo.js"></script>
+<script src="common/js/common.js"></script>
+
+<script src="../common/js/mini_ajax.js"></script>
+{literal}
+<script>
+function do_delete(id)
+{
+	if (confirm('削除しても良いですか？')) {
+		location = './contents.html&mode=delete&id=' + id;
+	}
+}
+function do_page(page)
+{
+//	document.form1.page.value = page;
+//	document.form1.submit();
+	document.location = 'contents.html&page=' + page;
+}
+</script>
+{/literal}
+</body>
+</html>

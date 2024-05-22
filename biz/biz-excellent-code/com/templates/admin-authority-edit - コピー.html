@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>権限管理 | 管理画面</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="common/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet" href="common/AdminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="common/css/common.css">
+<link rel="shortcut icon" href="common/img/favicon.ico">
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+
+
+{include file="common/header_.tpl"}
+
+{include file="common/side.tpl"}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+<h1>権限管理</h1>
+
+<ol class="breadcrumb">
+<li class="active"><i class="fa fa-dashboard"></i> Home</li>
+<li><a href="">権限管理</a></li>
+<li class="active">登録・編集</li>
+</ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+<div class="row">
+
+
+
+{if $msg}
+<div class="col-xs-12">
+<div class="box box-default">
+
+<div class="box-body">
+<div class="callout callout-warning">
+<h4>入力内容に不備があります</h4>
+</div>
+</div><!-- /.box-body -->
+
+</div><!-- /.box -->
+</div><!-- /.col -->
+{/if}
+
+
+<div class="col-sm-8 col-xs-12">
+<div class="box box-warning">
+
+<div class="box-header">
+<h3 class="box-title">登録・編集</h3>
+</div><!-- /.box-header -->
+
+<div class="box-body">
+
+
+<form name="form1" action="admin-authority-edit.html" method="post">
+<input type="hidden" name="mode" value="form">
+<input type="hidden" name="seq" value="{$form.seq}">
+<table id="table_summary" class="table table-bordered table_edit" summary="表">
+<tbody>
+{if $tantou}
+<tr>
+<th>最終ログイン日時</th>
+<td>{$tantou.last_date|date_format:"%Y/%m/%d %H:%I:%S"}</td>
+</tr>
+{/if}
+<tr>
+<th>名前<span>必須</span></th>
+<td>
+<input class="input_w10 form-control" type="text" name="name" value="{$form.name}">
+{if $msg.name}
+<div class="error_message">
+<ul>
+<li>{$msg.name}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+<tr>
+<th>ログインメールアドレス<span>必須</span></th>
+<td><input class="input_w10 form-control" type="text" name="email" value="{$form.email}">
+{if $msg.email}
+<div class="error_message">
+<ul>
+<li>{$msg.email}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+<tr>
+<th>ログインパスワード<span>必須</span></th>
+<td><input class="input_w10 form-control" type="password" name="passwd" value="{$form.passwd}">
+{if $msg.passwd}
+<div class="error_message">
+<ul>
+<li>{$msg.passwd}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+{if $tantou}
+<tr>
+<th>担当求人情報</th>
+<td>
+{if $tantou.count}
+<a href="admin-item.html&tantou_id={$form.seq}">{$tantou.count}&nbsp;件</a>
+{else}
+0&nbsp;件
+{/if}
+</td>
+</tr>
+<tr>
+<th>担当応募情報</th>
+<td>
+{if $tantou.oubo}
+<a href="admin-entry.html&tantou_id={$form.seq}">{$tantou.oubo}&nbsp;件</a>
+{else}
+0&nbsp;件
+{/if}
+</td>
+</tr>
+{/if}
+<tr>
+<th>権限<span>必須</span></th>
+<td id="allCheck">
+<div class="kengen_list" style="margin-bottom:15px;">
+<p class="kengen_p">すべての権限を</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><a href="javascript:do_enabled()" class="btn btn-warning"><i class="ion-loop"></i> 有効にする</a></li>
+<li><a href="javascript:do_disabled()" class="btn btn-danger"><i class="ion-close"></i> 無効にする</a></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">権限管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth1.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth1[]" value="1" {if $form.auth1.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth1.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth1[]" value="2" {if $form.auth1.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth1.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth1[]" value="3" {if $form.auth1.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">求人管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth2.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth2[]" value="1" {if $form.auth2.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth2.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth2[]" value="2" {if $form.auth2.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth2.4} active{/if}"><input type="checkbox" autocomplete="off" name="auth2[]" value="4" {if $form.auth2.4}checked="checked"{/if} />CSVエクスポート</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth2.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth2[]" value="3" {if $form.auth2.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">会員管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth3.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth3[]" value="1" {if $form.auth3.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth3.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth3[]" value="2" {if $form.auth3.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth3.4} active{/if}"><input type="checkbox" autocomplete="off" name="auth3[]" value="4" {if $form.auth3.4}checked="checked"{/if} />CSVエクスポート</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth3.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth3[]" value="3" {if $form.auth3.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">応募管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth4.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth4[]" value="1" {if $form.auth4.1}checked="checked"{/if} />閲覧</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth4.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth4[]" value="2" {if $form.auth4.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth4.4} active{/if}"><input type="checkbox" autocomplete="off" name="auth4[]" value="4" {if $form.auth4.4}checked="checked"{/if} />CSVエクスポート</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth4.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth4[]" value="3" {if $form.auth4.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">営業管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth8.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth8[]" value="1" {if $form.auth8.1}checked="checked"{/if} />閲覧</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth8.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth8[]" value="2" {if $form.auth8.2}checked="checked"{/if} />編集</label></div></li>
+<!-- <li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth8.4} active{/if}"><input type="checkbox" autocomplete="off" name="auth8[]" value="4" {if $form.auth8.4}checked="checked"{/if} />CSVエクスポート</label></div></li> -->
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth8.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth8[]" value="3" {if $form.auth8.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p"><span class="txt10">サイトからのお知らせの</span></p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth5.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth5[]" value="1" {if $form.auth5.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth5.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth5[]" value="2" {if $form.auth5.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth5.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth5[]" value="3" {if $form.auth5.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p"><span class="txt10">コンテンツ管理の</span></p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth6.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth6[]" value="1" {if $form.auth6.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth6.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth6[]" value="2" {if $form.auth6.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth6.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth6[]" value="3" {if $form.auth6.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+
+<div class="kengen_list">
+<p class="kengen_p">PR管理の</p>
+<ul class="kengen_ul">
+<li>：</li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth7.1} active{/if}"><input type="checkbox" autocomplete="off" name="auth7[]" value="1" {if $form.auth7.1}checked="checked"{/if} />追加</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth7.2} active{/if}"><input type="checkbox" autocomplete="off" name="auth7[]" value="2" {if $form.auth7.2}checked="checked"{/if} />編集</label></div></li>
+<li><div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.auth7.3} active{/if}"><input type="checkbox" autocomplete="off" name="auth7[]" value="3" {if $form.auth7.3}checked="checked"{/if} />削除</label></div></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<th>設定メール</th>
+<td>
+<div class="btn-group btn_checkbox" data-toggle="buttons"><label class="btn btn-primary{if $form.mail==1} active{/if}"><input type="checkbox" autocomplete="off" name="mail" value="1" {if $form.mail==1}checked="checked"{/if} />送信する</label></div>
+<p class="">※設定メールにはログインURL及びログインに必要なメールアドレスとパスワードが送信されます。</p>
+</td>
+</tr>
+<tr>
+<th>ログイン<span>必須</span></th>
+<td>
+
+<div class="btn-group btn_radio btn_radio_2col" data-toggle="buttons">
+<label class="btn btn-primary{if $form.status==1} active{/if}"><input type="radio" name="status" autocomplete="off" value="1" {if $form.status==1}checked="checked"{/if} />可</label>
+<label class="btn btn-primary{if $form.status==2} active{/if}"><input type="radio" name="status" autocomplete="off" value="2" {if $form.status==2}checked="checked"{/if} />不可</label>
+</div>
+
+</td>
+</tr>
+</tbody>
+</table>
+<div class="text-right"><a href="javascript:do_confirm()" class="btn btn-warning"><i class="fa fa-floppy-o"></i> 保存</a></div>
+</form>
+
+</div><!-- /.box-body -->
+</div><!-- /.box -->
+
+
+</div><!-- /.col -->
+
+
+
+<!--right side memo -->
+<div class="col-sm-4 col-xs-12">
+
+<div class="box box-primary direct-chat direct-chat-primary">
+<div class="box-header with-border">
+{if $tantou}
+<h3 class="box-title">{$tantou.name}さんのアクション履歴</h3>
+{else}
+<h3 class="box-title">アクション履歴</h3>
+{/if}
+<div class="box-tools pull-right">
+<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+</div>
+</div>
+<!-- /.box-header -->
+
+
+<div class="box-body">
+<div class="direct-chat-messages">
+{if $tantou}
+{if $list}
+<table class="table" cellspacing="0" summary="表">
+<tbody>
+{foreach from=$list item="item"}
+<tr>
+<td>{$item.reg_date|date_format:"%Y/%m/%d %H:%M:%S"}<p>{$item.info}{$item.action}</p></td>
+</tr>
+{/foreach}
+</tbody>
+</table>
+{else}
+<p>該当する履歴はありません。</p>
+{/if}
+{else}
+<p>該当する履歴はありません。</p>
+{/if}
+
+</div>
+</div><!-- /.box-body -->
+
+</div><!--/.direct-chat -->
+
+{if $pager}
+<div class="row">
+<div class="col-xs-6">
+{if $pager.prev}
+<a href="admin-authority-edit.html&id={$item.item_id}&page={$pager.prev.no}" class="btn btn-block btn-default btn-xs">前へ</a>
+{/if}
+</div>
+<div class="col-xs-6">
+{if $pager.next}
+<a href="admin-authority-edit.html&id={$item.item_id}&page={$pager.next.no}" class="btn btn-block btn-default btn-xs">次へ</a>
+{/if}
+</div>
+</div>
+{/if}
+
+</div><!-- /.col -->
+
+
+</div><!-- /.row -->
+</section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+
+
+{include file="common/footer_.tpl"}
+
+
+
+
+
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="common/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="common/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="common/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script src="common/AdminLTE/js/app.min.js"></script>
+<script src="common/AdminLTE/js/demo.js"></script>
+<script src="common/js/common.js"></script>
+
+<script src="../common/js/mini_ajax.js"></script>
+{literal}
+<script>
+function do_confirm()
+{
+	if (confirm("以下の内容で登録しますか？")) {
+		document.form1.submit();
+	}
+}
+function do_enabled(){
+	$('#allCheck .btn-primary').addClass("active");
+	$('#allCheck input[type=checkbox]').prop('checked', true);
+}
+function do_disabled(){
+	$('#allCheck .btn-primary').removeClass("active");
+	$('#allCheck input[type=checkbox]').prop('checked', false);
+}
+
+</script>
+{/literal}
+
+</body>
+</html>

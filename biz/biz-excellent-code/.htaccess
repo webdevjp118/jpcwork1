@@ -1,0 +1,228 @@
+#suPHP_ConfigPath /home/mansion-q/demo-reqruit.info/xserver_php/
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+#RewriteBase /
+#RewriteCond %{REQUEST_URI} ^/p[0-9]+/p[0-9]+/.*$ [OR,NC]
+#RewriteCond %{REQUEST_URI} ^/p[0-9]+/p[0-9]+.*$
+#RewriteRule ^(p[0-9]+)/(.*$) $1 [R,L]
+#RewriteBase /
+#RewriteCond %{REQUEST_URI} ^.*/p[0-9]+/p[0-9]+/.*$ [OR,NC]
+#RewriteCond %{REQUEST_URI} ^.*/p[0-9]+/p[0-9]+$
+#RewriteRule ^(.*)/(p[0-9]+)/(.*)$ $1/$2 [R,L]
+RewriteBase /
+RewriteRule ^(p[0-9]+)/p[0-9]+(/.*|)$ $1 [R,L]
+RewriteRule ^(p[0-9]+)/(.*)/p[0-9]+(/.*|)$ $1/$2 [R,L]
+RewriteRule ^(.*)/(p[0-9]+)/p[0-9]+(/.*|)$ $1/$2 [R,L]
+RewriteRule ^(.*)/(p[0-9]+)/(.*)/p[0-9]+(/.*|)$ $1/$2/$3 [R,L]
+RewriteCond %{REQUEST_URI} ^(.*)/t1/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a1/t1/.*$
+RewriteRule . %1/a1/t1/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t2/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t2/.*$
+RewriteRule . %1/a2/t2/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t3/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t3/.*$
+RewriteRule . %1/a2/t3/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t4/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t4/.*$
+RewriteRule . %1/a2/t4/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t5/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t5/.*$
+RewriteRule . %1/a2/t5/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t6/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t6/.*$
+RewriteRule . %1/a2/t6/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t7/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a2/t7/.*$
+RewriteRule . %1/a2/t7/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t8/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t8/.*$
+RewriteRule . %1/a3/t8/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t9/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t9/.*$
+RewriteRule . %1/a3/t9/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t10/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t10/.*$
+RewriteRule . %1/a3/t10/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t11/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t11/.*$
+RewriteRule . %1/a3/t11/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t12/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t12/.*$
+RewriteRule . %1/a3/t12/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t13/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t13/.*$
+RewriteRule . %1/a3/t13/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t14/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a3/t14/.*$
+RewriteRule . %1/a3/t14/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t15/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t15/.*$
+RewriteRule . %1/a4/t15/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t16/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t16/.*$
+RewriteRule . %1/a4/t16/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t17/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t17/.*$
+RewriteRule . %1/a4/t17/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t18/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t18/.*$
+RewriteRule . %1/a4/t18/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t19/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t19/.*$
+RewriteRule . %1/a4/t19/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t20/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a4/t20/.*$
+RewriteRule . %1/a4/t20/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t21/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a5/t21/.*$
+RewriteRule . %1/a5/t21/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t22/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a5/t22/.*$
+RewriteRule . %1/a5/t22/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t23/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a5/t23/.*$
+RewriteRule . %1/a5/t23/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t24/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a5/t24/.*$
+RewriteRule . %1/a5/t24/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t25/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t25/.*$
+RewriteRule . %1/a6/t25/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t26/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t26/.*$
+RewriteRule . %1/a6/t26/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t27/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t27/.*$
+RewriteRule . %1/a6/t27/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t28/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t28/.*$
+RewriteRule . %1/a6/t28/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t29/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t29/.*$
+RewriteRule . %1/a6/t29/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t30/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a6/t30/.*$
+RewriteRule . %1/a6/t30/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t31/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a7/t31/.*$
+RewriteRule . %1/a7/t31/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t32/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a7/t32/.*$
+RewriteRule . %1/a7/t32/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t33/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a7/t33/.*$
+RewriteRule . %1/a7/t33/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t34/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a7/t34/.*$
+RewriteRule . %1/a7/t34/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t35/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a7/t35/.*$
+RewriteRule . %1/a7/t35/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t36/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a8/t36/.*$
+RewriteRule . %1/a8/t36/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t37/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a8/t37/.*$
+RewriteRule . %1/a8/t37/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t38/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a8/t38/.*$
+RewriteRule . %1/a8/t38/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t39/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a8/t39/.*$
+RewriteRule . %1/a8/t39/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t40/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t40/.*$
+RewriteRule . %1/a9/t40/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t41/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t41/.*$
+RewriteRule . %1/a9/t41/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t42/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t42/.*$
+RewriteRule . %1/a9/t42/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t43/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t43/.*$
+RewriteRule . %1/a9/t43/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t44/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t44/.*$
+RewriteRule . %1/a9/t44/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t45/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t45/.*$
+RewriteRule . %1/a9/t45/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t46/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a9/t46/.*$
+RewriteRule . %1/a9/t46/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/t47/(.*)$
+RewriteCond %{REQUEST_URI} !^.*/a10/t47/.*$
+RewriteRule . %1/a10/t47/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/a10/$
+RewriteCond %{REQUEST_URI} !^.*/a10/t47/.*$
+RewriteRule . %1/a10/t47/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_URI} ^(.*)/a1/$
+RewriteCond %{REQUEST_URI} !^.*/a1/t1/.*$
+RewriteRule . %1/a1/t1/%2 [L,NE,QSA,R=302]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^event/$ index.php?act=event [L]
+RewriteRule ^news/$ index.php?act=news [L]
+RewriteRule ^event/(.*)$ index.php?act=event-detail&id=$1 [L]
+RewriteRule ^news/(.*)$ index.php?act=news-detail&id=$1 [L]
+RewriteRule ^detail/(.*)/contact/$ index.php?act=detail-contact&id=$1 [L]
+RewriteRule ^detail/(.*)/$ index.php?act=detail&id=$1 [L]
+RewriteRule ^detail/(.*)$ index.php?act=detail&id=$1 [L]
+#RewriteRule ^consultant/(.*)$ index.php?act=consultant&id=$1 [L]
+RewriteRule ^consultant/(.*)$ index.php?act=detail-contact&id=$1 [L]
+RewriteRule ^consultant.html$ index.php?act=detail-contact&id=$1 [L]
+RewriteRule ^contentsall/(.*)$ index.php?act=contents&p=$1 [L]
+RewriteRule ^contents/([^\.]+)/(.*).html$ index.php?act=contents-detail&category=$1&url=$2 [L]
+RewriteRule ^contents/([^/]*)/(.*)$ index.php?act=contents-detail&id=$2 [L]
+RewriteCond %{QUERY_STRING} (.*)$
+RewriteRule ^contents/(.*)$ index.php?act=contents-category&keyword=$1&%1 [L]
+RewriteRule ^s/(.*)$ index.php?act=search&s=$1 [L]
+#RewriteRule ^([^\.]+)/$ index.php?act=contents-detail&url=$1 [L]
+RewriteRule ^([^\.]+).html$ index.php?act=$1 [L]
+RewriteRule ^([^\.]+).html(.*)$ index.php?act=$1$2 [L]
+RewriteRule ^$ index.php [L]
+RewriteRule ^release/(.*)$ index.php?act=release&id=$1 [L]
+RewriteRule ^release.html$ index.php?act=release&id=$1 [L]
+# �u���E�U�̃L���b�V�������p
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 week"
+ExpiresByType image/jpeg "access 1 week"
+ExpiresByType image/bmp "access 1 week"
+ExpiresByType image/gif "access 1 week"
+ExpiresByType image/png "access 1 week"
+ExpiresByType text/css "access 1 week"
+ExpiresByType application/x-javascript "access plus 1 week"
+ExpiresByType text/javascript "access plus 1 week"
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType image/x-icon "access 1 week"
+</IfModule>
+<IfModule mod_deflate.c>
+SetOutputFilter DEFLATE
+# Mozilla4�n�Ȃǂ̌Â��u���E�U�Ŗ����A������MSIE�͏��O
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+# gif��jpg�Ȃǈ��k�ς݂̃R���e���c�͍Ĉ��k���Ȃ�
+SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico)$ no-gzip dont-vary
+SetEnvIfNoCase Request_URI _\.utxt$ no-gzip
+# html��css�Ȃǂ͈��k
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/atom_xml
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/x-httpd-php
+</IfModule>
+#AddHandler x-httpd-php5.3 .php .phps
+AuthUserFile "/home/xs432387/hoikubiz.com/htpasswd/.htpasswd"
+AuthName "Member Site"
+AuthType BASIC
+require valid-user

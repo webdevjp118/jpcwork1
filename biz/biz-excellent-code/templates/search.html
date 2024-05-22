@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow,noarchive" />
+<meta name="description" content="{$search_cond}">
+<meta name="keywords" content="検索結果,{$search_cond}">
+<meta name="format-detection" content="telephone=no">
+<title>{$search_cond}｜保育biz</title>
+
+<link rel="contents" href="/sitemap.xml" />
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/css/import.css">
+
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+{literal}
+<style>
+	table.tbl-place-info {
+		width: 280px;
+		background-color: #DDD;
+		/*border: 1px solid #DDD;*/
+
+		font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		"メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
+		/* round border */
+		/*border-radius: 8px;*/
+
+		/* transparent
+		zoom: 1;
+		filter: alpha(opacity=90);
+		opacity: 0.9; */
+	}
+
+	table.tbl-place-info td {
+		/*font-family: Arial;*/
+		font-size: 14px;
+		text-align: center;
+		line-height: 2;
+		background-color: #FFFFFF;
+		border: 1px solid #DDD;
+	}
+	table.tbl-place-info td.title_f {
+		text-align: left;
+	}
+	table.tbl-place-info td.title_f a {
+		font-size: 16px;
+		font-weight: bold;
+		color: #0f74a8;
+		padding-left: 5px;
+	}
+	table.tbl-place-info .colorful_f {
+		background-color: #f7f5ed;
+	}
+	table.tbl-place-info .cat_f {
+		font-weight: bold;
+	}
+	table.tbl-place-info .place_name {
+		text-align: left;
+		padding-left: 5px;
+	}
+	table.tbl-place-info .place_name span {
+		font-weight: bold;
+		font-size: 14px;
+	}
+</style>
+{/literal}
+
+<!-- Java Script
+ ================================================== -->
+<script src="{$top}common/js/jquery.min.js"></script>
+<script src="{$top}common/js/custom.js"></script>
+<script src="{$top}common/js/css_browser_selector.js"></script>
+<script>
+{literal}
+$(function(){
+	$(document).ready(function(){
+		search_condition();
+	});
+
+  // 勤務地
+  $('input[name=a]').on('change', function(){
+	search_condition();
+  });
+
+  // 都道府県
+  $('input[name=t]').on('change', function(){
+	search_condition();
+  });
+
+  // 市町村
+  $('input[name=c]').on('change', function(){
+	search_condition();
+  });
+
+  // 職種
+  $('input[name=s]').on('change', function(){
+	search_condition();
+  });
+  
+  // 雇用形態
+  $('input[name=k]').on('change', function(){
+	search_condition();
+  });
+  // こだわり条件
+  /*
+  $('input[name=x]').on('change', function(){
+	search_condition();
+  });
+  */
+  
+  function search_condition(){
+	var a_vals = $('input[name=a]:checked').map(function(){
+      return $(this).val()
+    }).get();
+	a_vals = a_vals.toString();
+	
+    var t_vals = $('input[name=t]:checked').map(function(){
+      return $(this).val();
+    }).get();
+	t_vals = t_vals.toString();
+
+    var c_vals = $('input[name=c]:checked').map(function(){
+      return $(this).val();
+    }).get();
+	c_vals = c_vals.toString();
+
+	var s_vals = $('input[name=s]:checked').map(function(){
+      return $(this).val();
+    }).get();
+	s_vals = s_vals.toString();
+
+    var k_vals = $('input[name=k]:checked').map(function(){
+      return $(this).val();
+    }).get();
+	k_vals = k_vals.toString();
+
+	// こだわり条件は対象外
+	var x_vals = "";
+    //var x_vals = $('input[name=x]:checked').map(function(){
+    //  return $(this).val();
+    //}).get();
+	//x_vals = x_vals.toString();
+
+	var a_condition = $('#a_condition').val();
+	a_condition = a_condition.toString();
+	
+	var t_condition = $('#t_condition').val();
+	t_condition = t_condition.toString();
+
+	var c_condition = $('#c_condition').val();
+	c_condition = c_condition.toString();
+
+	$("#mail").val("");
+	$("#error_mail1").hide();
+	$("#error_mail2").hide();
+	$("#reg_success").hide();
+	$("#search_div").show();
+	
+	$.ajax({
+		type: "POST",
+		url: "https://hoikubiz.com/search_condition.php",
+		data: { "a_vals" : a_vals, 
+				"t_vals" : t_vals,
+				"c_vals" : c_vals,
+				"s_vals" : s_vals,
+				"k_vals" : k_vals,
+				"x_vals" : x_vals,
+				"a_condition" : a_condition,
+				"t_condition" : t_condition,
+				"c_condition" : c_condition,
+				},
+		dataType : "json"
+	}).done(function(data){
+		$("#area_condition").html(data.pref);
+		$("#syokusyu_condition").html(data.syokusyu);
+		$("#koyou_condition").html(data.koyou);
+		//$("#kodawari_condition").html(data.kodawari);
+	}).fail(function(XMLHttpRequest, status, e){
+		alert(e);
+	});
+
+  }
+    
+});
+
+function do_search_condition_reg()
+{
+	var mail = $("#mail").val();
+	var reg = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}.[A-Za-z0-9]{1,}$/;
+	if (reg.test(mail)) 
+	{
+		
+		var a_vals = $('input[name=a]:checked').map(function(){
+		return $(this).val()
+		}).get();
+		a_vals = a_vals.toString();
+		
+		var t_vals = $('input[name=t]:checked').map(function(){
+		return $(this).val();
+		}).get();
+		t_vals = t_vals.toString();
+	
+		var c_vals = $('input[name=c]:checked').map(function(){
+		return $(this).val();
+		}).get();
+		c_vals = c_vals.toString();
+	
+		var s_vals = $('input[name=s]:checked').map(function(){
+		return $(this).val();
+		}).get();
+		s_vals = s_vals.toString();
+	
+		var k_vals = $('input[name=k]:checked').map(function(){
+		return $(this).val();
+		}).get();
+		k_vals = k_vals.toString();
+	
+		// こだわり条件は対象外
+		var x_vals = "";
+		//var x_vals = $('input[name=x]:checked').map(function(){
+		//return $(this).val();
+		//}).get();
+		//x_vals = x_vals.toString();
+
+		var a_condition = $('#a_condition').val();
+		a_condition = a_condition.toString();
+		
+		var t_condition = $('#t_condition').val();
+		t_condition = t_condition.toString();
+	
+		var c_condition = $('#c_condition').val();
+		c_condition = c_condition.toString();
+
+		var  mail = $("#mail").val();
+		mail = mail.toString();
+		
+		$.ajax({
+			type: "POST",
+			url: "https://hoikubiz.com/reg_search_condition.php",
+			data: { "a_vals" : a_vals, 
+					"t_vals" : t_vals,
+					"c_vals" : c_vals,
+					"s_vals" : s_vals,
+					"k_vals" : k_vals,
+					"x_vals" : x_vals,
+					"a_condition" : a_condition,
+					"t_condition" : t_condition,
+					"c_condition" : c_condition,
+					"mail" : mail,
+					},
+			dataType : "json"
+		}).done(function(data){
+			if(data.res == 0 ){
+				$("#error_mail1").hide();
+				$("#reg_success").show();
+				$("#search_div").hide();
+			}else{				
+				$("#error_mail1").hide();
+				$("#error_mail2").text(data.error_msg);
+				$("#error_mail2").show();
+				$("#reg_success").hide();
+			}
+		}).fail(function(XMLHttpRequest, status, e){
+			alert(e);
+		});
+			
+	}else{
+		$("#error_mail1").show();
+		$("#error_mail2").hide();
+		$("#reg_success").hide();
+	}
+	
+}
+{/literal}
+</script>
+
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+
+<link rel="canonical" href="{$myurl}">
+{if $pager.prev}
+{if $pager.prev.no}
+<link rel="prev" href="./p{$pager.prev.no}" />
+{else}
+<link rel="prev" href="./" />
+{/if}
+{/if}
+{if $pager.next}
+{if $pager.next.no}
+<link rel="next" href="./p{$pager.next.no}" />
+{else}
+<link rel="next" href="./" />
+{/if}
+{/if}
+{if $noindex}
+<meta name="robots" content="noindex,follow">
+{/if}
+
+
+<script type="text/javascript" src="{$top}common/js/mini_ajax.js"></script>
+<script type="text/javascript">
+var pref = '{$form.pref}';
+var city = '{$form.city}';
+var url = '{$top}s/';
+var rosen_tab = '{$rosen_tab}';
+{literal}
+function set_select(sel, info, pref)
+{
+	// 全て削除
+	while (sel.options.length > 1) {
+		sel.options[sel.options.length - 1] = null;
+	}
+	var n = 1;
+	for (i in info) {
+		sel.options.length = n;
+		if (info[i]) {
+			sel.options[n++] = new Option(info[i], i, false, false);
+		}
+	}
+	sel.options[0].selected = true;
+}
+function change_pref(v)
+{
+	var str = ajax.gets("./?act=get_city&use=1&id=" + v);
+	eval("var city_data = " + str);
+	set_select(document.getElementById('city'), city_data);
+}
+function sel_area(v)
+{
+	var str = ajax.gets("./?act=get_rosen&use=1&id=" + v);
+	eval("var ajax_data = " + str);
+	set_select(document.getElementById('rosen'), ajax_data);
+}
+function sel_rosen(v)
+{
+	var str = ajax.gets("./?act=get_station&use=1&id=" + v);
+	eval("var ajax_data = " + str);
+	set_select(document.getElementById('station'), ajax_data);
+}
+function do_search(form)
+{
+	var g=function(n){
+		return form.getElementsByTagName(n)
+	};
+	var nv=function(e){
+		if(e.name) {
+			if (e.value) {
+				return encodeURIComponent(e.name) + '' + encodeURIComponent(e.value) + '/';
+			}
+		}
+		return '';
+	};
+	var i=collect(g('input'),function(i){
+		if((i.type!='radio'&&i.type!='checkbox')||i.checked) return nv(i)
+	});
+	var s=collect(g('select'),nv);
+	var t=collect(g('textarea'),nv);
+//	url += i.concat(s).concat(t).join('/');
+	var a = [];
+	for (idx in i) {
+		if (i[idx] != '') {
+			a.push(i[idx]);
+//alert("i=" + i[idx]);
+		}
+	}
+	for (idx in s) {
+		if (s[idx] != '') {
+			a.push(s[idx]);
+//alert("s=" + s[idx]);
+		}
+	}
+	for (idx in t) {
+		if (t[idx] != '') {
+			a.push(t[idx]);
+//alert("t=" + t[idx]);
+		}
+	}
+//	var url = 's/' + a.join('/');
+//	url += a.join('/');
+	url += a.join('');
+	document.location = url;
+}
+function do_page(page)
+{
+	document.form1.p.value = page;
+	document.form2.p.value = page;
+	if (document.getElementById('tab01').style.display == "block") {
+		do_search(document.form1);
+	} else {
+		do_search(document.form2);
+	}
+}
+function do_order(ord)
+{
+	document.form1.o.value = ord;
+	document.form2.o.value = ord;
+	if (document.getElementById('tab01').style.display == "block") {
+		do_search(document.form1);
+	} else {
+		do_search(document.form2);
+	}
+}
+window.onload = function() {
+	if (rosen_tab) {
+		document.getElementById('tab01').style.display = "none";
+		document.getElementById('tab02').style.display = "block";
+	} else {
+		document.getElementById('tab01').style.display = "block";
+		document.getElementById('tab02').style.display = "none";
+	}
+}
+$(function() {
+  $(document).on("keypress", "input:not(.allow_submit)", function(event) {
+    return event.which !== 13;
+  });
+});
+{/literal}
+//-->
+</script>
+
+{include file="common/analytics.tpl"}
+</head>
+
+
+
+<body>
+
+<div id="wrapper" class="bg_gray">
+
+{include file="common/header.tpl"}
+
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title search">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">お仕事を探す</h1>
+			<div class="subpage_title_eng">Search</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+	
+	<!-- パンくず開始 -->
+	<div id="topics" class="left pc-only">
+		<ul>
+			<li><a href="{$top}">TOP</a>&nbsp;&gt;&nbsp;</li>
+			<li><a href="{$top}s/">お仕事を探す</a></li>
+			{foreach from=$tags key="key" item="item"}
+			<li>&nbsp;&gt;&nbsp;{$item}</li>
+			{/foreach}
+		</ul>
+	</div>
+	<!-- パンくず開始 -->
+	
+	<!-- コンテンツ開始 -->
+	<article id="content" class="clearfix">
+
+		<div class="content_wrap clearfix">
+
+		<form name="form1" action="search.html" method="post">
+			<input type="hidden" name="o" value="{$form.order}">
+			<input type="hidden" name="p" value="">
+
+			<input type="hidden" id="a_condition" value="{$form.a_condition}">
+			<input type="hidden" id="t_condition" value="{$form.t_condition}">
+			<input type="hidden" id="c_condition" value="{$form.c_condition}">
+
+			{*<div class="search_neighborhood">
+				<a href="javascript:void(0)" data-remodal-target="modal_neighborhood" class="point-back01 btn02 opa">自宅付近からお仕事を探す</a>
+				<!--お仕事を探す モーダル -->
+				<div class="remodal modal-neighborhood" data-remodal-id="modal_neighborhood" data-remodal-options="hashTracking: true">
+					<button data-remodal-action="close" class="remodal-close"><img src="{$top}common/images/notice-close.png"></button>
+					<div class="modal_neighborhood_body">
+						<div class="head flex flex-space-b flex-middle sp-column">
+							<p>現在地の情報を取得しています。<br>現在地が表示されない場合は、端末の位置情報（GPS）の利用許可をオンにしてください</p>
+							
+						</div>
+						<div class="head flex flex-space-b flex-middle sp-column mt20">
+							<div><a href="#" class="white point-back02 my-font01 opa" id="btn-my-location">自宅付近の求人を取得</a></div>
+						</div>
+						
+						<div class="g_map">
+						  <div class="inner">
+							  <div id="map"></div>
+						  </div>
+						</div>
+						<!--<p class="mb20">マップ上をドラッグして位置を変更してから、求人を読み込むことが可能です。</p>-->
+						<a href="#" id="btn-search-nearby" class="btn-search white point-back01 my-font01 opa mt20">検索結果に求人を反映する</a>
+					</div>
+				</div>
+				<!--//お仕事を探す モーダル -->
+			</div>*}
+			
+			<!-- //.search_neighborhood -->
+
+			<div class="search_form_wrap">
+<!--{if $area}-->			
+				<dl class="part">
+					<dt>勤務地<span class="sub">から探す</span></dt>
+					<dd>
+						<ul class="list">
+							<!--<li>
+								<label><input name="t" value="13" type="checkbox">&nbsp;東京都</label>
+							</li>
+							<li>
+								<label><input name="t" value="14" type="checkbox">&nbsp;神奈川県</label>
+							</li>
+							<li>
+								<label><input name="t" value="11" type="checkbox">&nbsp;埼玉県</label>
+							</li>
+							<li>
+								<label><input name="t" value="12" type="checkbox">&nbsp;千葉県</label>
+							</li>
+							<li>
+								<label><input name="t" value="8" type="checkbox">&nbsp;茨城県</label>
+							</li>
+							<li>
+								<label><input name="t" value="9" type="checkbox">&nbsp;栃木県</label>
+							</li>
+							<li>
+								<label><input name="t" value="10" type="checkbox">&nbsp;群馬県</label>
+							</li>-->
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="1" {if $form.area.1}checked="checked"{/if} />
+									&#160;北海道</label>
+								</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="2" {if $form.area.2}checked="checked"{/if} />
+									&#160;東北</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="3" {if $form.area.3}checked="checked"{/if} />
+								&#160;関東</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="4" {if $form.area.4}checked="checked"{/if} />
+									&#160;北陸・甲信越</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="5" {if $form.area.5}checked="checked"{/if} />
+									&#160;東海</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="6" {if $form.area.6}checked="checked"{/if} />
+									&#160;関西</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="7" {if $form.area.7}checked="checked"{/if} />
+									&#160;中国</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="8" {if $form.area.8}checked="checked"{/if} />
+									&#160;四国</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="9" {if $form.area.9}checked="checked"{/if} />
+									&#160;九州</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="a" value="10" {if $form.area.10}checked="checked"{/if} />
+									&#160;沖縄</label>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+<!--{/if}-->
+{foreach from=$pref_list item="item"}
+				<input type="hidden" name="t" value="{$item}">
+{/foreach}			
+
+
+{if $pref}
+					<dl class="part">
+						<dt>{$area_name}<span class="sub">から探す</span></dt>
+						<dd>
+							<ul class="list">
+{foreach from=$pref item="item"}
+								<li>
+									<label>
+										<input type="checkbox" name="t" value="{$item.pref_cd}" {if $form.pref[$item.pref_cd]}checked="checked"{/if} />
+										&#160;{$item.pref_name}</label>
+								</li>
+{/foreach}
+							</ul>
+						</dd>
+					</dl>
+{/if}
+
+									
+					
+{if $city}
+					<dl class="part">
+						<dt>{$pref_name}<span class="sub">の市区町村からお仕事を探す</span></dt>
+						<dd>
+							<ul class="list">
+								{foreach from=$city item="item"}
+								<li>
+									<label>
+										<input type="checkbox" name="c" value="{$item.city_cd}" {if $form.city[$item.city_cd]}checked="checked"{/if} />
+										&#160;{$item.city}</label>
+								</li>
+								{/foreach}
+							</ul>
+						</dd>
+					</dl>
+{/if}
+
+					<dl class="part">
+						<dt>職種<span class="sub">から探す</span></dt>
+						<dd>
+							<ul class="list">
+								<li>
+									<label><input type="checkbox" name="s" value="1" {if $form.syokusyu[1]}checked="checked"{/if} />&nbsp;保育士</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="2" {if $form.syokusyu[2]}checked="checked"{/if} />&nbsp;幼稚園教諭</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="3" {if $form.syokusyu[3]}checked="checked"{/if} />&nbsp;園長</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="4" {if $form.syokusyu[4]}checked="checked"{/if} />&nbsp;主任</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="5" {if $form.syokusyu[5]}checked="checked"{/if} />&nbsp;看護師</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="6" {if $form.syokusyu[6]}checked="checked"{/if} />&nbsp;栄養士</label>
+								</li>
+								<li>
+									<label><input type="checkbox" name="s" value="7" {if $form.syokusyu[7]}checked="checked"{/if} />&nbsp;調理師</label>
+								</li>
+							</ul>
+						</dd>
+					</dl>	
+	
+		
+					<dl class="part">
+						<dt>雇用形態<span class="sub">から探す</span></dt>
+						<dd>
+							<ul class="list">
+{foreach from=$use_koyou item="item"}
+								<li>
+									<label><input type="checkbox" name="k" value="{$item.id}" {if $form.koyou[$item.id]}checked="checked"{/if} />&nbsp;{$item.name}</label>
+								</li>
+{/foreach}
+								<!--<li>
+									<label><input name="k" value="1" type="checkbox" {if $form.koyou[1]}checked="checked"{/if}>&nbsp;常勤</label>
+								</li>
+								<li>
+									<label><input name="k" value="2" type="checkbox" {if $form.koyou[2]}checked="checked"{/if}>&nbsp;非常勤</label>
+								</li>-->
+							</ul>
+						</dd>
+					</dl>
+				
+
+{if $use_kodawari1}							
+				<dl class="part">
+					<dt>こだわり条件<span class="sub">から探す</span></dt>
+					<dd>
+						<ul class="list">
+{foreach from=$use_kodawari1 item="item"}						
+							<li>
+								<label>
+									<input type="checkbox" name="x" value="{$item.id}" {if $form.kodawari1[$item.id]}checked="checked"{/if} />
+									&nbsp;{$item.name}</label>
+							</li>
+{/foreach}
+						</ul>
+					</dd>
+				</dl>
+{/if}
+
+
+
+{if $use_kodawari2}	
+				<dl class="part">
+					<dt>求人特集<span class="sub">から探す</span></dt>
+					<dd>
+						<ul class="list">
+							<li>
+								<label><input type="checkbox" name="y" value="1" {if $form.kodawari2[1]}checked="checked"{/if} />&nbsp;無資格・未経験可</label>
+							</li>
+							<li>
+								<label><input type="checkbox" name="y" value="2" {if $form.kodawari2[2]}checked="checked"{/if} />&nbsp;住宅手当あり</label>
+							</li>
+							<li>
+								<label><input type="checkbox" name="y" value="3" {if $form.kodawari2[3]}checked="checked"{/if} />&nbsp;夜勤無し</label>
+							</li>
+{*
+{foreach from=$use_kodawari2 item="item"}
+							<li>
+								<label>
+									<input type="checkbox" name="y" value="{$item.id}" {if $form.kodawari2[$item.id]}checked="checked"{/if} />
+									&nbsp;{$item.name}</label>
+							</li>
+{/foreach}
+*}
+						</ul>
+					</dd>
+				</dl>
+{/if}
+
+
+{if $use_kodawari3}			
+				<dl class="part">
+					<dt>こだわり3<span class="sub">から探す</span></dt>
+					<dd>
+						<ul class="list">
+{foreach from=$use_kodawari3 item="item"}
+								<li class="cate">
+									<label>
+										<input type="checkbox" name="z" value="{$item.id}" {if $form.kodawari3[$item.id]}checked="checked"{/if} />
+										&nbsp;{$item.name}</label>
+								</li>
+{/foreach}
+						</ul>
+					</dd>
+				</dl>
+{/if}
+
+											
+				<dl class="part keyword">
+					<dt>キーワード<span class="sub">から探す</span></dt>
+					<dd><input class="text" type="text" name="w" value="{$form.keyword}" /></dd>
+				</dl>
+				
+				<div class="tx-center">
+					<input class="btn opa white point-back01 my-font01" type="button" style="cursor: pointer;" value="上記の条件で検索する" onClick="do_search(document.form1)" />
+				</div>
+				
+				<div class="mt30 sp-mt20 sp-mb20 tx-center">
+					<a href="javascript:void(0)" data-remodal-target="modal_notification" class="btn btn-notice opa my-font01" />この条件で通知を受け取る</a>
+				</div>
+				
+				<div class="remodal notification-wrap" data-remodal-id="modal_notification" data-remodal-options="hashTracking: true">
+					<button data-remodal-action="close" class="remodal-close"><img src="{$top}common/images/notice-close.png"></button>
+					<div class="notification-list flex wrap flex-left flex-middle sp-flex-top">
+						<div class="item-name">エリア</div>
+						<ul class="flex flex-left flex-middle wrap" id="area_condition">
+						  <li>未選択</li>
+						</ul>
+						<div class="item-name">職種</div>
+						<ul class="flex flex-left flex-middle wrap" id="syokusyu_condition">
+						  <li>未選択</li>
+						</ul>
+						<div class="item-name">雇用形態</div>
+						<ul class="flex flex-left flex-middle wrap" id="koyou_condition">
+						  <li>未選択</li>
+						</ul>
+						<!--
+						<div class="item-name">こだわり条件</div>
+						<ul class="flex flex-left flex-middle wrap" id="kodawari_condition">
+						  <li>未選択</li>
+						</ul>
+						-->
+					</div>
+					<div class="notification-form" id="search_div">
+
+						<dl>
+							<dt>メールアドレス</dt>
+							<dd>
+								<input type="text" class="" id="mail">
+								<p class="error" id="error_mail1" style="display:none;">メールアドレスが入力されていません　</p>
+								<p class="error" id="error_mail2" style="display:none;"></p>
+							</dd>
+						</dl>
+						<!--a href="#" class="btn-notification point-back01 white my-font01 opa"　onClick="do_search_condition_reg()">送信する</a-->
+						<input class="btn-notification point-back01 white my-font01 opa" type="button" style="border:none;" value="送信する" onClick="do_search_condition_reg()"/>
+					</div><!-- //.notification-form -->
+					<p class="" id="reg_success" style="display:none;">登録が完了しました</p>
+				</div><!-- //.remodal.notification-wrap -->
+				
+			</div>
+		</form>
+		
+		
+		<div class="search_result_wrap clearfix">
+			
+			<div class="title_wrap">
+				<h2 class="tit">求人情報一覧</h2>
+			</div>
+			<div class="search_result">
+				&nbsp;&nbsp;<span class="num">{$total}</span><span class="bold">&nbsp;件&nbsp;</span><!--{$start}～{$end}件-->
+			</div>
+
+{if $search2}
+				<div class="search_result_message clear">
+					<p>検索結果が見つかりませんでした。<br />
+						検索条件に近い求人情報を表示しています。</p>
+				</div>
+{/if}
+{if count($list)==0}
+				<div class="search_result_message">
+					<p>検索結果が見つかりませんでした。</p>
+				</div>
+{/if}
+				
+				
+{foreach from=$list item="item" name="loop"}
+			<div class="recruit_info">
+
+				<h3 class="tit"><a href="{$top}detail/{$item.item_id}" class="my-font02 opa">{$item.title}</a></h3>
+				
+				<div class="wrap">
+					<div class="info_wrap">
+						<a href="{$top}detail/{$item.item_id}" class="image_box opa" >
+{if $item.image}				
+							<img src="{$top}img.php?id={$item.image}" alt="{$item.title}" />
+{else}				
+	{if $item.item_id%22  > 0 }
+		<img src="{$top}noimg/{$item.item_id%22}.jpg" alt="{$item.title}" />
+	{else}
+		<img src="{$top}noimg/22.jpg" alt="{$item.title}" />
+	{/if}
+							<!--img src="{$top}common/images/noimg.png" alt="{$item.title}" /-->
+{/if}
+						</a>
+						<div class="info">
+							<div class="data">
+{if $item.text02}	
+								<dl>
+									<dt>施設名</dt>
+									<dd>{$item.text02}</dd>
+								</dl>
+{/if}
+{if $item.text01}	
+								<dl>
+									<dt>施設名</dt>
+									<dd>{$item.text01}</dd>
+								</dl>
+{/if}
+								<dl>
+									<dt>勤務地</dt>
+									<dd>{$item.kinmu_pref}{$item.kinmu_city}{$item.kinmu_address1}{$item.kinmu_address2}</dd>
+								</dl>
+								<dl>
+									<dt>職種</dt>
+									<dd>{$item.indeed}</dd>
+								</dl>
+								<dl>
+									<dt>雇用形態</dt>
+									<dd>{$item.koyou}</dd>
+								</dl>
+<!--{if $item.kyuyo}	
+								<dl>
+									<dt>給与</dt>
+									<dd>{$item.kyuyo}</dd>
+								</dl>
+{/if}-->
+							</div>
+						</div>
+					</div>
+					
+					<div class="btn_wrap">
+						<a class="btn01 fl opa" href="{$top}detail/{$item.item_id}">詳細を見る</a>
+						<a class="btn02 fr opa" href="{$top}detail/{$item.item_id}/contact/">問い合わせる</a>
+					</div>
+
+				</div>
+			</div>
+{/foreach}
+
+
+
+<!--ページャー開始-->
+{if $pager}
+			<div class="paging clearfix">
+				<ul>
+{if $pager.prev}
+{if $pager.prev.no}
+					<li class="prev"><a href="./p{$pager.prev.no}"><</a></li>
+{else}
+					<li class="prev"><a href="./"><</a></li>
+{/if}
+{/if}
+{if $pager.prev_skip}
+						&nbsp;…&nbsp;
+{/if}
+{foreach from=$pager.list item="item"}
+{if $item.link}
+{if $item.no}
+					<li><a href="./p{$item.no}">{$item.name}</a></li>
+{else}
+					<li><a href="./">{$item.name}</a></li>
+{/if}
+{else}
+					<li><span class="active">{$item.name}</span></li>
+{/if}
+{/foreach}
+{if $pager.next_skip}
+						&nbsp;…&nbsp;
+{/if}
+{if $pager.next}
+{if $pager.next.no}
+					<li class="next"><a href="./p{$pager.next.no}">></a></li>
+{else}
+					<li class="next"><a href="./">></a></li>
+{/if}
+{/if}
+				</ul>
+			</div>
+{/if}
+<!--ページャー終了-->
+
+			
+		</div>
+		
+		</div>
+
+	</article>
+	<!-- コンテンツ終了 -->
+	
+	
+{include file="common/footer.tpl"}
+
+</div>
+<script>
+	let g_topURL = '{$top}';
+</script>
+<script src="/common/js/gmap.js"></script>
+<script src="//maps.google.com/maps/api/js?sensor=true&key=AIzaSyB42taNnaV_QF4rubt1ksDOiHkgTdvueXg&callback=initMap"></script>
+</body>
+</html>

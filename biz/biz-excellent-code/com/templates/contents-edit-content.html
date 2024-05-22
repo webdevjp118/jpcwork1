@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>コンテンツ管理 | 管理画面</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="common/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/iCheck/all.css">
+<link rel="stylesheet" href="common/AdminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/skins/_all-skins.min.css">
+
+<link rel="stylesheet" href="common/js/remodal/remodal.css">
+<link rel="stylesheet" href="common/js/remodal/remodal-default-theme.css">
+
+<link rel="stylesheet" href="common/css/common.css">
+<link rel="stylesheet" href="/common/css/add_contents_public.css">
+<link rel="stylesheet" href="common/css/add_contents.css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+<!--{literal}
+<style>
+
+#dumper{
+	border: solid 1px #d2d6de;
+	background: #eee;
+	color: #999;
+	padding: 1em;
+}
+#dumper:before{
+	display: block;
+	content: 'デバッグ用';
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+	
+</style>
+{/literal}
+<div id="dumper"></div>
+-->
+<div class="wrapper">
+
+
+{include file="common/header_.tpl"}
+
+{include file="common/side.tpl"}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+<h1>コンテンツ管理<small>編集</small></h1>
+<ol class="breadcrumb">
+<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+<li><a href="">コンテンツ管理</a></li>
+<li class="active">コンテンツ</li>
+</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+<div class="nav-tabs-custom">
+
+<ul class="nav nav-tabs menu_fixed">
+<li><a href="contents-edit-basic.html">基本情報</a></li>
+<li class="active"><a href="javascript:void(0)">コンテンツ</a></li>
+<li class="pull-right"><a href="" class="text-muted" data-save-draft="true"><i class="fa fa-pencil-square-o"></i> 下書き保存</a></li>
+<li class="pull-right"><a href="" class="text-muted" data-save-complete="true"><i class="fa fa-retweet"></i> 登録</a></li>
+</ul>
+
+<div class="tab-content">
+
+
+<!--
+  _______    _        _____            _             _       
+ |__   __|  | |      / ____|          | |           | |      
+    | | __ _| |__   | |     ___  _ __ | |_ ___ _ __ | |_ ___ 
+    | |/ _` | '_ \  | |    / _ \| '_ \| __/ _ \ '_ \| __/ __|
+    | | (_| | |_) | | |___| (_) | | | | ||  __/ | | | |_\__ \
+    |_|\__,_|_.__/   \_____\___/|_| |_|\__\___|_| |_|\__|___/
+    
+    tab contents
+-->
+<div class="tab-pane active" id="tab_2">
+
+<!-- alert -->
+<div id="alert_area">
+<div class="box box-warning box-solid">
+<div class="box-header">
+<h3 class="box-title"><i class="fa fa-info mr05"></i>お知らせ</h3>
+<div class="box-tools pull-right">
+<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+</div><!-- /.box-tools -->
+</div><!-- /.box-header -->
+
+<div class="box-body">
+ページ復帰の操作を誤った場合は、ページをリロードしてください。<a href="javascript:location.reload()" class="btn btn-info btn-xs ml05"><i class="fa fa-refresh"></i>リロード</a>
+</div><!-- /.box-body -->
+</div><!-- /.box -->
+</div>
+<!-- / alert -->
+
+
+<form id="form2" name="form2" action="" method="post" enctype="multipart/form-data">
+<div id="add_area"></div><!--/#add_area-->
+</form>
+</div><!-- /.tab-pane -->
+
+</div><!-- /.tab-content -->
+</div>
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{include file="common/footer_.tpl"}
+
+
+
+
+
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+
+<!--
+  __  __         _      _ 
+ |  \/  |___  __| |__ _| |
+ | |\/| / _ \/ _` / _` | |
+ |_|  |_\___/\__,_\__,_|_|
+                          
+Modal start
+-->
+
+<div id="modal_editor" class="modal remodal" data-remodal-id="modal" data-remodal-options="hashTracking:false" data-item-index="0">
+<div class="modal_inner">
+
+<!-- Custom Tabs -->
+<div class="nav-tabs-custom">
+<ul class="nav nav-tabs" id="modal_tab">
+<li id="modal_tab_btn_editor" class="active"><a href="#modal_tab_editor" data-toggle="tab"><i class="fa fa-pencil-square-o"></i> 編集</a></li>
+<li id="modal_tab_btn1"><a href="#modal_tab_1" data-toggle="tab"><i class="fa fa-align-left"></i> テキスト</a></li>
+<li id="modal_tab_btn2"><a href="#modal_tab_2" data-toggle="tab"><i class="fa fa-picture-o"></i> 画像</a></li>
+<li id="modal_tab_btn3"><a href="#modal_tab_3" data-toggle="tab"><i class="fa fa-header"></i> 見出し</a></li>
+<li id="modal_tab_btn4"><a href="#modal_tab_4" data-toggle="tab"><i class="fa fa-list"></i> その他</a></li>
+<li id="modal_btn_remove" class="pull-right"><a href="javascript:void(0)" data-remodal-action="close"><i class="fa fa-remove"></i></a></li>
+<!--<li id="modal_btn_arrow" class="pull-right"><a href="javascript:void(0)" data-editor-action="undo"><i class="fa fa-arrow-left"></i></a></li>-->
+</ul>
+
+<div class="tab-content" id="modal_tab_content">
+<div class="tab-pane" id="modal_tab_1">
+<div class="list_float list_float_4col modal_mode_select">
+<ul>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_text"><figure><img src="./img/icon_mode_text.png" width="160" height="160" alt=""/><figcaption><span>テキスト</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_html"><figure><img src="./img/icon_mode_code.png" width="160" height="160" alt=""/><figcaption><span>HTML</span></figcaption></figure></a></li>
+</ul>
+</div>
+<!--<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>-->
+<div class="modal_btn_box">
+<button type="button" class="btn btn-default" data-remodal-action="cancel">キャンセル</button>
+</div>
+
+</div><!-- /.tab-pane -->
+
+<div class="tab-pane" id="modal_tab_2">
+<div class="list_float list_float_4col modal_mode_select">
+<ul>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_l"><figure><img src="./img/icon_mode_image_l.png" width="160" height="160" alt=""/><figcaption><span>画像 大</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_m"><figure><img src="./img/icon_mode_image_m.png" width="160" height="160" alt=""/><figcaption><span>画像 中</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_cl"><figure><img src="./img/icon_mode_image_cl.png" width="160" height="160" alt=""/><figcaption><span>画像 大 キャプション付</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_cm"><figure><img src="./img/icon_mode_image_cm.png" width="160" height="160" alt=""/><figcaption><span>画像 中 キャプション付</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_2col"><figure><img src="./img/icon_mode_image_2col.png" width="160" height="160" alt=""/><figcaption><span>画像 2つ並び</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_c2col"><figure><img src="./img/icon_mode_image_c2col.png" width="160" height="160" alt=""/><figcaption><span>画像 2つ並び キャプション付</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_3col"><figure><img src="./img/icon_mode_image_3col.png" width="160" height="160" alt=""/><figcaption><span>画像 3つ並び</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_image_c3col"><figure><img src="./img/icon_mode_image_c3col.png" width="160" height="160" alt=""/><figcaption><span>画像 3つ並び キャプション付</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_fl"><figure><img src="./img/icon_mode_image_fl.png" width="160" height="160" alt=""/><figcaption><span>テキスト中 画像 左</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_fr"><figure><img src="./img/icon_mode_image_fr.png" width="160" height="160" alt=""/><figcaption><span>テキスト中 画像 右</span></figcaption></figure></a></li>
+</ul>
+</div>
+<!--<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>-->
+<div class="modal_btn_box">
+<button type="button" class="btn btn-default" data-remodal-action="cancel">キャンセル</button>
+</div>
+
+</div><!-- /.tab-pane -->
+
+<div class="tab-pane" id="modal_tab_3">
+<div class="list_float list_float_4col modal_mode_select">
+<ul>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_header"><figure><img src="./img/icon_mode_headear.png" width="160" height="160" alt=""/><figcaption><span>見出し 大</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_header_sub"><figure><img src="./img/icon_mode_headear_sub.png" width="160" height="160" alt=""/><figcaption><span>見出し 小</span></figcaption></figure></a></li>
+</ul>
+</div>
+<!--<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>-->
+<div class="modal_btn_box">
+<button type="button" class="btn btn-default" data-remodal-action="cancel">キャンセル</button>
+</div>
+</div><!-- /.tab-pane -->
+
+<div class="tab-pane" id="modal_tab_4">
+<div class="list_float list_float_4col modal_mode_select">
+<ul>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_hr"><figure><img src="./img/icon_mode_hr.png" width="160" height="160" alt=""/><figcaption><span>文章中 罫線</span></figcaption></figure></a></li>
+<li><a href="javascript:void(0)" data-editor-item="editor_item_list"><figure><img src="./img/icon_mode_list.png" width="160" height="160" alt=""/><figcaption><span>リスト</span></figcaption></figure></a></li>
+</ul>
+</div>
+<!--<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>-->
+<div class="modal_btn_box">
+<button type="button" class="btn btn-default" data-remodal-action="cancel">キャンセル</button>
+</div>
+</div><!-- /.tab-pane -->
+
+
+
+<!--Editor tob-->
+<div class="tab-pane active" id="modal_tab_editor">
+<div id="editor_set">
+
+<!--if no set-->
+<div id="editor_item_noset" class="editor_item active">
+<p>タブから追加したい項目を選んでください。</p>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-default" data-remodal-action="cancel">キャンセル</button>
+</div>
+</div>
+
+<!--if text selected-->
+<div id="editor_item_text" class="editor_item">
+<p>プレーンのテキストを入力します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children"><textarea class="textarea_w24 form-control"></textarea><a href="javascript:void(0)" class="item_children_remove"><i class="fa fa-remove"></i></a></div>
+<div class="btn_box_add mt05"><a class="btn btn-app btn_add_contents"><i class="fa fa-plus"></i></a></div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if html selected-->
+<div id="editor_item_html" class="editor_item">
+<p>HTMLを入力します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<textarea class="textarea_w24 form-control" id="htmleditor" name="htmleditor"></textarea>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image large selected-->
+<div id="editor_item_image_l" class="editor_item">
+<p>画像を挿入します。画像が大きく真ん中に配置されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image middle selected-->
+<div id="editor_item_image_m" class="editor_item">
+<p>画像を挿入します。画像がページの半分くらいのサイズで、真ん中に配置されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image large caption selected-->
+<div id="editor_item_image_cl" class="editor_item">
+<p>画像を挿入します。画像が大きく真ん中に配置されます。<br>キャプションを入力できます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image middle caption selected-->
+<div id="editor_item_image_cm" class="editor_item">
+<p>画像を挿入します。画像がページの半分くらいのサイズで、真ん中に配置されます。<br>キャプションを入力できます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image 2col selected-->
+<div id="editor_item_image_2col" class="editor_item">
+<p>画像を挿入します。画像が横並びに2つ配置されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image 2col caption selected-->
+<div id="editor_item_image_c2col" class="editor_item">
+<p>画像を挿入します。画像が横並びに2つ配置されます。<br>キャプションを入力できます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image 3col selected-->
+<div id="editor_item_image_3col" class="editor_item">
+<p>画像を挿入します。画像が横並びに3つ配置されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if image 3col caption selected-->
+<div id="editor_item_image_c3col" class="editor_item">
+<p>画像を挿入します。画像が横並びに3つ配置されます。<br>キャプションを入力できます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+<div class="mt05"><input class="form-control" type="text" value="" placeholder="キャプション" /></div>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if text & image left selected-->
+<div id="editor_item_fl" class="editor_item">
+<p>画像がテキスト左側に挿入されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+<li class="colspan2">
+<textarea class="textarea_w24 form-control"></textarea>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if text & image right selected-->
+<div id="editor_item_fr" class="editor_item">
+<p>画像がテキスト右側に挿入されます。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="item_photo_select list_float list_float_3col">
+<ul>
+<li class="colspan2">
+<textarea class="textarea_w24 form-control"></textarea>
+</li>
+<li>
+<figure class="square_box"><div class="square_box_inner"><img src="./img/640x480.png" alt="" width="250" height="250" /></div></figure>
+<label class="btn btn-default"><i class="fa fa-file-image-o"></i> 画像ファイルの選択<input type="file" /></label>
+</li>
+</ul>
+</div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if header selected-->
+<div id="editor_item_header" class="editor_item">
+<p>見出し 大を挿入します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<input class="form-control" type="text" value="" placeholder="" />
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if subheader selected-->
+<div id="editor_item_header_sub" class="editor_item">
+<p>見出し 小を挿入します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<input class="form-control" type="text" value="" placeholder="" />
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if border selected-->
+<div id="editor_item_hr" class="editor_item">
+<p>ページを分割する罫線を挿入します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children">
+<div class="form-group"><label><input type="checkbox" value="1" class="flat-red" /> 罫線を挿入する</label></div>
+</div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+<!--if list selected-->
+<div id="editor_item_list" class="editor_item">
+<p>リストを挿入します。</p>
+<div class="item_error_notes"></div>
+<div class="item_children"><input class="form-control" type="text" value="" placeholder="項目を入力します" /><a href="javascript:void(0)" class="item_children_remove"><i class="fa fa-remove"></i></a></div>
+<div class="btn_box_add mt05"><a class="btn btn-app btn_add_contents"><i class="fa fa-plus"></i></a></div>
+<div class="modal_btn_box">
+<button type="button" class="btn btn-primary" data-remodal-action="confirm"><i class="fa fa-retweet"></i> 登録する</button>
+</div>
+</div>
+
+</div>
+</div><!-- /.tab-pane -->
+<!--/ end of Editor tob-->
+
+</div><!-- /.tab-content -->
+
+</div>
+</div><!-- nav-tabs-custom -->
+
+</div><!-- /.modal -->
+
+
+
+<script src="common/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="common/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/select2/select2.full.min.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="common/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="common/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="common/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="common/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="common/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="common/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+<script src="common/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script src="common/AdminLTE/js/app.min.js"></script>
+<script src="common/AdminLTE/js/demo.js"></script>
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
+{literal}
+<script src="common/js/remodal/remodal.min.js"></script>
+<script src="common/js/common.js"></script>
+<script>
+
+//JSに前回保存のコンテンツを渡す
+var database_items = [
+	
+	{
+		boot:true,//サーバーを使ってここに書き出された値はture（前回の編集から変化があるか確認するもの）
+		index:0,//基本配列のインデックスと同様の番号が入る（編集前の順番をJSで確認するためのもの）
+		mode: "editor_item_header",//dataの内容を正しく扱うためのモード
+		
+		//データ（モードにあった記述をします。スクリプト下部のmode名とdata形式の一覧を参照ください）
+		data: [
+			{ type:'text', context:'サーバーから見出しを読み込んだ想定' }
+		]
+	},
+	{
+		boot:true,
+		index:1,
+		mode: "editor_item_text",
+		data: [
+			{ type:'text', context:'サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定' },
+			{ type:'text', context:'サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定' },
+			{ type:'text', context:'サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定サーバーから読み込んだデータを想定' }
+		]
+	},
+	{
+		boot:true,
+		index:2,
+		mode: "editor_item_image_c2col",
+		data: [
+			{ type:'file', context:'./img/640x480.png' },
+			{ type:'text', context:'サーバーからキャプションを読み込んだ想定' },
+			{ type:'file', context:'./img/640x480.png' },
+			{ type:'text', context:'サーバーからキャプションを読み込んだ想定' }
+		]
+	},
+	{
+		boot:true,
+		index:3,
+		mode: "editor_item_list",
+		data: [
+			{ type:'text', context:'サーバーからリストを読み込んだ想定' },
+			{ type:'text', context:'サーバーからリストを読み込んだ想定' },
+			{ type:'text', context:'サーバーからリストを読み込んだ想定' }
+		]
+	}
+];
+//mode名とdata形式の一覧
+/*
+
+editor_item_text 複数行フリーテキスト入力
+data: [
+	{ type:'text', context:'テキストが入ります' },
+	{ type:'text', context:'配列になっています。' }
+]
+
+editor_item_html html形式
+data: [
+	{ type:'text', context:'<b>htmlが入ります。※タグの記述ミスで、エディタが操作不能になる可能性があります。</b>' }
+]
+0番以上要素が増えません
+
+
+editor_item_image_l 大きな画像
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+]
+タイプがfileで、contextにはdata URI、URLがはいります。
+JSで挿入する文字列はbase64した画像のdata URIが入ります。
+受け取るとき、URLでなくbase64した画像でもOKです。（その場合ページが重くなります）
+
+
+editor_item_image_m 中くらいの画像
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+]
+形式仕様ともに全て大きな画像と同じです
+
+
+editor_item_image_cl 大きな画像（キャプション付き）
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'キャプション' },
+]
+0番に画像、1番にキャプションが必ず入ります。
+
+
+editor_item_image_cm 中くらいの画像（キャプション付き）
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'キャプション' },
+]
+形式仕様ともに全て大きな画像と同じです
+
+
+editor_item_image_2col 画像が２つ横に並びます
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'file', context:'./img/640x480.png' },
+]
+
+
+editor_item_image_c2col 画像が２つ横に並びます（キャプション付き）
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'サーバーからキャプションを読み込んだ想定' },
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'サーバーからキャプションを読み込んだ想定' }
+]
+0番・2番に画像、
+1番・3番にキャプションが必ず入ります。
+
+
+editor_item_image_3col 画像が3つ横に並びます
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'file', context:'./img/640x480.png' }
+]
+
+
+editor_item_image_c3col 画像が3つ横に並びます（キャプション付き）
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'サーバーからキャプションを読み込んだ想定' },
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'サーバーからキャプションを読み込んだ想定' },
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'サーバーからキャプションを読み込んだ想定' }
+]
+
+
+editor_item_fl 画像がテキストの左に入ります
+data: [
+	{ type:'file', context:'./img/640x480.png' },
+	{ type:'text', context:'キャプション' }
+]
+
+
+editor_item_fr 画像がテキストの右に入ります
+data: [
+	{ type:'text', context:'キャプション' },
+	{ type:'file', context:'./img/640x480.png' }
+]
+
+
+editor_item_header 大見出し
+data: [
+	{ type:'text', context:'テキストが入ります' }
+]
+0番以上要素が増えません
+
+
+editor_item_header_sub 小見出し
+data: [
+	{ type:'text', context:'テキストが入ります' }
+]
+0番以上要素が増えません
+
+
+editor_item_hr 罫線
+data: [
+	{ type:'checkbox', context:'1' }
+]
+contextには罫線を有効の場合、1のみ入ります。
+それ以外の値の場合、無視されプレビュー上には表示されません。
+0番以上要素が増えません
+
+
+editor_item_list リスト
+data: [
+	{ type:'text', context:'リスト項目が入ります' },
+	{ type:'text', context:'リスト項目が入ります' },
+	{ type:'text', context:'リスト項目が入ります' }
+]
+フリーテキスト入力と同じ仕様です。
+
+*/
+
+</script>
+<script>
+
+$(function () {
+	
+	//iCheck radio、checkboxの装飾
+	
+	//iCheck for checkbox and radio inputs
+	$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue'
+	});
+	//Red color scheme for iCheck
+	$('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+		checkboxClass: 'icheckbox_minimal-red',
+		radioClass: 'iradio_minimal-red'
+	});
+	//Flat red color scheme for iCheck
+	$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+		checkboxClass: 'icheckbox_flat-green',
+		radioClass: 'iradio_flat-green'
+	});
+});
+
+</script>
+<script src="common/js/add_contents.js"></script>
+{/literal}
+
+</body>
+</html>

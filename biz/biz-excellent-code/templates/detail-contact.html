@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow,noarchive" />
+<meta name="description" content="コーディネーターに相談する{if $info.title}、{$info.title}{/if}、エントリーページ">
+<meta name="keywords" content="{if $info.title}{$info.title},{/if}コーディネーターに相談する,保育士,保育園,幼稚園求人,転職,保育biz">
+<meta name="format-detection" content="telephone=no">
+<title>コーディネーターに相談する{if $info.title}｜{$info.title}{/if}｜保育biz</title>
+
+{if $info.status neq '公開'}
+<meta name="robots" content="noindex,follow" />
+{/if}
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/css/import.css">
+	
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+<!-- Java Script
+ ================================================== -->
+<script src="{$top}common/js/jquery.min.js"></script>
+<script src="{$top}common/js/custom.js"></script>
+<script src="{$top}common/js/css_browser_selector.js"></script>
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+<!-- detail-contactのフォームデータ管理 -->
+<script type="text/javascript" src="{$top}common/js/jquery-1.8.2.js"></script>
+
+<!-- 郵便番号入力で住所自動入力 -->
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+
+{include file="common/analytics.tpl"}
+</head>
+
+
+
+<body>
+
+<div id="wrapper" class="bg_gray">
+{include file="common/header.tpl"}
+	
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title detail">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">コーディネーターに相談する</h1>
+			<div class="subpage_title_eng">Entry</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+	
+	<!--パンくず開始-->
+	<div id="topics" class="pc-only clearfix">
+		<ol class="clearfix">
+			<li><a href="{$top}">TOP</a>&nbsp;&gt;&nbsp;</li>
+{if $info}
+{if $info.kinmu_pref}
+			<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}">{$info.kinmu_pref}</a>&nbsp;&gt;&nbsp;</li>
+{/if}
+{if $info.kinmu_city}
+			<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}/c{$info.kinmu_city_v}">{$info.kinmu_city}</a>&nbsp;&gt;&nbsp;</li>
+{/if}
+			<li><a href="{$top}detail/{$info.item_id}/">{$info.title}</a>&nbsp;&gt;&nbsp;</li>
+{/if}
+{if $form.kind=="kentou"}
+			<li><a href="kentou.html">検討リスト</a>&nbsp;&gt;&nbsp;</li>
+{/if}
+			<li>コーディネーターに相談する</li>
+		</ol>
+	</div>
+	<!--パンくず終了-->
+	
+	
+	<!--コンテンツ開始-->
+	<div id="content" class="clearfix">
+		<!-- メインコンテンツ開始 -->
+		<div id="main">
+			<div class="content_wrap clearfix">
+
+{if $list}<!--求人指定の場合-->
+{foreach from=$list item="item"}
+				<div class="detail_contact_head mb20 clearfix">
+{if $item.image}
+					<a href="{$top}detail/{$item.item_id}/" class="image opa"><img src="{$top}img.php?id={$item.image}" width="86" alt="{$item.title}" /></a>
+{/if}
+					<div class="desc">
+						<a href="{$top}detail/{$item.item_id}/" class="tit opa">{$item.title}</a>
+						<p class="info">{$item.kinmu_pref}{$item.kinmu_city}</p>
+					</div>
+				</div>
+{/foreach}
+				<p class="tx-center detail_text">▲上記の求人状況について問い合わせます▲</p>
+{/if}<!--求人指定の場合-->
+
+{if $msg}
+			<div class="error mb20">入力内容に不備があります。</div>
+{/if}
+		
+		
+			<div class="detail_contact clearfix">
+				<div class="contact_form">
+<form name="form1" action="{$top}detail-contact.html" method="post">
+<input type="hidden" name="mode" value="form">
+<input type="hidden" name="kind" value="{$form.kind}">
+{foreach from=$form.item_list item="item"}
+<input type="hidden" name="item_list[]" value="{$item}">
+{/foreach}
+					<table class="form mb15" cellspacing="0" summary="お問い合わせフォーム">
+						<tr>
+							<th>氏名<em class="hissu">必須</em></th>
+							<td>
+								<div class="clearfix">
+									<input class="txt_w30p fl" type="text" name="name" value="{$form.name}" />
+									<p class="note ml10 sp-ml0 fl lh24 sp-lh18">&nbsp;例：保育 花子</p>
+								</div>
+{if $msg.name}
+								<div class="error">{$msg.name}</div>
+{/if}
+							</td>
+						</tr>
+						<tr>
+							<th>カナ<em class="hissu">必須</em></th>
+							<td>
+								<div class="clearfix">
+									<input class="txt_w30p fl" type="text" name="name_kana" value="{$form.name_kana}" />
+									<p class="note ml10 sp-ml0 fl lh24 sp-lh18">&nbsp;例：ホイク ハナコ</p>
+								</div>
+{if $msg.name_kana}
+								<div class="error">{$msg.name_kana}</div>
+{/if}
+							</td>
+						</tr>
+						
+						
+						<tr>
+					<th>性別<em class="hissu">必須</em></th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="radio" name="radio01" value="1" {if $form.radio01==1}checked="checked"{/if} />&nbsp;男性</label></li>
+									<li><label><input type="radio" name="radio01" value="2" {if $form.radio01==2}checked="checked"{/if} />&nbsp;女性</label></li>
+								</ul>
+{if $msg.radio01}
+								<div class="error">{$msg.radio01}</div>
+{/if}
+							</td>
+				</tr>
+						
+						
+				
+						<tr>
+							<th>生年月日<em class="hissu">必須</em></th>
+							<td>
+								<div class="fl mr05">
+									<select name="birthday_year">
+										<option value="">----</option>
+										<option value="1940" {if $form.birthday_year==1940}selected="selected"{/if}>1940</option>
+										<option value="1941" {if $form.birthday_year==1941}selected="selected"{/if}>1941</option>
+										<option value="1942" {if $form.birthday_year==1942}selected="selected"{/if}>1942</option>
+										<option value="1943" {if $form.birthday_year==1943}selected="selected"{/if}>1943</option>
+										<option value="1944" {if $form.birthday_year==1944}selected="selected"{/if}>1944</option>
+										<option value="1945" {if $form.birthday_year==1945}selected="selected"{/if}>1945</option>
+										<option value="1946" {if $form.birthday_year==1946}selected="selected"{/if}>1946</option>
+										<option value="1947" {if $form.birthday_year==1947}selected="selected"{/if}>1947</option>
+										<option value="1948" {if $form.birthday_year==1948}selected="selected"{/if}>1948</option>
+										<option value="1949" {if $form.birthday_year==1949}selected="selected"{/if}>1949</option>
+										<option value="1950" {if $form.birthday_year==1950}selected="selected"{/if}>1950</option>
+										<option value="1951" {if $form.birthday_year==1951}selected="selected"{/if}>1951</option>
+										<option value="1952" {if $form.birthday_year==1952}selected="selected"{/if}>1952</option>
+										<option value="1953" {if $form.birthday_year==1953}selected="selected"{/if}>1953</option>
+										<option value="1954" {if $form.birthday_year==1954}selected="selected"{/if}>1954</option>
+										<option value="1955" {if $form.birthday_year==1955}selected="selected"{/if}>1955</option>
+										<option value="1956" {if $form.birthday_year==1956}selected="selected"{/if}>1956</option>
+										<option value="1957" {if $form.birthday_year==1957}selected="selected"{/if}>1957</option>
+										<option value="1958" {if $form.birthday_year==1958}selected="selected"{/if}>1958</option>
+										<option value="1959" {if $form.birthday_year==1959}selected="selected"{/if}>1959</option>
+										<option value="1960" {if $form.birthday_year==1960}selected="selected"{/if}>1960</option>
+										<option value="1961" {if $form.birthday_year==1961}selected="selected"{/if}>1961</option>
+										<option value="1962" {if $form.birthday_year==1962}selected="selected"{/if}>1962</option>
+										<option value="1963" {if $form.birthday_year==1963}selected="selected"{/if}>1963</option>
+										<option value="1964" {if $form.birthday_year==1964}selected="selected"{/if}>1964</option>
+										<option value="1965" {if $form.birthday_year==1965}selected="selected"{/if}>1965</option>
+										<option value="1966" {if $form.birthday_year==1966}selected="selected"{/if}>1966</option>
+										<option value="1967" {if $form.birthday_year==1967}selected="selected"{/if}>1967</option>
+										<option value="1968" {if $form.birthday_year==1968}selected="selected"{/if}>1968</option>
+										<option value="1969" {if $form.birthday_year==1969}selected="selected"{/if}>1969</option>
+										<option value="1970" {if $form.birthday_year==1970}selected="selected"{/if}>1970</option>
+										<option value="1971" {if $form.birthday_year==1971}selected="selected"{/if}>1971</option>
+										<option value="1972" {if $form.birthday_year==1972}selected="selected"{/if}>1972</option>
+										<option value="1973" {if $form.birthday_year==1973}selected="selected"{/if}>1973</option>
+										<option value="1974" {if $form.birthday_year==1974}selected="selected"{/if}>1974</option>
+										<option value="1975" {if $form.birthday_year==1975}selected="selected"{/if}>1975</option>
+										<option value="1976" {if $form.birthday_year==1976}selected="selected"{/if}>1976</option>
+										<option value="1977" {if $form.birthday_year==1977}selected="selected"{/if}>1977</option>
+										<option value="1978" {if $form.birthday_year==1978}selected="selected"{/if}>1978</option>
+										<option value="1979" {if $form.birthday_year==1979}selected="selected"{/if}>1979</option>
+										<option value="1980" {if $form.birthday_year==1980}selected="selected"{/if}>1980</option>
+										<option value="1981" {if $form.birthday_year==1981}selected="selected"{/if}>1981</option>
+										<option value="1982" {if $form.birthday_year==1982}selected="selected"{/if}>1982</option>
+										<option value="1983" {if $form.birthday_year==1983}selected="selected"{/if}>1983</option>
+										<option value="1984" {if $form.birthday_year==1984}selected="selected"{/if}>1984</option>
+										<option value="1985" {if $form.birthday_year==1985}selected="selected"{/if}>1985</option>
+										<option value="1986" {if $form.birthday_year==1986}selected="selected"{/if}>1986</option>
+										<option value="1987" {if $form.birthday_year==1987}selected="selected"{/if}>1987</option>
+										<option value="1988" {if $form.birthday_year==1988}selected="selected"{/if}>1988</option>
+										<option value="1989" {if $form.birthday_year==1989}selected="selected"{/if}>1989</option>
+										<option value="1990" {if $form.birthday_year==1990}selected="selected"{/if}>1990</option>
+										<option value="1991" {if $form.birthday_year==1991}selected="selected"{/if}>1991</option>
+										<option value="1992" {if $form.birthday_year==1992}selected="selected"{/if}>1992</option>
+										<option value="1993" {if $form.birthday_year==1993}selected="selected"{/if}>1993</option>
+										<option value="1994" {if $form.birthday_year==1994}selected="selected"{/if}>1994</option>
+										<option value="1995" {if $form.birthday_year==1995}selected="selected"{/if}>1995</option>
+										<option value="1996" {if $form.birthday_year==1996}selected="selected"{/if}>1996</option>
+										<option value="1997" {if $form.birthday_year==1997}selected="selected"{/if}>1997</option>
+										<option value="1998" {if $form.birthday_year==1998}selected="selected"{/if}>1998</option>
+										<option value="1999" {if $form.birthday_year==1999}selected="selected"{/if}>1999</option>
+										<option value="2000" {if $form.birthday_year==2000}selected="selected"{/if}>2000</option>
+										<option value="2001" {if $form.birthday_year==2001}selected="selected"{/if}>2001</option>
+										<option value="2002" {if $form.birthday_year==2002}selected="selected"{/if}>2002</option>
+										<option value="2003" {if $form.birthday_year==2003}selected="selected"{/if}>2003</option>
+										<option value="2004" {if $form.birthday_year==2004}selected="selected"{/if}>2004</option>
+										<option value="2005" {if $form.birthday_year==2005}selected="selected"{/if}>2005</option>
+										<option value="2006" {if $form.birthday_year==2006}selected="selected"{/if}>2006</option>
+										<option value="2007" {if $form.birthday_year==2007}selected="selected"{/if}>2007</option>
+										<option value="2008" {if $form.birthday_year==2008}selected="selected"{/if}>2008</option>
+										<option value="2009" {if $form.birthday_year==2009}selected="selected"{/if}>2009</option>
+										<option value="2010" {if $form.birthday_year==2010}selected="selected"{/if}>2010</option>
+										<option value="2011" {if $form.birthday_year==2011}selected="selected"{/if}>2011</option>
+										<option value="2012" {if $form.birthday_year==2012}selected="selected"{/if}>2012</option>
+										<option value="2013" {if $form.birthday_year==2013}selected="selected"{/if}>2013</option>
+										<option value="2014" {if $form.birthday_year==2014}selected="selected"{/if}>2014</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr05 ml05">&nbsp;年&nbsp;</p>
+								<div class="fl">
+									<select name="birthday_month">
+										<option value="">--</option>
+										<option value="1" {if $form.birthday_month==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.birthday_month==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.birthday_month==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.birthday_month==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.birthday_month==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.birthday_month==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.birthday_month==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.birthday_month==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.birthday_month==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.birthday_month==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.birthday_month==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.birthday_month==12}selected="selected"{/if}>12</option>
+									</select>
+								</div>
+								<p class="fl lh28  mr05 ml05">&nbsp;月&nbsp;</p>
+								<div class="fl">
+									<select name="birthday_day">
+										<option value="">--</option>
+										<option value="1" {if $form.birthday_day==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.birthday_day==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.birthday_day==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.birthday_day==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.birthday_day==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.birthday_day==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.birthday_day==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.birthday_day==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.birthday_day==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.birthday_day==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.birthday_day==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.birthday_day==12}selected="selected"{/if}>12</option>
+										<option value="13" {if $form.birthday_day==13}selected="selected"{/if}>13</option>
+										<option value="14" {if $form.birthday_day==14}selected="selected"{/if}>14</option>
+										<option value="15" {if $form.birthday_day==15}selected="selected"{/if}>15</option>
+										<option value="16" {if $form.birthday_day==16}selected="selected"{/if}>16</option>
+										<option value="17" {if $form.birthday_day==17}selected="selected"{/if}>17</option>
+										<option value="18" {if $form.birthday_day==18}selected="selected"{/if}>18</option>
+										<option value="19" {if $form.birthday_day==19}selected="selected"{/if}>19</option>
+										<option value="20" {if $form.birthday_day==20}selected="selected"{/if}>20</option>
+										<option value="21" {if $form.birthday_day==21}selected="selected"{/if}>21</option>
+										<option value="22" {if $form.birthday_day==22}selected="selected"{/if}>22</option>
+										<option value="23" {if $form.birthday_day==23}selected="selected"{/if}>23</option>
+										<option value="24" {if $form.birthday_day==24}selected="selected"{/if}>24</option>
+										<option value="25" {if $form.birthday_day==25}selected="selected"{/if}>25</option>
+										<option value="26" {if $form.birthday_day==26}selected="selected"{/if}>26</option>
+										<option value="27" {if $form.birthday_day==27}selected="selected"{/if}>27</option>
+										<option value="28" {if $form.birthday_day==28}selected="selected"{/if}>28</option>
+										<option value="29" {if $form.birthday_day==29}selected="selected"{/if}>29</option>
+										<option value="30" {if $form.birthday_day==30}selected="selected"{/if}>30</option>
+										<option value="31" {if $form.birthday_day==31}selected="selected"{/if}>31</option>
+									</select>
+								</div>
+								<p class="fl lh28 ml05">&nbsp;日&nbsp;</p>
+{if $msg.birthday_year}
+								<div class="error">{$msg.birthday_year}</div>
+{/if}
+{if $msg.birthday_month}
+								<div class="error">{$msg.birthday_month}</div>
+{/if}
+{if $msg.birthday_day}
+								<div class="error">{$msg.birthday_day}</div>
+{/if}
+							</td>
+						</tr>
+						
+						<tr>
+							<th>保有資格</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="checkbox" name="shikaku[]" value="1" {if $form.shikaku.1}checked="checked"{/if} />&nbsp;保育士</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="2" {if $form.shikaku.2}checked="checked"{/if} />&nbsp;幼稚園教諭</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="3" {if $form.shikaku.3}checked="checked"{/if} />&nbsp;栄養士</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="4" {if $form.shikaku.4}checked="checked"{/if} />&nbsp;調理師</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="5" {if $form.shikaku.5}checked="checked"{/if} />&nbsp;園長</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="6" {if $form.shikaku.6}checked="checked"{/if} />&nbsp;主任</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="7" {if $form.shikaku.7}checked="checked"{/if} />&nbsp;看護師</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="8" {if $form.shikaku.8}checked="checked"{/if} />&nbsp;児童指導員</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="9" {if $form.shikaku.9}checked="checked"{/if} />&nbsp;児童発達支援管理責任者</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="10" {if $form.shikaku.10}checked="checked"{/if} />&nbsp;作業療法士</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="11" {if $form.shikaku.11}checked="checked"{/if} />&nbsp;理学療法士</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="12" {if $form.shikaku.12}checked="checked"{/if} />&nbsp;言語聴覚士</label></li>
+									<li><label><input type="checkbox" name="shikaku[]" value="13" {if $form.shikaku.13}checked="checked"{/if} />&nbsp;臨床心理士</label></li>
+								</ul>
+{if $msg.shikaku}
+								<div class="error">{$msg.shikaku}</div>
+{/if}
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th>電話番号<em class="hissu">必須</em>
+							</th>
+							<td>
+								<input class="txt_w30p fl" type="tel" name="tel" value="{$form.tel}" />
+								<p class="note ml10 sp-ml0 fl lh24 sp-lh18">&nbsp;※半角数字で入力してください</p>
+{if $msg.tel}
+									<div class="error">
+										{$msg.tel}
+									</div>
+{/if}
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<th>メールアドレス<em class="hissu">必須 </em></th>
+							<td>
+								<input class="txt_w30p fl" type="email" name="email" value="{$form.email}" />
+								<p class="note ml10 sp-ml0 fl lh24 sp-lh18">&nbsp;※半角英数字で入力してください</p>
+{if $msg.email}
+								<div class="error">
+									{$msg.email}
+								</div>
+{/if}
+							</td>
+						</tr>
+						
+						<!--
+						<tr>
+							<th>text01</th>
+							<td>
+								<input class="txt_w250" type="text" name="text01" value="{$form.text01}" />
+{if $msg.text01}
+								<ul class="error">
+									<li>{$msg.text01}</li>
+								</ul>
+{/if}
+							</td>
+						</tr>
+						-->
+						
+						
+						<!--<tr>
+							<th>現在お住まいの地域</th>
+							<td>
+								<div class="box">
+									<dl class="dl_01 mb10">
+										<dt>郵便番号</dt>
+										<dd>
+											<input class="txt_w11p" type="number" name="zip1" value="{$form.zip1}" />
+											<span class="haihun">-</span>
+											<input class="txt_w11p" type="number" name="zip2" value="{$form.zip2}" onKeyUp="AjaxZip3.zip2addr('zip1','zip2','pref','city','address1');" />
+										</dd>
+									</dl>
+									<dl class="dl_01 mb10">
+									<dt>都道府県</dt>
+										<dd>
+											<select name="pref">
+								<option value="">都道府県を選択して下さい</option>
+								<option value="1" {if $form.pref==1}selected="selected"{/if}>北海道</option>
+								<option value="2" {if $form.pref==2}selected="selected"{/if}>青森県</option>
+								<option value="3" {if $form.pref==3}selected="selected"{/if}>岩手県</option>
+								<option value="4" {if $form.pref==4}selected="selected"{/if}>宮城県</option>
+								<option value="5" {if $form.pref==5}selected="selected"{/if}>秋田県</option>
+								<option value="6" {if $form.pref==6}selected="selected"{/if}>山形県</option>
+								<option value="7" {if $form.pref==7}selected="selected"{/if}>福島県</option>
+								<option value="8" {if $form.pref==8}selected="selected"{/if}>茨城県</option>
+								<option value="9" {if $form.pref==9}selected="selected"{/if}>栃木県</option>
+								<option value="10" {if $form.pref==10}selected="selected"{/if}>群馬県</option>
+								<option value="11" {if $form.pref==11}selected="selected"{/if}>埼玉県</option>
+								<option value="12" {if $form.pref==12}selected="selected"{/if}>千葉県</option>
+								<option value="13" {if $form.pref==13}selected="selected"{/if}>東京都</option>
+								<option value="14" {if $form.pref==14}selected="selected"{/if}>神奈川県</option>
+								<option value="15" {if $form.pref==15}selected="selected"{/if}>新潟県</option>
+								<option value="16" {if $form.pref==16}selected="selected"{/if}>富山県</option>
+								<option value="17" {if $form.pref==17}selected="selected"{/if}>石川県</option>
+								<option value="18" {if $form.pref==18}selected="selected"{/if}>福井県</option>
+								<option value="19" {if $form.pref==19}selected="selected"{/if}>山梨県</option>
+								<option value="20" {if $form.pref==20}selected="selected"{/if}>長野県</option>
+								<option value="21" {if $form.pref==21}selected="selected"{/if}>岐阜県</option>
+								<option value="22" {if $form.pref==22}selected="selected"{/if}>静岡県</option>
+								<option value="23" {if $form.pref==23}selected="selected"{/if}>愛知県</option>
+								<option value="24" {if $form.pref==24}selected="selected"{/if}>三重県</option>
+								<option value="25" {if $form.pref==25}selected="selected"{/if}>滋賀県</option>
+								<option value="26" {if $form.pref==26}selected="selected"{/if}>京都府</option>
+								<option value="27" {if $form.pref==27}selected="selected"{/if}>大阪府</option>
+								<option value="28" {if $form.pref==28}selected="selected"{/if}>兵庫県</option>
+								<option value="29" {if $form.pref==29}selected="selected"{/if}>奈良県</option>
+								<option value="30" {if $form.pref==30}selected="selected"{/if}>和歌山県</option>
+								<option value="31" {if $form.pref==31}selected="selected"{/if}>鳥取県</option>
+								<option value="32" {if $form.pref==32}selected="selected"{/if}>島根県</option>
+								<option value="33" {if $form.pref==33}selected="selected"{/if}>岡山県</option>
+								<option value="34" {if $form.pref==34}selected="selected"{/if}>広島県</option>
+								<option value="35" {if $form.pref==35}selected="selected"{/if}>山口県</option>
+								<option value="36" {if $form.pref==36}selected="selected"{/if}>徳島県</option>
+								<option value="37" {if $form.pref==37}selected="selected"{/if}>香川県</option>
+								<option value="38" {if $form.pref==38}selected="selected"{/if}>愛媛県</option>
+								<option value="39" {if $form.pref==39}selected="selected"{/if}>高知県</option>
+								<option value="40" {if $form.pref==40}selected="selected"{/if}>福岡県</option>
+								<option value="41" {if $form.pref==41}selected="selected"{/if}>佐賀県</option>
+								<option value="42" {if $form.pref==42}selected="selected"{/if}>長崎県</option>
+								<option value="43" {if $form.pref==43}selected="selected"{/if}>熊本県</option>
+								<option value="44" {if $form.pref==44}selected="selected"{/if}>大分県</option>
+								<option value="45" {if $form.pref==45}selected="selected"{/if}>宮崎県</option>
+								<option value="46" {if $form.pref==46}selected="selected"{/if}>鹿児島県</option>
+								<option value="47" {if $form.pref==47}selected="selected"{/if}>沖縄県</option>
+											</select>
+										</dd>
+									</dl>
+									<dl class="dl_01 mb10">
+										<dt>市区町村</dt>
+										<dd>
+											<input class="txt_w30p fl" type="text" name="city" value="{$form.city}" />
+											<span class="note ml10 fl lh24">例：○○市○○区</span>
+										</dd>
+									</dl>-->
+<!--
+									<dl class="dl_01 mb10">
+										<dt>番地まで</dt>
+										<dd>
+											<input class="txt_w47p" type="text" name="address1" value="{$form.address1}" />
+											<span class="note">例：○○通　1-2-3</span>
+										</dd>
+									</dl>
+									<dl class="dl_01 mb10">
+									<dt>建物名･階数</dt>
+										<dd>
+											<input class="txt_w47p" type="text" name="address2" value="{$form.address2}" />
+											<span class="note">例：○○マンション　1-A</span>
+										</dd>
+									</dl>
+
+{if $msg.zip1}
+									<div class="error">{$msg.zip1}</div>
+{/if}
+{if $msg.zip2}
+									<div class="error">{$msg.zip2}</div>
+{/if}
+{if $msg.pref}
+									<div class="error">{$msg.pref}</div>
+{/if}
+{if $msg.city}
+									<div class="error">{$msg.city}</div>
+{/if}
+{if $msg.address1}
+									<div class="error">{$msg.address1}</div>
+{/if}
+{if $msg.address2}
+									<div class="error">{$msg.address2}</div>
+{/if}
+								</div>
+							</td>
+						</tr>-->
+						
+						
+						
+						
+						<!--<tr>
+							<th>ご希望の勤務形態</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="checkbox" name="check02[]" value="1" {if $form.check02.1}checked="checked"{/if} />&nbsp;正社員</label></li>
+									<li><label><input type="checkbox" name="check02[]" value="2" {if $form.check02.2}checked="checked"{/if} />&nbsp;契約社員</label></li>
+									<li><label><input type="checkbox" name="check02[]" value="3" {if $form.check02.3}checked="checked"{/if} />&nbsp;アルバイト/アルバイト</label></li>
+								</ul>
+{if $msg.check02}
+								<div class="error">{$msg.check02}</div>
+{/if}
+							</td>
+						</tr>
+						<tr>
+							<th>希望入職時期</th>
+							<td>
+								<select name="jiki">
+									<option value="">選択して下さい</option>
+									<option value="1" {if $form.jiki==1}selected="selected"{/if}>今すぐ</option>
+									<option value="2" {if $form.jiki==2}selected="selected"{/if}>1ヶ月以内</option>
+									<option value="3" {if $form.jiki==3}selected="selected"{/if}>3ヶ月以内</option>
+									<option value="4" {if $form.jiki==4}selected="selected"{/if}>半年以内</option>
+									<option value="5" {if $form.jiki==5}selected="selected"{/if}>1年以内</option>
+									<option value="6" {if $form.jiki==6}selected="selected"{/if}>未定</option>
+								</select>
+{if $msg.jiki}
+								<div class="error">{$msg.jiki}</div>
+{/if}
+							</td>
+						</tr>-->
+						
+				<!--
+				
+						<tr>
+							<th>ymd01</th>
+							<td><div class="fl mr05">
+									<select name="ymd01_year">
+										<option value="">----</option>
+										<option value="1940" {if $form.ymd01_year==1940}selected="selected"{/if}>1940</option>
+										<option value="1941" {if $form.ymd01_year==1941}selected="selected"{/if}>1941</option>
+										<option value="1942" {if $form.ymd01_year==1942}selected="selected"{/if}>1942</option>
+										<option value="1943" {if $form.ymd01_year==1943}selected="selected"{/if}>1943</option>
+										<option value="1944" {if $form.ymd01_year==1944}selected="selected"{/if}>1944</option>
+										<option value="1945" {if $form.ymd01_year==1945}selected="selected"{/if}>1945</option>
+										<option value="1946" {if $form.ymd01_year==1946}selected="selected"{/if}>1946</option>
+										<option value="1947" {if $form.ymd01_year==1947}selected="selected"{/if}>1947</option>
+										<option value="1948" {if $form.ymd01_year==1948}selected="selected"{/if}>1948</option>
+										<option value="1949" {if $form.ymd01_year==1949}selected="selected"{/if}>1949</option>
+										<option value="1950" {if $form.ymd01_year==1950}selected="selected"{/if}>1950</option>
+										<option value="1951" {if $form.ymd01_year==1951}selected="selected"{/if}>1951</option>
+										<option value="1952" {if $form.ymd01_year==1952}selected="selected"{/if}>1952</option>
+										<option value="1953" {if $form.ymd01_year==1953}selected="selected"{/if}>1953</option>
+										<option value="1954" {if $form.ymd01_year==1954}selected="selected"{/if}>1954</option>
+										<option value="1955" {if $form.ymd01_year==1955}selected="selected"{/if}>1955</option>
+										<option value="1956" {if $form.ymd01_year==1956}selected="selected"{/if}>1956</option>
+										<option value="1957" {if $form.ymd01_year==1957}selected="selected"{/if}>1957</option>
+										<option value="1958" {if $form.ymd01_year==1958}selected="selected"{/if}>1958</option>
+										<option value="1959" {if $form.ymd01_year==1959}selected="selected"{/if}>1959</option>
+										<option value="1960" {if $form.ymd01_year==1960}selected="selected"{/if}>1960</option>
+										<option value="1961" {if $form.ymd01_year==1961}selected="selected"{/if}>1961</option>
+										<option value="1962" {if $form.ymd01_year==1962}selected="selected"{/if}>1962</option>
+										<option value="1963" {if $form.ymd01_year==1963}selected="selected"{/if}>1963</option>
+										<option value="1964" {if $form.ymd01_year==1964}selected="selected"{/if}>1964</option>
+										<option value="1965" {if $form.ymd01_year==1965}selected="selected"{/if}>1965</option>
+										<option value="1966" {if $form.ymd01_year==1966}selected="selected"{/if}>1966</option>
+										<option value="1967" {if $form.ymd01_year==1967}selected="selected"{/if}>1967</option>
+										<option value="1968" {if $form.ymd01_year==1968}selected="selected"{/if}>1968</option>
+										<option value="1969" {if $form.ymd01_year==1969}selected="selected"{/if}>1969</option>
+										<option value="1970" {if $form.ymd01_year==1970}selected="selected"{/if}>1970</option>
+										<option value="1971" {if $form.ymd01_year==1971}selected="selected"{/if}>1971</option>
+										<option value="1972" {if $form.ymd01_year==1972}selected="selected"{/if}>1972</option>
+										<option value="1973" {if $form.ymd01_year==1973}selected="selected"{/if}>1973</option>
+										<option value="1974" {if $form.ymd01_year==1974}selected="selected"{/if}>1974</option>
+										<option value="1975" {if $form.ymd01_year==1975}selected="selected"{/if}>1975</option>
+										<option value="1976" {if $form.ymd01_year==1976}selected="selected"{/if}>1976</option>
+										<option value="1977" {if $form.ymd01_year==1977}selected="selected"{/if}>1977</option>
+										<option value="1978" {if $form.ymd01_year==1978}selected="selected"{/if}>1978</option>
+										<option value="1979" {if $form.ymd01_year==1979}selected="selected"{/if}>1979</option>
+										<option value="1980" {if $form.ymd01_year==1980}selected="selected"{/if}>1980</option>
+										<option value="1981" {if $form.ymd01_year==1981}selected="selected"{/if}>1981</option>
+										<option value="1982" {if $form.ymd01_year==1982}selected="selected"{/if}>1982</option>
+										<option value="1983" {if $form.ymd01_year==1983}selected="selected"{/if}>1983</option>
+										<option value="1984" {if $form.ymd01_year==1984}selected="selected"{/if}>1984</option>
+										<option value="1985" {if $form.ymd01_year==1985}selected="selected"{/if}>1985</option>
+										<option value="1986" {if $form.ymd01_year==1986}selected="selected"{/if}>1986</option>
+										<option value="1987" {if $form.ymd01_year==1987}selected="selected"{/if}>1987</option>
+										<option value="1988" {if $form.ymd01_year==1988}selected="selected"{/if}>1988</option>
+										<option value="1989" {if $form.ymd01_year==1989}selected="selected"{/if}>1989</option>
+										<option value="1990" {if $form.ymd01_year==1990}selected="selected"{/if}>1990</option>
+										<option value="1991" {if $form.ymd01_year==1991}selected="selected"{/if}>1991</option>
+										<option value="1992" {if $form.ymd01_year==1992}selected="selected"{/if}>1992</option>
+										<option value="1993" {if $form.ymd01_year==1993}selected="selected"{/if}>1993</option>
+										<option value="1994" {if $form.ymd01_year==1994}selected="selected"{/if}>1994</option>
+										<option value="1995" {if $form.ymd01_year==1995}selected="selected"{/if}>1995</option>
+										<option value="1996" {if $form.ymd01_year==1996}selected="selected"{/if}>1996</option>
+										<option value="1997" {if $form.ymd01_year==1997}selected="selected"{/if}>1997</option>
+										<option value="1998" {if $form.ymd01_year==1998}selected="selected"{/if}>1998</option>
+										<option value="1999" {if $form.ymd01_year==1999}selected="selected"{/if}>1999</option>
+										<option value="2000" {if $form.ymd01_year==2000}selected="selected"{/if}>2000</option>
+										<option value="2001" {if $form.ymd01_year==2001}selected="selected"{/if}>2001</option>
+										<option value="2002" {if $form.ymd01_year==2002}selected="selected"{/if}>2002</option>
+										<option value="2003" {if $form.ymd01_year==2003}selected="selected"{/if}>2003</option>
+										<option value="2004" {if $form.ymd01_year==2004}selected="selected"{/if}>2004</option>
+										<option value="2005" {if $form.ymd01_year==2005}selected="selected"{/if}>2005</option>
+										<option value="2006" {if $form.ymd01_year==2006}selected="selected"{/if}>2006</option>
+										<option value="2007" {if $form.ymd01_year==2007}selected="selected"{/if}>2007</option>
+										<option value="2008" {if $form.ymd01_year==2008}selected="selected"{/if}>2008</option>
+										<option value="2009" {if $form.ymd01_year==2009}selected="selected"{/if}>2009</option>
+										<option value="2010" {if $form.ymd01_year==2010}selected="selected"{/if}>2010</option>
+										<option value="2011" {if $form.ymd01_year==2011}selected="selected"{/if}>2011</option>
+										<option value="2012" {if $form.ymd01_year==2012}selected="selected"{/if}>2012</option>
+										<option value="2013" {if $form.ymd01_year==2013}selected="selected"{/if}>2013</option>
+										<option value="2014" {if $form.ymd01_year==2014}selected="selected"{/if}>2014</option>
+										<option value="2015" {if $form.ymd01_year==2015}selected="selected"{/if}>2015</option>
+										<option value="2016" {if $form.ymd01_year==2016}selected="selected"{/if}>2016</option>
+										<option value="2017" {if $form.ymd01_year==2017}selected="selected"{/if}>2017</option>
+										<option value="2018" {if $form.ymd01_year==2018}selected="selected"{/if}>2018</option>
+										<option value="2019" {if $form.ymd01_year==2019}selected="selected"{/if}>2019</option>
+										<option value="2020" {if $form.ymd01_year==2020}selected="selected"{/if}>2020</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">&nbsp;年&nbsp;</p>
+								<div class="fl mr05">
+									<select name="ymd01_month">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd01_month==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd01_month==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd01_month==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd01_month==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd01_month==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd01_month==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd01_month==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd01_month==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd01_month==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd01_month==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd01_month==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd01_month==12}selected="selected"{/if}>12</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">&nbsp;月&nbsp;</p>
+								<div class="fl mr05">
+									<select name="ymd01_day">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd01_day==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd01_day==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd01_day==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd01_day==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd01_day==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd01_day==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd01_day==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd01_day==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd01_day==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd01_day==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd01_day==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd01_day==12}selected="selected"{/if}>12</option>
+										<option value="13" {if $form.ymd01_day==13}selected="selected"{/if}>13</option>
+										<option value="14" {if $form.ymd01_day==14}selected="selected"{/if}>14</option>
+										<option value="15" {if $form.ymd01_day==15}selected="selected"{/if}>15</option>
+										<option value="16" {if $form.ymd01_day==16}selected="selected"{/if}>16</option>
+										<option value="17" {if $form.ymd01_day==17}selected="selected"{/if}>17</option>
+										<option value="18" {if $form.ymd01_day==18}selected="selected"{/if}>18</option>
+										<option value="19" {if $form.ymd01_day==19}selected="selected"{/if}>19</option>
+										<option value="20" {if $form.ymd01_day==20}selected="selected"{/if}>20</option>
+										<option value="21" {if $form.ymd01_day==21}selected="selected"{/if}>21</option>
+										<option value="22" {if $form.ymd01_day==22}selected="selected"{/if}>22</option>
+										<option value="23" {if $form.ymd01_day==23}selected="selected"{/if}>23</option>
+										<option value="24" {if $form.ymd01_day==24}selected="selected"{/if}>24</option>
+										<option value="25" {if $form.ymd01_day==25}selected="selected"{/if}>25</option>
+										<option value="26" {if $form.ymd01_day==26}selected="selected"{/if}>26</option>
+										<option value="27" {if $form.ymd01_day==27}selected="selected"{/if}>27</option>
+										<option value="28" {if $form.ymd01_day==28}selected="selected"{/if}>28</option>
+										<option value="29" {if $form.ymd01_day==29}selected="selected"{/if}>29</option>
+										<option value="30" {if $form.ymd01_day==30}selected="selected"{/if}>30</option>
+										<option value="31" {if $form.ymd01_day==31}selected="selected"{/if}>31</option>
+									</select>
+								</div>
+								<p class="fl lh28">&nbsp;日&nbsp;</p>
+{if $msg.ymd01_year}
+								<ul class="error">
+									<li>{$msg.ymd01_year}</li>
+								</div>
+{/if}
+{if $msg.ymd01_month}
+								<ul class="error">
+									<li>{$msg.ymd01_month}</li>
+								</div>
+{/if}
+{if $msg.ymd01_day}
+								<ul class="error">
+									<li>{$msg.ymd01_day}</li>
+								</div>
+{/if}
+					</td>
+				</tr>
+				
+				<tr>
+					<th>ymd02</th>
+					<td><div class="fl mr05">
+									<select name="ymd02_year">
+										<option value="">----</option>
+										<option value="2001" {if $form.ymd02_year==2001}selected="selected"{/if}>2001</option>
+										<option value="2002" {if $form.ymd02_year==2002}selected="selected"{/if}>2002</option>
+										<option value="2003" {if $form.ymd02_year==2003}selected="selected"{/if}>2003</option>
+										<option value="2004" {if $form.ymd02_year==2004}selected="selected"{/if}>2004</option>
+										<option value="2005" {if $form.ymd02_year==2005}selected="selected"{/if}>2005</option>
+										<option value="2006" {if $form.ymd02_year==2006}selected="selected"{/if}>2006</option>
+										<option value="2007" {if $form.ymd02_year==2007}selected="selected"{/if}>2007</option>
+										<option value="2008" {if $form.ymd02_year==2008}selected="selected"{/if}>2008</option>
+										<option value="2009" {if $form.ymd02_year==2009}selected="selected"{/if}>2009</option>
+										<option value="2010" {if $form.ymd02_year==2010}selected="selected"{/if}>2010</option>
+										<option value="2011" {if $form.ymd02_year==2011}selected="selected"{/if}>2011</option>
+										<option value="2012" {if $form.ymd02_year==2012}selected="selected"{/if}>2012</option>
+										<option value="2013" {if $form.ymd02_year==2013}selected="selected"{/if}>2013</option>
+										<option value="2014" {if $form.ymd02_year==2014}selected="selected"{/if}>2014</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">年</p>
+								<div class="fl mr05">
+									<select name="ymd02_month">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd02_month==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd02_month==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd02_month==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd02_month==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd02_month==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd02_month==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd02_month==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd02_month==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd02_month==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd02_month==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd02_month==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd02_month==12}selected="selected"{/if}>12</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">月</p>
+								<div class="fl mr05">
+									<select name="ymd_02_day">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd02_day==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd02_day==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd02_day==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd02_day==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd02_day==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd02_day==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd02_day==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd02_day==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd02_day==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd02_day==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd02_day==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd02_day==12}selected="selected"{/if}>12</option>
+										<option value="13" {if $form.ymd02_day==13}selected="selected"{/if}>13</option>
+										<option value="14" {if $form.ymd02_day==14}selected="selected"{/if}>14</option>
+										<option value="15" {if $form.ymd02_day==15}selected="selected"{/if}>15</option>
+										<option value="16" {if $form.ymd02_day==16}selected="selected"{/if}>16</option>
+										<option value="17" {if $form.ymd02_day==17}selected="selected"{/if}>17</option>
+										<option value="18" {if $form.ymd02_day==18}selected="selected"{/if}>18</option>
+										<option value="19" {if $form.ymd02_day==19}selected="selected"{/if}>19</option>
+										<option value="20" {if $form.ymd02_day==20}selected="selected"{/if}>20</option>
+										<option value="21" {if $form.ymd02_day==21}selected="selected"{/if}>21</option>
+										<option value="22" {if $form.ymd02_day==22}selected="selected"{/if}>22</option>
+										<option value="23" {if $form.ymd02_day==23}selected="selected"{/if}>23</option>
+										<option value="24" {if $form.ymd02_day==24}selected="selected"{/if}>24</option>
+										<option value="25" {if $form.ymd02_day==25}selected="selected"{/if}>25</option>
+										<option value="26" {if $form.ymd02_day==26}selected="selected"{/if}>26</option>
+										<option value="27" {if $form.ymd02_day==27}selected="selected"{/if}>27</option>
+										<option value="28" {if $form.ymd02_day==28}selected="selected"{/if}>28</option>
+										<option value="29" {if $form.ymd02_day==29}selected="selected"{/if}>29</option>
+										<option value="30" {if $form.ymd02_day==30}selected="selected"{/if}>30</option>
+										<option value="31" {if $form.ymd02_day==31}selected="selected"{/if}>31</option>
+									</select>
+								</div>
+								<p class="fl lh28">日</p>
+{if $msg.ymd02_year}
+								<ul class="error">
+									<li>{$msg.ymd02_year}</li>
+								</div>
+{/if}
+{if $msg.ymd02_month}
+								<ul class="error">
+									<li>{$msg.ymd02_month}</li>
+								</div>
+{/if}
+{if $msg.ymd02_day}
+								<ul class="error">
+									<li>{$msg.ymd02_day}</li>
+								</div>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>ymd03</th>
+					<td><div class="fl mr05">
+									<select name="ymd03_year">
+										<option value="">----</option>
+										<option value="2001" {if $form.ymd03_year==2001}selected="selected"{/if}>2001</option>
+										<option value="2002" {if $form.ymd03_year==2002}selected="selected"{/if}>2002</option>
+										<option value="2003" {if $form.ymd03_year==2003}selected="selected"{/if}>2003</option>
+										<option value="2004" {if $form.ymd03_year==2004}selected="selected"{/if}>2004</option>
+										<option value="2005" {if $form.ymd03_year==2005}selected="selected"{/if}>2005</option>
+										<option value="2006" {if $form.ymd03_year==2006}selected="selected"{/if}>2006</option>
+										<option value="2007" {if $form.ymd03_year==2007}selected="selected"{/if}>2007</option>
+										<option value="2008" {if $form.ymd03_year==2008}selected="selected"{/if}>2008</option>
+										<option value="2009" {if $form.ymd03_year==2009}selected="selected"{/if}>2009</option>
+										<option value="2010" {if $form.ymd03_year==2010}selected="selected"{/if}>2010</option>
+										<option value="2011" {if $form.ymd03_year==2011}selected="selected"{/if}>2011</option>
+										<option value="2012" {if $form.ymd03_year==2012}selected="selected"{/if}>2012</option>
+										<option value="2013" {if $form.ymd03_year==2013}selected="selected"{/if}>2013</option>
+										<option value="2014" {if $form.ymd03_year==2014}selected="selected"{/if}>2014</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">年</p>
+								<div class="fl mr05">
+									<select name="ymd03_month">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd03_month==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd03_month==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd03_month==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd03_month==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd03_month==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd03_month==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd03_month==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd03_month==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd03_month==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd03_month==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd03_month==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd03_month==12}selected="selected"{/if}>12</option>
+									</select>
+								</div>
+								<p class="fl lh28 mr15">月</p>
+								<div class="fl mr05">
+									<select name="ymd03_day">
+										<option value="">--</option>
+										<option value="1" {if $form.ymd03_day==1}selected="selected"{/if}>1</option>
+										<option value="2" {if $form.ymd03_day==2}selected="selected"{/if}>2</option>
+										<option value="3" {if $form.ymd03_day==3}selected="selected"{/if}>3</option>
+										<option value="4" {if $form.ymd03_day==4}selected="selected"{/if}>4</option>
+										<option value="5" {if $form.ymd03_day==5}selected="selected"{/if}>5</option>
+										<option value="6" {if $form.ymd03_day==6}selected="selected"{/if}>6</option>
+										<option value="7" {if $form.ymd03_day==7}selected="selected"{/if}>7</option>
+										<option value="8" {if $form.ymd03_day==8}selected="selected"{/if}>8</option>
+										<option value="9" {if $form.ymd03_day==9}selected="selected"{/if}>9</option>
+										<option value="10" {if $form.ymd03_day==10}selected="selected"{/if}>10</option>
+										<option value="11" {if $form.ymd03_day==11}selected="selected"{/if}>11</option>
+										<option value="12" {if $form.ymd03_day==12}selected="selected"{/if}>12</option>
+										<option value="13" {if $form.ymd03_day==13}selected="selected"{/if}>13</option>
+										<option value="14" {if $form.ymd03_day==14}selected="selected"{/if}>14</option>
+										<option value="15" {if $form.ymd03_day==15}selected="selected"{/if}>15</option>
+										<option value="16" {if $form.ymd03_day==16}selected="selected"{/if}>16</option>
+										<option value="17" {if $form.ymd03_day==17}selected="selected"{/if}>17</option>
+										<option value="18" {if $form.ymd03_day==18}selected="selected"{/if}>18</option>
+										<option value="19" {if $form.ymd03_day==19}selected="selected"{/if}>19</option>
+										<option value="20" {if $form.ymd03_day==20}selected="selected"{/if}>20</option>
+										<option value="21" {if $form.ymd03_day==21}selected="selected"{/if}>21</option>
+										<option value="22" {if $form.ymd03_day==22}selected="selected"{/if}>22</option>
+										<option value="23" {if $form.ymd03_day==23}selected="selected"{/if}>23</option>
+										<option value="24" {if $form.ymd03_day==24}selected="selected"{/if}>24</option>
+										<option value="25" {if $form.ymd03_day==25}selected="selected"{/if}>25</option>
+										<option value="26" {if $form.ymd03_day==26}selected="selected"{/if}>26</option>
+										<option value="27" {if $form.ymd03_day==27}selected="selected"{/if}>27</option>
+										<option value="28" {if $form.ymd03_day==28}selected="selected"{/if}>28</option>
+										<option value="29" {if $form.ymd03_day==29}selected="selected"{/if}>29</option>
+										<option value="30" {if $form.ymd03_day==30}selected="selected"{/if}>30</option>
+										<option value="31" {if $form.ymd03_day==31}selected="selected"{/if}>31</option>
+									</select>
+								</div>
+								<p class="fl lh28">日</p>
+{if $msg.ymd03_year}
+								<ul class="error">
+									<li>{$msg.ymd03_year}</li>
+								</ul>
+{/if}
+{if $msg.ymd03_month}
+								<ul class="error">
+									<li>{$msg.ymd03_month}</li>
+								</ul>
+{/if}
+{if $msg.ymd03_day}
+								<ul class="error">
+									<li>{$msg.ymd03_day}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<th>textarea03</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea03">{$form.textarea03}</textarea>
+{if $msg.textarea03}
+								<ul class="error">
+									<li>{$msg.textarea03}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea04</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea04">{$form.textarea04}</textarea>
+{if $msg.textarea04}
+								<ul class="error">
+									<li>{$msg.textarea04}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea05</th>
+					<td>
+
+							<textarea class="textarea_w500" name="textarea05">{$form.textarea05}</textarea>
+{if $msg.textarea05}
+								<ul class="error">
+									<li>{$msg.textarea05}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea06</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea06">{$form.textarea06}</textarea>
+{if $msg.textarea06}
+								<ul class="error">
+									<li>{$msg.textarea06}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea07</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea07">{$form.textarea07}</textarea>
+{if $msg.textarea07}
+								<ul class="error">
+									<li>{$msg.textarea07}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea08</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea08">{$form.textarea08}</textarea>
+{if $msg.textarea08}
+								<ul class="error">
+									<li>{$msg.textarea08}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea09</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea09">{$form.textarea09}</textarea>
+{if $msg.textarea09}
+								<ul class="error">
+									<li>{$msg.textarea09}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				<tr>
+					<th>textarea10</th>
+					<td>
+							<textarea class="textarea_w500" name="textarea10">{$form.textarea10}</textarea>
+{if $msg.textarea10}
+								<ul class="error">
+									<li>{$msg.textarea10}</li>
+								</ul>
+{/if}
+						</td>
+				</tr>
+				
+				<tr>
+					<th>text02</th>
+							<td>
+								<input class="txt_w250" type="text" name="text02" value="{$form.text02}" />
+{if $msg.text02}
+								<ul class="error">
+									<li>{$msg.text02}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text03</th>
+							<td>
+								<input class="txt_w250" type="text" name="text03" value="{$form.text03}" />
+{if $msg.text03}
+								<ul class="error">
+									<li>{$msg.text03}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text04</th>
+							<td>
+								<input class="txt_w250" type="text" name="text04" value="{$form.text04}" />
+{if $msg.text04}
+								<ul class="error">
+									<li>{$msg.text04}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text05</th>
+							<td>
+								<input class="txt_w250" type="text" name="text05" value="{$form.text05}" />
+{if $msg.text05}
+								<ul class="error">
+									<li>{$msg.text05}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text06</th>
+							<td>
+								<input class="txt_w250" type="text" name="text06" value="{$form.text06}" />
+{if $msg.text06}
+								<ul class="error">
+									<li>{$msg.text06}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text07</th>
+					<td>
+								<input class="txt_w250" type="text" name="text07" value="{$form.text07}" />
+{if $msg.text07}
+								<ul class="error">
+									<li>{$msg.text07}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text08</th>
+							<td>
+								<input class="txt_w250" type="text" name="text08" value="{$form.text08}" />
+{if $msg.text08}
+								<ul class="error">
+									<li>{$msg.text08}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text09</th>
+							<td>
+								<input class="txt_w250" type="text" name="text09" value="{$form.text09}" />
+{if $msg.text09}
+								<ul class="error">
+									<li>{$msg.text09}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>text10</th>
+							<td>
+								<input class="txt_w250" type="text" name="text10" value="{$form.text10}" />
+{if $msg.text10}
+								<ul class="error">
+									<li>{$msg.text10}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				
+				
+				<tr>
+					<th>radio02</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="radio" name="radio02" value="1" {if $form.radio02==1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="radio" name="radio02" value="2" {if $form.radio02==2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="radio" name="radio02" value="3" {if $form.radio02==3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.radio02}
+								<ul class="error">
+									<li>{$msg.radio02}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>radio03</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="radio" name="radio03" value="1" {if $form.radio03==1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="radio" name="radio03" value="2" {if $form.radio03==2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="radio" name="radio03" value="3" {if $form.radio03==3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.radio03}
+								<ul class="error">
+									<li>{$msg.radio03}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>radio04</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="radio" name="radio04" value="1" {if $form.radio04==1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="radio" name="radio04" value="2" {if $form.radio04==2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="radio" name="radio04" value="3" {if $form.radio04==3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.radio04}
+								<ul class="error">
+									<li>{$msg.radio04}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>radio05</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="radio" name="radio05" value="1" {if $form.radio05==1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="radio" name="radio05" value="2" {if $form.radio05==2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="radio" name="radio05" value="3" {if $form.radio05==3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.radio05}
+								<ul class="error">
+									<li>{$msg.radio05}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				
+				<tr>
+					<th>check02/th>
+					<td>
+						<ul class="list_01">
+							<li><label><input type="checkbox" name="check02[]" value="1" {if $form.check02.1}checked="checked"{/if} />&nbsp;値1</label></li>
+							<li><label><input type="checkbox" name="check02[]" value="2" {if $form.check02.2}checked="checked"{/if} />&nbsp;値2</label></li>
+							<li><label><input type="checkbox" name="check02[]" value="3" {if $form.check02.3}checked="checked"{/if} />&nbsp;値3</label></li>
+						</ul>
+{if $msg.check02}
+						<ul class="error">
+							<li>{$msg.check02}</li>
+						</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>check03</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="checkbox" name="check03[]" value="1" {if $form.check03.1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="checkbox" name="check03[]" value="2" {if $form.check03.2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="checkbox" name="check03[]" value="3" {if $form.check03.3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.check03}
+								<ul class="error">
+									<li>{$msg.check03}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>check04</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="checkbox" name="check04[]" value="1" {if $form.check04.1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="checkbox" name="check04[]" value="2" {if $form.check04.2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="checkbox" name="check04[]" value="3" {if $form.check04.3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.check04}
+								<ul class="error">
+									<li>{$msg.check04}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>check05</th>
+							<td>
+								<ul class="list_01">
+									<li><label><input type="checkbox" name="check05[]" value="1" {if $form.check05.1}checked="checked"{/if} />&nbsp;値1</label></li>
+									<li><label><input type="checkbox" name="check05[]" value="2" {if $form.check05.2}checked="checked"{/if} />&nbsp;値2</label></li>
+									<li><label><input type="checkbox" name="check05[]" value="3" {if $form.check05.3}checked="checked"{/if} />&nbsp;値3</label></li>
+								</ul>
+{if $msg.check05}
+								<ul class="error">
+									<li>{$msg.check05}</li>
+								</ul>
+{/if}
+							</td>
+				</tr>
+				<tr>
+					<th>file01</th>
+					<td>
+{if $form.file01}
+<a href="./file.php?id={$form.file01}">{$form.file01_name}</a><br>
+<input type="checkbox" name="file01_del" value="1">このファイルを削除<br>
+<input type="hidden" name="file01_old" value="{$form.file01}">
+{/if}
+					<input type="file" name="file01">
+{if $msg.file01}
+								<ul class="error">
+									<li>{$msg.file01}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>file02</th>
+					<td>
+{if $form.file02}
+<a href="./file.php?id={$form.file02}">{$form.file02_name}</a><br>
+<input type="checkbox" name="file02_del" value="1">このファイルを削除<br>
+<input type="hidden" name="file02_old" value="{$form.file02}">
+{/if}
+					<input type="file" name="file02">
+{if $msg.file02}
+								<ul class="error">
+									<li>{$msg.file02}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>file03</th>
+					<td>
+{if $form.file03}
+<a href="./file.php?id={$form.file03}">{$form.file03_name}</a><br>
+<input type="checkbox" name="file03_del" value="1">このファイルを削除<br>
+<input type="hidden" name="file03_old" value="{$form.file03}">
+{/if}
+					<input type="file" name="file03">
+{if $msg.file03}
+								<ul class="error">
+									<li>{$msg.file03}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>file04</th>
+					<td>
+{if $form.file04}
+<a href="./file.php?id={$form.file04}">{$form.file04_name}</a><br>
+<input type="checkbox" name="file04_del" value="1">このファイルを削除<br>
+<input type="hidden" name="file04_old" value="{$form.file01}">
+{/if}
+					<input type="file" name="file04">
+{if $msg.file04}
+								<ul class="error">
+									<li>{$msg.file04}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>file05</th>
+					<td>
+{if $form.file05}
+<a href="./file.php?id={$form.file05}">{$form.file05_name}</a><br>
+<input type="checkbox" name="file05_del" value="1">このファイルを削除<br>
+<input type="hidden" name="file05_old" value="{$form.file05}">
+{/if}
+					<input type="file" name="file05">
+{if $msg.file05}
+								<ul class="error">
+									<li>{$msg.file05}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+
+				<tr>
+					<th>select02</th>
+					<td>
+						<select name="select02">
+							<option value="">----</option>
+							<option value="1" {if $form.select02==1}selected="selected"{/if}>値1</option>
+							<option value="2" {if $form.select02==2}selected="selected"{/if}>値2</option>
+							<option value="3" {if $form.select02==3}selected="selected"{/if}>値3</option>
+						</select>
+{if $msg.select02}
+								<ul class="error">
+									<li>{$msg.select02}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>select03</th>
+					<td>
+						<select name="select03">
+							<option value="">----</option>
+							<option value="1" {if $form.select03==1}selected="selected"{/if}>値1</option>
+							<option value="2" {if $form.select03==2}selected="selected"{/if}>値2</option>
+							<option value="3" {if $form.select03==3}selected="selected"{/if}>値3</option>
+						</select>
+{if $msg.select03}
+								<ul class="error">
+									<li>{$msg.select03}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>select04</th>
+					<td>
+						<select name="select04">
+							<option value="">----</option>
+							<option value="1" {if $form.select04==1}selected="selected"{/if}>値1</option>
+							<option value="2" {if $form.select04==2}selected="selected"{/if}>値2</option>
+							<option value="3" {if $form.select04==3}selected="selected"{/if}>値3</option>
+						</select>
+{if $msg.select04}
+								<ul class="error">
+									<li>{$msg.select04}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>select05</th>
+					<td>
+						<select name="select05">
+							<option value="">----</option>
+							<option value="1" {if $form.select05==1}selected="selected"{/if}>値1</option>
+							<option value="2" {if $form.select05==2}selected="selected"{/if}>値2</option>
+							<option value="3" {if $form.select05==3}selected="selected"{/if}>値3</option>
+						</select>
+{if $msg.select05}
+								<ul class="error">
+									<li>{$msg.select05}</li>
+								</ul>
+{/if}
+					</td>
+				</tr>-->
+						<tr>
+							<th>備考</th>
+							<td>
+								<textarea class="textarea_w96p" name="biko" cols="30" rows="5">{$form.biko}</textarea>
+{if $msg.biko}
+								<div class="error">
+									<li>{$msg.biko}</li>
+								</div>
+{/if}
+							</td>
+						</tr>
+				</tr>
+					
+
+<!--
+						<tr>
+							<th>
+								<span class="fl">利用規約</span>
+								<em class="fr"><img src="{$top}common/images/em.jpg" width="34" height="16" alt="必須" /></em>
+							</th>
+							<td>
+								<p class="mb05"><a href="{$top}kiyaku.html" target="_blank">利用規約</a>に</p>
+								<ul class="list_01">
+									<li><label><input type="radio" name="confirm" value="1" {if $form.confirm==1}checked="checked"{/if} />&nbsp;同意する</label></li>
+									<li><label><input type="radio" name="confirm" value="2" {if $form.confirm==2}checked="checked"{/if} />&nbsp;同意しない</label></li>
+								</ul>
+{if $msg.confirm}
+								<ul class="error">
+									<li>{$msg.confirm}</li>
+								</ul>
+{/if}
+							</td>
+						</tr>
+-->
+
+<!--<!--{if !$login}
+						<tr>
+							<th>会員登録</th>
+							<td>
+							<div class="pass">
+								<label><input type="checkbox" name="regist" value="1" id="pass01" class="on-off" {if $form.regist==1}checked="checked"{/if} />&nbsp;会員登録する</label>
+									<ul>
+										<li>会員登録する場合は、ログイン用パスワードを設定してください。</li>
+										<li>パスワード：<input class="txt_w250" type="password" name="passwd" value="{$form.passwd}" />
+											<span class="note">※半角英数字で入力してください</span>
+										</li>
+									</ul>
+{if $msg.passwd}
+								<ul class="error">
+									<li>{$msg.passwd}</li>
+								</ul>
+{/if}
+							</div>
+{if $msg.regist}
+								<ul class="error">
+									<li>{$msg.regist}</li>
+								</ul>
+{/if}
+							</td>
+						</tr>-->
+{/if}
+					</table>
+
+					<dl class="kiyaku ">
+						<dt>ご利用規約</dt>
+						<dd>
+							<div class="wrap">
+							
+<div class="tx-bold">保育bizのサービス内容</div>
+<p class="mb10">保育bizに掲載された情報は取材時または掲載開始時の情報を表示しております。
+検索結果として表示される情報の正確さ、信頼性、完全性、合法性、道徳性、著作権の許諾などについて保育bizは一切の責任を負いません。</p>
+
+<div class="tx-bold">利用規約の範囲</div>
+<p class="mb10">保育bizの利用者は保育bizの利用に関して適用される、以下の利用規約を承認するものとします。</p>
+
+<div class="tx-bold">利用規約の変更</div>
+<p class="mb10">本利用規約は如何なる理由でも通知なしに変更する場合があります。</p>
+
+<div class="tx-bold">サービスの変更・停止</div>
+<p class="mb10">当社は、当サイトの全てまたは一部のサービスをいつでも、変更または停止することができるものとします。サービス変更・停止の際、当社はできうる限りの方法で、利用者に対してその旨を事前に告知するものとします。但し、天災などやむを得ぬ場合は事前に告知することなく、サービスを変更・停止できるものとします。 サービスの変更または停止に伴い、利用者に損害が発生した場合、当社は一切の責任を負わないものとします。</p>
+
+<div class="tx-bold">責任の制約</div>
+<p class="mb10">如何なる状況においても当社は、第三者を介したものも含め、本ソフトウェアまたはサービスの利用者による使用または誤用に対する責任を一切負いません。この責任の制約は、当社が、そのような損害の可能性について通告されていた場合であっても、それが保証、契約、故意または無意識による不法行為、その他に基づいているかどうかによらず、直接、間接、付随、結果的、特殊、懲戒的および懲罰的損害賠償を回避するために適用されます。この責任の制約は、損害が、第三者を介したものも含め、本ソフトウェアまたはサービスの使用または誤用および依存の結果であるか、本ソフトウェアまたはサービスを使用できないためか、本ソフトウェアまたはサービスの中断、一時停止、終了のいずれかの結果かにかかわらず、適用されます。この責任の制約は、権利侵害の防止方法による本質的目的の不履行にかかわらず法律で許容された最大の範囲で適用されます。</p>
+
+
+<div class="tx-bold">禁止事項</div>
+<p>利用者は、保育bizにおいて以下の行為をすることはできません。</p>
+<ul class="mb10">
+	<li>・虚偽の情報を登録し、提供する行為</li>
+	<li>・第三者の著作権、商標権、プライバシー権、肖像権等すべての法的権利を侵害する行為</li>
+	<li>・犯罪的行為に結びつく行為</li>
+	<li>・公序良俗に反する行為</li>
+	<li>・反社会的活動に関する行為</li>
+	<li>・法令、公序良俗に反する行為、またはそのおそれのある行為</li>
+	<li>・保育bizで得た情報を利用しての営利を目的とした情報提供等の行為</li>
+	<li>・保育bizの運営の妨げとなる一切の行為</li>
+</ul>
+
+<div class="tx-bold">検索結果の内容</div>
+<p class="mb10">保育bizは、ホームページ内に掲載された求人情報を自動的に検索し、結果を作成しております。保育bizは、検索結果として表示される内容に関して、カテゴリ分類目的以外の内容確認をおこなっておりません。 検索結果として表示される情報の正確さ、信頼性、完全性、合法性、道徳性、著作権の許諾などについて保育bizは一切の責任を負いません。</p>
+
+
+<div class="tx-bold">著作権</div>
+<p class="mb10">保育bizのレイアウト、デザインおよび構造に関する著作権は株式会社タキザワキャリアに帰属します。保育bizのホームページや検索結果ページをWEBサイトで反映し、検索結果をリフォーマットして表示することは禁じられています。</p>
+
+<div class="tx-bold">その他</div>
+<p class="mb10">利用者のみなさまと保育bizの関係につきましては、日本国法が適用されるものとします。</p>
+							</div>
+						</dd>
+					</dl>
+					<div class="btn_wrap">
+					  <input type="submit" id="btn-submit"  class="button-submit opa" value="送信する" />
+					</div>
+</form>
+				</div><!-- //.contact_form -->
+			</div><!-- //.detail_contact -->
+			</div>
+		</div>
+		<!-- メインコンテンツ終了 -->
+	</div>
+	</div>
+	<!--コンテンツ終了-->
+	
+{include file="common/footer-contact.tpl"}
+
+</div><!--div#wrapper:end-->
+</body>
+</html>

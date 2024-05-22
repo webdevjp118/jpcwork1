@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="167" height="39" viewBox="0 0 167 39">
+  <defs>
+    <filter id="_-_心に感動と輝きを_-" x="0" y="0" width="167" height="39" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.902"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#_-_心に感動と輝きを_-)">
+    <text id="_-_心に感動と輝きを_--2" data-name="- 心に感動と輝きを -" transform="translate(7.5 26.5)" fill="#fff" font-size="18" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">- </tspan><tspan y="0" font-family="YuGothicUI-Bold, Yu Gothic UI">心に感動と輝きを</tspan><tspan y="0" xml:space="preserve"> -</tspan></text>
+  </g>
+</svg>

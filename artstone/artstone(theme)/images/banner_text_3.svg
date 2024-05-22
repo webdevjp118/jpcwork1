@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="277" height="59" viewBox="0 0 277 59">
+  <defs>
+    <filter id="Gallery_Virtual_YouTuber_Character_Music_and_more" x="0" y="0" width="277" height="59" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#111"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Gallery_Virtual_YouTuber_Character_Music_and_more)">
+    <text id="Gallery_Virtual_YouTuber_Character_Music_and_more-2" data-name="Gallery / Virtual YouTuber /
+Character / Music and more" transform="translate(7.5 24.5)" fill="#fff" font-size="18" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="0" y="0">Gallery / Virtual YouTuber /</tspan><tspan x="0" y="22">Character / Music and more</tspan></text>
+  </g>
+</svg>

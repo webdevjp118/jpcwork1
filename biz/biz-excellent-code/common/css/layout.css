@@ -1,0 +1,208 @@
+@charset "UTF-8";
+
+/**
+ *
+ * レイアウト、共通コンテンツ
+ *
+**/
+
+
+/**
+ * ラッパー
+**/
+
+#wrapper {
+	width: 100%;
+	background: url("../images/wrapper_back_01.jpg") repeat-x 0 0;
+	overflow: hidden;
+}
+
+
+/**
+ * ヘッダー
+**/
+
+#header {
+	margin: 0 auto;
+	width: 1000px;
+	height: 114px;
+	text-align: left;
+	position: relative;
+}
+
+#header .h1 {
+	position: absolute;
+	top: 22px;
+	left: 0;
+}
+
+#header .tel {
+	position: absolute;
+	top: 15px;
+	right: -4px;
+}
+
+
+/**
+ * ナビゲーション
+**/
+
+#navi {
+	margin: 0 auto 5px auto;
+	width: 1000px;
+	text-align: left;
+	overflow: hidden;
+}
+
+#navi li {
+	float: left;
+	display: inline;
+}
+
+#navi li img {
+	display: block;
+}
+
+
+/**
+ * パンくず
+**/
+
+#topics {
+	margin: 0 auto;
+	width: 1000px;
+	color: #434343;
+	text-align: left;
+}
+
+#topics ol {
+}
+
+#topics ol li {
+	float: left;
+	display: inline;
+}
+
+#topics a {
+	color: #434343;
+}
+
+
+/**
+ * コンテンツ
+**/
+
+#content {
+	margin: 0 auto 50px auto;
+	padding: 20px 0 0 0;
+	width: 1000px;
+	text-align: left;
+}
+
+
+/**
+ * サイドコンテンツ
+**/
+
+#side {
+	width: 250px;
+	float: right;
+	display: inline;
+}
+
+
+/**
+ * メインコンテンツ
+**/
+
+#main {
+	width: 730px;
+	float: left;
+	display: inline;
+}
+
+
+/**
+ * フッターコンタクト
+**/
+
+#footer_contact {
+	width: 1000px;
+	height: 166px;
+	background: url("../images/contact_back_01.jpg") no-repeat 0 0;
+	position: relative;
+	clear: both;
+}
+
+#footer_contact .contact_link {
+	position: absolute;
+	top: 17px;
+	left: 666px;
+}
+
+#footer_contact .contact_txt {
+	position: absolute;
+	top: 33px;
+	left: 327px;
+}
+
+
+/**
+ * ページトップ
+**/
+
+#pagetop {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+/**
+ * フッター
+**/
+
+#footer {
+	width: 100%;
+	height: 148px;
+	background: url("../images/footer_back_01.jpg") repeat-x 0 bottom;
+	overflow: hidden;
+}
+
+#footer .wrap {
+	margin: 0 auto;
+	width: 1000px;
+	height: 148px;
+	text-align: left;
+	overflow: hidden;
+	position: relative;
+}
+
+#footer .wrap .link {
+	padding: 0 0 0 14px;
+	width: 986px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 108%;
+	background: url("../images/footer_back_02.png") no-repeat 0 0;
+	position: absolute;
+	top: 72px;
+	left: 0;
+}
+
+#footer .wrap .link ul {
+	overflow: hidden;
+}
+
+#footer .wrap .link li {
+	float: left;
+	display: inline;
+}
+
+#footer .wrap #copyright {
+	font-size: 90%;
+	position: absolute;
+	bottom: 5px;
+	right: 0;
+}
+

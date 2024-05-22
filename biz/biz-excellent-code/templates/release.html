@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="登録解除{if $info.title}、{$info.title}{/if}、エントリーページ">
+<meta name="keywords" content="{if $info.title}{$info.title},{/if}">
+<meta name="format-detection" content="telephone=no">
+<title>登録解除{if $info.title}｜{$info.title}{/if}｜保育biz</title>
+
+<link rel="contents" href="/sitemap.xml" />
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/css/import.css">
+
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+<!-- Java Script
+ ================================================== -->
+<script src="{$top}common/js/jquery.min.js"></script>
+<script src="{$top}common/js/custom.js"></script>
+<script src="{$top}common/js/css_browser_selector.js"></script>
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+{include file="common/analytics.tpl"} 
+	
+</head>	
+
+<body>
+	
+<div id="wrapper" class="bg_gray">
+{include file="common/header.tpl"}
+	
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title detail">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">登録解除</h1>
+			<div class="subpage_title_eng">Entry</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+	
+	
+	<!--パンくず開始-->
+	<div id="topics" class="clearfix pc-only">
+		<ol class="clearfix">
+			<li><a href="/">TOP</a>&nbsp;&gt;&nbsp;</li>
+			<li>登録解除</li>
+		</ol>
+	</div>
+	<!--パンくず終了-->
+		
+	<!--コンテンツ開始-->
+	<div id="content" class="clearfix">
+		<!-- メインコンテンツ開始 -->
+		<div id="main">
+			<div class="content_wrap mb20 clearfix">
+				<div class="detail_contact clearfix">
+					<div class="contact_form clearfix">
+						<p class="desc">お仕事情報のメール通知は解除しました。</p>
+						<div class="tx-center btn_wrap">
+							<div class="btn_back"><a href="/" class="opa">トップへ戻る</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- メインコンテンツ終了 -->
+	</div>
+	<!--コンテンツ終了-->
+	
+{include file="common/footer-contact.tpl"}
+
+</div><!--div#wrapper:end-->
+</body>
+</html>

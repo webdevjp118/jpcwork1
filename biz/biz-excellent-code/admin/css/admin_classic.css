@@ -1,0 +1,266 @@
+@charset "shift_jis";
+
+/* CSS Document */
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	background-color:#ffffff;
+	font-family:"‚l‚r ‚oƒSƒVƒbƒN", Osaka, "ƒqƒ‰ƒMƒmŠpƒS Pro W3";
+	font-size:76%;
+	line-height:1.5em;
+	color:#333333;
+	text-align:center;
+	margin-bottom:20px;
+}
+
+html>/**/body {
+	font-size:12px; /* Except IE */
+}
+ol {
+	list-style-position: outside;
+}
+ul {
+	list-style-type:none;
+}
+td {
+	vertical-align:top;
+}
+li {
+	margin: 0;
+	margin-top: 5px;
+	padding: 0px;
+}
+
+li.comment {
+	margin-top:10px;
+	padding: 5px 5px 5px 10px;
+	display: block;
+	width: 80%;
+	background-color:#f1f1f1;
+	border: 1px solid #dddddd;
+	color:#000000;
+}
+
+li a {
+	margin:0;
+	padding: 5px 5px 5px 10px;
+	display: block;
+	width: 80%;
+	border: 1px solid #dddddd;
+	background-color:#ffffff;
+	color:#cc3300;
+}
+li a:hover {
+	background-color:#666666;
+	color:#ffffff;
+}
+
+/*
+.w320{
+	margin:0 0 0 0;
+	width:320px;
+	height:22px;
+	line-height:22px;
+}
+*/
+#header{
+	background: #cccccc;
+/*	color: #ffffff;*/
+	color: #000000;
+	padding: 15px 20px;
+	margin: 0 auto;
+}
+
+#header a{
+	color: #ffffff;
+}
+
+#header p.title{
+	float: left;
+	font-size: 150%;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+#header {
+	margin-top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* link
+------------------------------------------------------*/
+a:link {
+	color:#0075a9; text-decoration:underline;
+}
+a:visited {
+	color: #0075a9;
+	text-decoration:underline;
+}
+a:hover {
+	color: #0075a9;
+	text-decoration:none;
+}
+a:active {
+	color: #0075a9;
+	text-decoration:none;
+}
+a img {
+	border:none;
+}
+#layout {
+	text-align: left;
+	margin: 0 20px;
+}
+
+table {
+	font-size: 9pt;
+}
+
+table th{
+	font-size: 9pt;
+}
+
+table td{
+	font-size: 9pt;
+}
+.list tr:hover {
+	background: #FFCCCC;
+}
+/*
+#navi table {
+	height:50px;
+}
+#navi a:link, #navi a:visited {
+	display:inline;
+	height:32px;
+	padding-top:18px;
+	color:#333333;
+	text-decoration:none;
+	text-align:center;
+	font-weight:bold;
+	line-height:1;
+}
+#navi a:hover {
+	color:#ffffff;
+}
+*/
+#foot table {
+	height:30px;
+}
+#foot a:link, #foot a:visited, #foot span {
+	display:block;
+	height:22px;
+	padding-top:8px;
+	color:#333333;
+	text-decoration:none;
+	text-align:center;
+	font-weight:bold;
+	line-height:1;
+}
+#foot a:hover {
+	color:#ffffff;
+}
+#main {
+	margin-left: 170px;
+/*	float: left;
+	width: 78%;*/
+/*	margin: 20px 5px;*/
+	margin-bottom: 20px;
+/*	margin-left: 10px;*/
+	margin-top: 10px;
+}
+#main div.top {
+	background:#dddddd;
+}
+#main div.top h2 {
+	font-size: 18px;
+	padding: 5px;
+	text-align: center;
+}
+#main div.box {
+	border: 1px solid #dddddd;
+	padding: 1px;
+}
+#main div.cts {
+	padding: 10px;
+}
+#main div.cts h3 {
+	border-bottom: 2px solid #999999;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+#main div.cts table {
+	background-color: #cccccc;
+}
+#main div.cts th {
+	background-color: #ececec;
+	padding: 5px 10px 4px 10px;
+	text-align: center;
+}
+#main div.cts td {
+/*	background-color:#ffffff;*/
+	padding:5px 10px 4px 10px;
+}
+
+#navi2 {
+	float:left;
+	width: 165px;
+}
+
+tr {
+	background-color:#ffffff;
+}
+.odd {
+	background-color: #ffffff;
+}
+.even {
+	background-color: #f0f8f0;
+}
+
+/*
+.w95per {
+	width:95%;
+}
+.submitBtn {
+	width:24%;
+}
+*/
+.submenu {
+	background-color: #f1f1f1;
+	padding: 5px 10px;
+}
+.submenu a:link, a:visited {
+/*	padding-left: 10px;
+	margin-right: 10px;*/
+}
+
+
+.error {
+	color: red;
+}
+.require {
+	display: inline;
+	color: red;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-block;
+}
+/* for macIE \*/
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}

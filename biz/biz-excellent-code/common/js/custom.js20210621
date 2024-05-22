@@ -1,0 +1,124 @@
+/*-----------------------------------------------------------------------------------
+/* Custom JS
+-----------------------------------------------------------------------------------*/	  
+/* ----------------- Start Document ----------------- */
+jQuery(document).ready(function() {
+
+/*----------------------------------------------------*/
+/*	Back To Top Button
+/*----------------------------------------------------*/
+
+/* topに戻るボタン  */
+	$("#scroll-top").hide();
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#scroll-top').fadeIn();
+			} else {
+				$('#scroll-top').fadeOut();
+			}
+		});
+	});
+
+/*----------------------------------------------------*/
+/*  ヘッダー追従
+/*----------------------------------------------------*/
+$(function() {
+  var $win = $(window),
+      $cloneNav = $('.header').clone(true).addClass('clone-nav').appendTo('body').attr('id', 'scroll-header'),
+      showClass = 'is-show';
+
+  $win.on('load scroll', function() {
+    var value = $(this).scrollTop();
+    if ( value > 700 ) {
+      $cloneNav.addClass(showClass);
+    } else {
+      $cloneNav.removeClass(showClass);
+    }
+  });
+});
+
+/*----------------------------------------------------*/
+/*		SPハンバーガーメニュー
+/*----------------------------------------------------*/
+  $('.menu-ani-button').toggle(function(){
+    $('.menu-ani-button').addClass('menu-animated');
+    $('.header .menu').slideDown();
+  },
+  function(){
+    $('.menu-ani-button').removeClass('menu-animated');
+    $('.header .menu').slideUp();
+  });
+
+
+/*----------------------------------------------------*/
+/*	ページ内スクロール
+/*----------------------------------------------------*/
+var scrollElm = (function() {
+  if('scrollingElement' in document) {
+    return document.scrollingElement;
+  }
+  if(navigator.userAgent.indexOf('WebKit') != -1) {
+    return document.body;
+  }
+  return document.documentElement;
+})();
+ 
+$('a[href^="#"]').not('.noscroll').on('click', function() {
+  var speed = 300;
+  var easing = 'swing';
+  var href= $(this).attr("href");
+  $(scrollElm).animate({
+    scrollTop: $(href == "#" ? 'html' : href).offset().top
+  }, speed, easing);
+  return false;
+});
+
+/*----------------------------------------------------*/
+/*  セレクトボックス
+/*----------------------------------------------------*/
+$('#sbox1').on('change', function(){
+  var $this = $(this)
+  var $option = $this.find('option:selected');
+  $('.label-1').text($option.text());
+  $this.blur();
+});
+
+$('#sbox2').on('change', function(){
+  var $this = $(this)
+  var $option = $this.find('option:selected');
+  $('.label-2').text($option.text());
+  $this.blur();
+});
+
+/*----------------------------------------------------*/
+/*	タブメニュー
+/*----------------------------------------------------*/
+$(function(){
+    var rwdTab = $('#tabAccordion'),
+    switchPoint = 651,
+    fadeSpeed = 500,
+    slideSpeed = 500;
+ 
+    var btnElm = rwdTab.children('dl').children('dt'),
+    contentsArea = rwdTab.children('dl').children('dd');
+ 
+    btnElm.on('click', function(){
+        if(!$(this).hasClass('btnAcv')){
+            btnElm.removeClass('btnAcv');
+            $(this).addClass('btnAcv');
+ 
+            if(window.innerWidth > switchPoint){
+                contentsArea.fadeOut(fadeSpeed);
+                $(this).next().fadeIn(fadeSpeed);
+            } else {
+                contentsArea.slideUp(slideSpeed);
+                $(this).next().slideDown(slideSpeed);
+            }
+        }
+    });
+    btnElm.first().click();
+});
+
+/* ------------------ End Document ------------------ */
+});

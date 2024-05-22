@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow,noarchive" />
+<meta name="description" content="{$info.contents}">
+<meta name="keywords" content="{$info.keyword}">
+<meta name="format-detection" content="telephone=no">
+<title>{$info.title}｜保育biz</title>
+
+<link rel="contents" href="/sitemap.xml" />
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/css/import.css">
+
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+<!-- Java Script
+ ================================================== -->
+<script src="{$top}common/js/jquery.min.js"></script>
+<script src="{$top}common/js/custom.js"></script>
+<script src="{$top}common/js/css_browser_selector.js"></script>
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+{include file="common/analytics.tpl"} 
+</head>
+
+
+
+<body>
+<div id="wrapper" class="bg_gray">
+
+{include file="common/header.tpl"}
+
+
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title column">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">転職役立ちコラム</h1>
+			<div class="subpage_title_eng">Column</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+	
+	<!--パンくず開始-->
+	<div id="topics" class="clearfix pc-only">
+		<ol class="clearfix">
+			<li><a href="/">TOP</a>&nbsp;&gt;&nbsp;</li>
+			<li><a href="{$top}contentsall/">転職役立ちコラム</a>&nbsp;&gt;&nbsp;</li>
+			<!--<li><a href="{$top}contents/{$info.kind}">{$info.kind_name}</a>&nbsp;&gt;&nbsp;</li>-->
+			<li>{$info.title}</li>
+		</ol>
+	</div>
+	<!--パンくず終了-->
+	
+	<!--コンテンツ開始-->
+	<div id="content" class="clearfix">
+		<!-- メインコンテンツ開始 -->
+		<div id="main">
+			<!-- コラム開始 -->
+			<div class="content_wrap clearfix">
+			
+				<!-- 特集コンテンツ開始 -->
+				<div class="column_wrap detail">
+					
+					<h2 class="blog_content_title point-color02">{$info.title}</h2>
+
+{if $info_editor}
+{foreach from=$info_editor item="editor" name="editor_loop"}
+
+{if $editor.name eq 'editor_list'}
+<!-- リスト -->
+<ul class="blog_content_list">
+{foreach from=$editor.text1 item="li_val"}
+	<li>{$li_val}</li>
+{/foreach}
+</ul>
+
+{elseif $editor.name eq 'editor_memo'}
+<!-- 囲みテキスト -->
+<div class="blog_content_text2">{$editor.text1|nl2br}</div>
+
+{elseif $editor.name eq 'editor_textarea'}
+<!-- テキスト -->
+<div class="blog_content_text">{$editor.text1|nl2br}</div>
+
+{elseif $editor.name eq 'editor_headline'}
+<!-- 見出し大 -->
+<h2 class="blog_content_head01">{$editor.text1}</h2>
+
+{elseif $editor.name eq 'editor_heading'}
+<!-- 見出し中 -->
+<h3 class="blog_content_head02">{$editor.text1}</h3>
+
+{elseif $editor.name eq 'editor_subheading'}
+<!-- 見出し小 -->
+<h4 class="blog_content_head03">{$editor.text1}</h4>
+
+{elseif $editor.name eq 'editor_images'}
+<!-- 画像 -->
+{assign var="alt_num" value=$smarty.foreach.editor_loop.index+1}
+{assign var="cap_num" value=$smarty.foreach.editor_loop.index+2}
+<figure class="blog_content_image"><img src="/img.php?id={$editor.image}" width="80%" alt="{$info_editor[$alt_num].text1}"><figcaption>{$info_editor[$cap_num].text1}</figcaption></figure>
+
+{elseif $editor.name eq 'editor_linktext'}
+<!-- リンク -->
+{assign var="editor_linkurl_num" value=$smarty.foreach.editor_loop.index+1}
+{assign var="editor_linkblank_num" value=$smarty.foreach.editor_loop.index+2}
+<a href="{$info_editor[$editor_linkurl_num].text1}" {if $info_editor[$editor_linkblank_num].text1 eq '1'}target="_blank"{/if}>{$editor.text1}</a>
+
+{elseif $editor.name eq 'editor_htmltext'}
+<!-- HTML -->
+{$editor.text1}
+
+{/if}
+
+{/foreach}
+{/if}
+					<div class="tx-center mt50 sp-mt20 btn_back">
+						<a href="{$top}contentsall/" class="opa">コラム一覧へ戻る</a>
+					</div>
+
+				</div><!-- 特集コンテンツ終了 -->
+					
+			</div><!-- コラム終了 -->
+		</div>
+		<!-- メインコンテンツ終了 -->
+	</div>
+	<!--コンテンツ終了-->
+	
+{include file="common/footer.tpl"}
+
+</div><!--div#wrapper:end-->
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow,noarchive" />
+<meta name="description" content="保育bizの会社概要に関するページです">
+<meta name="keywords" content="会社概要,保育士,保育園,幼稚園求人,転職,保育biz">
+<meta name="format-detection" content="telephone=no">
+<title>会社概要｜保育biz</title>
+
+<link rel="contents" href="/sitemap.xml" />
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="common/css/import.css">
+
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+<!-- Java Script
+ ================================================== -->
+<script src="common/js/jquery.min.js"></script>
+<script src="common/js/custom.js"></script>
+<script src="common/js/css_browser_selector.js"></script>
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+{include file="common/analytics.tpl"} 
+</head>
+
+
+<body>
+<div id="wrapper" class="bg_gray">
+{include file="common/header.tpl"}
+	
+	
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title company">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">会社概要</h1>
+			<div class="subpage_title_eng">Company</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+
+	<!--パンくず開始-->
+	<div id="topics" class="clearfix pc-only">
+		<ol class="clearfix">
+			<li><a href="/">TOP</a>&nbsp;&gt;&nbsp;</li>
+			<li>会社概要</li>
+		</ol>
+	</div>
+	<!--パンくず終了-->	
+	
+	<!--コンテンツ開始-->
+	<div id="content" class="clearfix">
+		<!-- メインコンテンツ開始 -->
+		<div id="main">
+			<!-- 会社概要開始 -->
+			<div class="content_wrap">
+				<div class="company_data">
+					
+					<table class="data mb40 sp-mb30" cellspacing="0" summary="表">
+					<tbody>
+					   <tr>
+                            <th>会社名</th>
+                            <td>株式会社タキザワキャリア</td>
+                        </tr>
+                        <tr>
+                            <th>代表取締役</th>
+                            <td>大森 春樹</td>
+                        </tr>
+                        <tr>
+                            <th>住所</th>
+                            <td>〒230-0051 神奈川県横浜市鶴見区鶴見中央2-5-12 藤和ビル2F</td>
+                        </tr>
+                        <tr>
+                            <th>電話番号</th>
+                            <td>045-620-6968</td>
+                        </tr>
+                        <tr>
+                            <th>事業内容</th>
+                            <td>有料人材紹介業</td>
+                        </tr>
+                        
+                    </tbody></table>
+					
+					<div class="google-map"><div class="center">					
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.7679484089986!2d139.67856121554755!3d35.510015746949826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185e0f59af0b81%3A0xd115e8bbb90c9a6f!2z44CSMjMwLTAwNTEg56We5aWI5bed55yM5qiq5rWc5biC6ba06KaL5Yy66ba06KaL5Lit5aSu77yS5LiB55uu77yV4oiS77yR77yS!5e0!3m2!1sja!2sjp!4v1588307172745!5m2!1sja!2sjp" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div></div>
+					
+					
+				</div>
+			</div>
+			<!-- 会社概要終了 -->
+		</div>
+		<!-- メインコンテンツ終了 -->
+	</div>
+	<!--コンテンツ終了-->
+	</div>
+<!-- フッター開始 -->
+{include file="common/footer.tpl"}
+<!-- フッター終了 -->
+
+	
+	
+</div><!--div#wrapper:end-->
+</body>
+</html>

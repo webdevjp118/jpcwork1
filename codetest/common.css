@@ -1,0 +1,22 @@
+.cpc, .cpc6, .cpc9 {
+	display: block;
+}
+.csp, .csp6, .csp9 {
+	display: none;
+}
+@media (max-width: 900px) {
+	.cpc9 {
+		display: none !important;
+	}
+	.csp9 {
+		display: block !important;
+	}	
+}
+@media (max-width: 575px) {
+	.cpc, .cpc6 {
+		display: none !important;
+	}
+	.csp, .csp6 {
+		display: block !important;
+	}	
+}

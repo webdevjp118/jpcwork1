@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>求人情報管理 | 管理画面</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="common/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet" href="common/AdminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="common/css/common.css">
+<link rel="shortcut icon" href="common/img/favicon.ico">
+
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+
+
+{include file="common/header_.tpl"}
+
+{include file="common/side.tpl"}
+
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+
+<h1>求人情報管理</h1>
+
+<ol class="breadcrumb">
+<li><a href="admin.html"><i class="fa fa-dashboard"></i> Home</a></li>
+<li class="active">求人情報管理</li>
+</ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+
+<div class="row">
+<div class="col-md-8">
+
+
+<div class="box box-default same_height">
+
+<div class="box-header with-border">
+<i class="fa fa-search"></i>
+<h3 class="box-title">絞り込み検索</h3>
+</div><!-- /.box-header -->
+
+<form name="form1" action="./" method="get" class="form-horizontal">
+
+
+
+<div class="box-body">
+
+<input type="hidden" name="act" value="admin-item">
+<input type="hidden" name="mode" value="form">
+<input type="hidden" name="page" value="">
+<input type="hidden" name="order" value="">
+<input type="hidden" name="csv" value="">
+
+<div class="row">
+<div class="col-sm-12 col-xs-12 col_vam">
+<label>求人タイトル、求人No、登録担当者名</label>
+<input type="text" name="title" value="{$form.title}" class="form-control">
+</div>
+</div>
+</div><!-- /.box-body -->
+
+
+
+<div class="box-body">
+<div class="row"><!--.row wrap-->
+
+<div class="col-sm-6 col-xs-12 mb10">
+<label>エリア</label>
+<div class="row">
+<div class="col-xs-6">
+<select name="pref" class="form-control" onChange="change_pref(this.value)">
+<option value="">---&nbsp;指定しない&nbsp;---</option>
+<option value="1" {if $form.pref==1}selected="selected"{/if}>北海道</option>
+<option value="2" {if $form.pref==2}selected="selected"{/if}>青森県</option>
+<option value="3" {if $form.pref==3}selected="selected"{/if}>岩手県</option>
+<option value="4" {if $form.pref==4}selected="selected"{/if}>宮城県</option>
+<option value="5" {if $form.pref==5}selected="selected"{/if}>秋田県</option>
+<option value="6" {if $form.pref==6}selected="selected"{/if}>山形県</option>
+<option value="7" {if $form.pref==7}selected="selected"{/if}>福島県</option>
+<option value="8" {if $form.pref==8}selected="selected"{/if}>茨城県</option>
+<option value="9" {if $form.pref==9}selected="selected"{/if}>栃木県</option>
+<option value="10" {if $form.pref==10}selected="selected"{/if}>群馬県</option>
+<option value="11" {if $form.pref==11}selected="selected"{/if}>埼玉県</option>
+<option value="12" {if $form.pref==12}selected="selected"{/if}>千葉県</option>
+<option value="13" {if $form.pref==13}selected="selected"{/if}>東京都</option>
+<option value="14" {if $form.pref==14}selected="selected"{/if}>神奈川県</option>
+<option value="15" {if $form.pref==15}selected="selected"{/if}>新潟県</option>
+<option value="16" {if $form.pref==16}selected="selected"{/if}>富山県</option>
+<option value="17" {if $form.pref==17}selected="selected"{/if}>石川県</option>
+<option value="18" {if $form.pref==18}selected="selected"{/if}>福井県</option>
+<option value="19" {if $form.pref==19}selected="selected"{/if}>山梨県</option>
+<option value="20" {if $form.pref==20}selected="selected"{/if}>長野県</option>
+<option value="21" {if $form.pref==21}selected="selected"{/if}>岐阜県</option>
+<option value="22" {if $form.pref==22}selected="selected"{/if}>静岡県</option>
+<option value="23" {if $form.pref==23}selected="selected"{/if}>愛知県</option>
+<option value="24" {if $form.pref==24}selected="selected"{/if}>三重県</option>
+<option value="25" {if $form.pref==25}selected="selected"{/if}>滋賀県</option>
+<option value="26" {if $form.pref==26}selected="selected"{/if}>京都府</option>
+<option value="27" {if $form.pref==27}selected="selected"{/if}>大阪府</option>
+<option value="28" {if $form.pref==28}selected="selected"{/if}>兵庫県</option>
+<option value="29" {if $form.pref==29}selected="selected"{/if}>奈良県</option>
+<option value="30" {if $form.pref==30}selected="selected"{/if}>和歌山県</option>
+<option value="31" {if $form.pref==31}selected="selected"{/if}>鳥取県</option>
+<option value="32" {if $form.pref==32}selected="selected"{/if}>島根県</option>
+<option value="33" {if $form.pref==33}selected="selected"{/if}>岡山県</option>
+<option value="34" {if $form.pref==34}selected="selected"{/if}>広島県</option>
+<option value="35" {if $form.pref==35}selected="selected"{/if}>山口県</option>
+<option value="36" {if $form.pref==36}selected="selected"{/if}>徳島県</option>
+<option value="37" {if $form.pref==37}selected="selected"{/if}>香川県</option>
+<option value="38" {if $form.pref==38}selected="selected"{/if}>愛媛県</option>
+<option value="39" {if $form.pref==39}selected="selected"{/if}>高知県</option>
+<option value="40" {if $form.pref==40}selected="selected"{/if}>福岡県</option>
+<option value="41" {if $form.pref==41}selected="selected"{/if}>佐賀県</option>
+<option value="42" {if $form.pref==42}selected="selected"{/if}>長崎県</option>
+<option value="43" {if $form.pref==43}selected="selected"{/if}>熊本県</option>
+<option value="44" {if $form.pref==44}selected="selected"{/if}>大分県</option>
+<option value="45" {if $form.pref==45}selected="selected"{/if}>宮崎県</option>
+<option value="46" {if $form.pref==46}selected="selected"{/if}>鹿児島県</option>
+<option value="47" {if $form.pref==47}selected="selected"{/if}>沖縄県</option>
+</select>
+</div>
+<div class="col-xs-6">
+<select name="city" id="city" class="form-control">
+<option value="">---&nbsp;指定しない&nbsp;---</option>
+<option value=""></option>
+</select>
+</div>
+</div>
+</div>
+
+<!--
+<div class="col-sm-3 col-xs-12 mb10">
+<label>ステータス</label>
+<select name="status" class="form-control">
+<option value="" selected="selected">---&nbsp;指定しない&nbsp;---</option>
+<option value="1" {if $form.status==1}selected="selected"{/if}>公開</option>
+<option value="2" {if $form.status==2}selected="selected"{/if}>非公開</option>
+</select>
+</div>
+-->
+
+<div class="col-sm-3 col-xs-12 mb10">
+<label>ステータス</label>
+<select name="status" class="form-control">
+<option value="">---&nbsp;指定しない&nbsp;---</option>
+<option value="1" {if $form.status==1}selected="selected"{/if}>公開</option>
+<option value="2" {if $form.status==2}selected="selected"{/if}>非公開</option>
+</select>
+</div>
+
+<!--
+<div class="col-sm-3 col-xs-12 mb10">
+<label>オプション</label>
+<select name="" class="form-control">
+<option value="" selected="selected">---&nbsp;指定しない&nbsp;---</option>
+<option value=""></option>
+</select>
+</div>
+-->
+
+<div class="col-sm-3 col-xs-12">
+<label>登録担当者</label>
+<select name="tantou_id" class="form-control">
+<option value="">---&nbsp;指定しない&nbsp;---</option>
+{foreach from=$tantou_list item="item"}
+<option value="{$item.tantou_id}" {if $form.tantou_id===$item.tantou_id}selected="selected"{/if}>{$item.name}</option>
+{/foreach}
+</select>
+</div>
+
+</div><!-- /.row wrap -->
+</div><!-- /.box-body -->
+
+
+
+<div class="box-body">
+<div class="row">
+<div class="col-sm-4 col-xs-12 col-sm-offset-4">
+<button type="button" class="btn btn-block btn-success" onClick="document.form1.submit()">検索する</button>
+</div>
+</div><!-- /.row wrap -->
+</div><!-- /.box-body -->
+
+
+</form>
+</div><!-- /.box -->
+</div>
+
+
+<div class="col-md-4">
+<div class="box box-default same_height">
+<div class="box-body">
+
+
+{if $admin.auth2.1}
+<div class="mb10">
+<a href="admin-item-edit.html" class="btn btn-block btn-warning"><i class="fa fa-plus-square"></i> 新しく求人情報を登録する</a>
+</div>
+{/if}
+
+{if $admin.auth2.4}
+<div class="mb10">
+<a href="javascript:do_csv()" class="btn btn-block btn-default"><i class="fa fa-download "></i> 求人情報をエクスポートする</a>
+</div>
+{/if}
+
+<!--自動更新＋ヘルプ-->
+<div class="box_btn_help">
+<div class="box_btn_help_switch">
+
+<form name="form_autoupdate" action="./" method="post" class="form-horizontal">
+<input type="hidden" name="mode" value="autoupdate">
+<div class="btn-group btn_radio w22" data-toggle="buttons">
+<label class="btn btn-primary w12 {if $autoupdate == 1}active{/if} "><input type="radio" name="autoupdate" value="1" {if $autoupdate == 1}checked{/if} onchange="post_auto(this.value);" />自動更新をON</label>
+<label class="btn btn-primary w12 {if $autoupdate != 1}active{/if} "><input type="radio" name="autoupdate" value="0" {if $autoupdate != 1}checked{/if} onchange="post_auto(this.value);" />自動更新をOFF</label>
+</div>
+{literal}
+<script type="text/javascript">
+function post_auto(v){
+	$.ajax({
+		type: 'GET',
+		url:"./?act=autoupdate&value=" + v,
+		success : function(data){
+			alert(data);
+		}
+	});
+}
+</script>
+{/literal}
+
+<div class="btn-group w01">
+<button type="button" class="btn btn-default btn-sm dropdown-toggle btn_help fs05 " data-toggle="dropdown">
+<i class="ion-help"></i></button>
+<div class="dropdown-menu pull-right dropdown_menu_help" role="menu">
+<p>自動更新ONにしておくと、最終更新日が30日を経過した求人情報に対して、 最新の更新日を付与します。<br>
+（indeedでは古い更新日が表示されている求人情 報が読み込まれないため、indeedへの最適化をご希望される場合は必ずONに してください）</p>
+</div>
+</div>
+
+</form>
+
+</div>
+</div>
+<!--/自動更新＋ヘルプ-->
+
+</div><!-- /.box-body -->
+</div><!-- /.box -->
+</div>
+
+
+
+<div class="col-xs-12">
+
+<div class="box box-default">
+<form name="form2" action="./admin-item.html" method="post" class="form-horizontal">
+	<input type="hidden" name="act" value="admin-item">
+	<input type="hidden" name="mode" value="">
+	<input type="hidden" name="page" value="{$page}">
+	<input type="hidden" name="item_number" value="">
+<div class="box-body">
+
+{if $list}
+
+<div class="box_publishing clearfix">
+<div class="box_publishing_left">
+<p>チェックした求人をすべて<br class="visible-xs-block">
+<a href="javascript:do_publish()" class="btn btn-warning"><i class="ion-loop"></i> 公開にする</a>
+<a href="javascript:do_unpublish()" class="btn btn-danger"><i class="ion-close"></i> 非公開にする</a>
+</p>
+</div>
+<div class="box_publishing_right">
+<p>表示件数<span class="hidden-xs">切り替え</span>
+<select name="page_items_number" class="ml05" onChange="javascript:change_page_items_number()">
+	<option value="20" {if $page_item_number eq 20 OR !$page_item_number}selected=selected{/if}>20</option>
+	<option value="50" {if $page_item_number eq 50}selected=selected{/if}>50</option>
+	<option value="100" {if $page_item_number eq 100}selected=selected{/if}>100</option>
+</select>
+</p>
+</div>
+</div>
+
+<table id="table_summary" class="table table-bordered table-hover" summary="表">
+<thead>
+<tr>
+<th>
+<label class="input_check_edit" id="input_check_edit_all"><input type="checkbox" name="" value=""></label>
+</th>
+<th>
+{if $order==1}
+▲
+{else}
+<a href="javascript:do_order(1)">▲</a>
+{/if}
+{if $order==2}
+▼
+{else}
+<a href="javascript:do_order(2)">▼</a>
+{/if}
+&nbsp;更新日時</th>
+<th>画像</th>
+<th>求人タイトル</th>
+<th>登録担当者</th>
+<th>ステータス</th>
+<th>
+{if $order==3}
+▲
+{else}
+<a href="javascript:do_order(3)">▲</a>
+{/if}
+{if $order==4}
+▼
+{else}
+<a href="javascript:do_order(4)">▼</a>
+{/if}
+&nbsp;応募</th>
+<th>参照</th>
+{if $admin.auth2.1}<th>複製</th>{/if}
+{if $admin.auth2.2}<th>編集</th>{/if}
+{if $admin.auth2.3}<th>削除</th>{/if}
+</tr>
+</thead>
+
+<tbody>
+
+{assign var="class" value="bg01"}
+{foreach from=$list item="item"}
+<tr>
+<td><label class="input_check_edit"><input type="checkbox" name="item_ids[]" value="{$item.item_id}"></label></td>
+<td>{$item.up_date|date_format:"%Y/%m/%d %H:%M:%S"}</td>
+<td class="txtC">
+{if $item.image}
+<img src="../img.php?id={$item.image}" width="120" />
+{else}
+<img src="common/AdminLTE/img/noimage.jpg" width="120" alt="該当画像なし" />
+{/if}
+</td>
+<td><a href="admin-item-edit.html&id={$item.item_id}">{$item.title}</a><p class="no_01">求人No.{$item.item_id}</p></td>
+<td>
+{if $admin.auth1.2}
+<a href="admin-authority-edit.html&id={$item.tantou.seq}">{$item.tantou.name}
+{else}
+{$item.tantou.name}
+{/if}
+</td>
+<td>{if $item.status==1}公開{else}非公開{/if}</td>
+<td><a href="admin-entry.html&title={$item.item_id}">{$item.oubo}&nbsp;人</a></td>
+<td><a href="../detail/{$item.item_id}" target="_blank" class="btn btn-block btn-default btn-xs">参照 <i class="fa fa-external-link"></i></a></td>
+{if $admin.auth2.1}
+<td>
+<a href="admin-item-edit.html&id={$item.item_id}&mode=copy" class="btn btn-block btn-default btn-xs"><i class="fa fa-files-o"></i> 複製</a>
+</td>
+{/if}
+{if $admin.auth2.2}
+<td>
+<a href="admin-item-edit.html&id={$item.item_id}" class="btn btn-block btn-default btn-xs"><i class="fa fa-pencil"></i> 編集</a>
+</td>
+{/if}
+{if $admin.auth2.3}
+<td>
+{if $item.oubo}
+<a href="javascript:void(0);" class="btn btn-block btn-default btn-xs" disabled="disabled"><i class="fa fa-trash"></i> 削除</a>
+{else}
+<a href="javascript:do_delete({$item.item_id})" class="btn btn-block btn-default btn-xs"><i class="fa fa-trash"></i> 削除</a>
+{/if}
+</td>
+{/if}
+</tr>
+{if $class=="bg01"}
+{assign var="class" value="bg02"}
+{else}
+{assign var="class" value="bg01"}
+{/if}
+{/foreach}
+
+</tbody>
+</table>
+
+<div class="box_publishing clearfix">
+<div class="box_publishing_left">
+<p>チェックした求人をすべて<br class="visible-xs-block">
+<a href="javascript:do_publish()" class="btn btn-warning"><i class="ion-loop"></i> 公開にする</a>
+<a href="javascript:do_unpublish()" class="btn btn-danger"><i class="ion-close"></i> 非公開にする</a>
+</p>
+</div>
+<div class="box_publishing_right">
+<p>表示件数<span class="hidden-xs">切り替え</span>
+<select name="page_items_number2" class="ml05" onChange="javascript:change_page_items_number2()">
+	<option value="20" {if $page_item_number eq 20 OR !$page_item_number}selected=selected{/if}>20</option>
+	<option value="50" {if $page_item_number eq 50}selected=selected{/if}>50</option>
+	<option value="100" {if $page_item_number eq 100}selected=selected{/if}>100</option>
+</select>
+</p>
+</div>
+</div>
+
+{else}
+<p>登録情報がありません。</p>
+{/if}
+
+</div><!-- /.box-body -->
+</form>
+</div><!-- /.box -->
+
+
+{if $list}
+<div class="paging">
+
+<div class="row">
+<div class="col-sm-5">
+<div class="dataTables_info" id="table_summary_info" role="status" aria-live="polite">対象件数({$total}件)</div>
+</div>
+
+<div class="col-sm-7">
+<div class="dataTables_paginate paging_simple_numbers" id="table_summary_paginate">
+<ul class="pagination">
+
+{if $pager.prev}
+<li class="paginate_button previous disabled" id="table_summary_previous">
+<a href="javascript:do_page({$pager.prev.no})" aria-controls="table_summary" data-dt-idx="{$pager.prev.no}" tabindex="0">前の10件</a>
+</li>
+{/if}
+
+{if $pager.prev_skip}
+<!--li class="pagination_skip">
+<a href="javascript:do_page({$pager.top.no})">{$pager.top.name}</a>&nbsp;…&nbsp;
+</li-->
+{/if}
+
+{foreach from=$pager.list item="item"}
+{if $item.link}
+<li class="paginate_button"><a href="javascript:do_page({$item.no})" aria-controls="table_summary" data-dt-idx="{$item.name}" tabindex="0">{$item.name}</a></li>
+{else}
+<li class="paginate_button active"><span>{$item.name}</span></li>
+{/if}
+{/foreach}
+
+{if $pager.next_skip}
+<!--li class="pagination_skip">
+<a href="javascript:do_page({$pager.last.no})">{$pager.last.name}</a>&nbsp;…&nbsp;
+</li-->
+{/if}
+
+{if $pager.next}
+<li class="paginate_button next" id="table_summary_next">
+<a href="javascript:do_page({$pager.next.no})" aria-controls="table_summary" data-dt-idx="{$pager.next.no}" tabindex="0">次の10件</a>
+</li>
+{/if}
+
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+{/if}
+
+
+
+
+
+</div><!-- /.col -->
+</div><!-- /.row -->
+</section><!-- /.content -->
+
+</div><!-- /.content-wrapper -->
+
+
+
+{include file="common/footer_.tpl"}
+
+
+
+
+
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<script src="common/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="common/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="common/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="common/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script src="common/AdminLTE/js/app.min.js"></script>
+<script src="common/AdminLTE/js/demo.js"></script>
+<script src="common/js/common.js"></script>
+
+<script src="../common/js/mini_ajax.js"></script>
+<script>
+var pref = '{$form.pref}';
+var city = '{$form.city}';
+</script>
+
+{literal}
+<script>
+function set_select(sel, info, pref) {
+
+	// 全て削除
+	while (sel.options.length > 1) {
+
+		sel.options[sel.options.length-1] = null;
+	}
+
+	var n = 1;
+
+	for (i in info) {
+
+		sel.options.length = n;
+
+		if (info[i]) {
+			sel.options[n++] = new Option(info[i], i, false, false);
+		}
+	}
+
+	sel.options[0].selected = true;
+}
+
+function change_pref(v){
+
+	var str = ajax.gets("../?act=get_city&id=" + v);
+	eval("var city_data = " + str);
+	set_select(document.getElementById('city'), city_data);
+}
+
+function do_delete(id){
+
+	if (confirm('削除しても良いですか？')) {
+		location = './admin-item.html&mode=delete&id=' + id;
+	}
+}
+
+function do_page(page){
+
+	document.form1.page.value = page;
+	document.form1.submit();
+}
+
+function do_csv(){
+
+	document.form1.csv.value = "1";
+	document.form1.submit();
+}
+
+function do_order(ord){
+
+	document.form1.order.value = ord;
+	document.form1.page.value = "";
+	document.form1.submit();
+}
+
+function do_publish(){
+	if (confirm('チェックした求人を全て公開してもよろしいですか？')) {
+		document.form2.mode.value = 'publish';
+		document.form2.submit();
+	}
+}
+function do_unpublish(){
+	if (confirm('チェックした求人を全て非公開してもよろしいですか？')) {
+		document.form2.mode.value = 'unpublish';
+		document.form2.submit();
+	}
+}
+function change_page_items_number(){
+		document.form2.mode.value = 'change_page_item_number';
+		obj = document.form2.page_items_number;
+		index = obj.selectedIndex;
+		//alert(index);
+		//if (index != 0){
+		  item_number = obj.options[index].value;
+		//}
+		//alert(item_number);
+		document.form2.item_number.value = item_number;
+		document.form2.submit();
+}
+function change_page_items_number2(){
+		document.form2.mode.value = 'change_page_item_number';
+		obj = document.form2.page_items_number2;
+		index = obj.selectedIndex;
+		item_number = obj.options[index].value;
+
+		document.form2.item_number.value = item_number;
+		document.form2.submit();
+}
+
+$(function() {
+
+	change_pref(pref);
+	document.form1.city.value = city;
+
+});
+</script>
+
+{/literal}
+</body>
+</html>

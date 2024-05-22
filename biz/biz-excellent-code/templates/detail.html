@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="index,follow,noarchive" />
+<meta name="description" content="{$info.title}｜{$info.syokusyu}/{$info.koyou}の求人を募集中です。{$info.kinmu_pref}{$info.kinmu_city}の{$info.syokusyu}の求人・募集は保育bizにお任せください。">
+<meta name="keywords" content="{$info.syokusyu},{$info.koyou},求人,{$info.kinmu_city},">
+<title>{$info.title}｜{$info.kinmu_pref}{$info.kinmu_city}の{$info.syokusyu}の求人・募集｜保育biz</title>
+
+<link rel="contents" href="/sitemap.xml" />
+
+<!-- Mobile Specific
+ ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<!-- CSS
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/css/import.css">
+
+<!-- Font Awesome
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+<!-- google font
+ ================================================== -->
+<link href="https://fonts.googleapis.com/earlyaccess/notosansjp.css" rel="stylesheet">
+
+<!-- Java Script
+ ================================================== -->
+<script src="{$top}common/js/jquery.min.js"></script>
+<script src="{$top}common/js/custom.js"></script>
+<script src="{$top}common/js/css_browser_selector.js"></script>
+
+<!--slick START---------------------------------->
+<script src="{$top}common/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{$top}common/slick/slick.css" />
+<script src="{$top}common/slick/custom.js"></script>
+<!--slick END---------------------------------->
+
+<!-- remodal
+ ================================================== -->
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal.css">
+<link rel="stylesheet" type="text/css" href="{$top}common/remodal/remodal-default-theme.css">
+<script src="{$top}common/remodal/remodal.js"></script>
+
+{include file="common/analytics.tpl"}
+</head>
+
+
+<body>
+<div id="wrapper" class="bg_gray detail_page">
+
+{include file="common/header.tpl"}
+
+	<!-- メインイメージ開始 -->
+	<aside class="subpage_title detail">
+		<div class="mywidth flex column flex-center flex-middle">
+			<h1 class="lh18 tx-center my-font02">求人詳細</h1>
+			<div class="subpage_title_eng">Detail</div>
+		</div>
+	</aside>
+	<!-- メインイメージ終了 -->
+
+	<!-- パンくず開始 -->
+	<div id="topics" class="left pc-only">
+		<ul>
+			<li><a href="{$top}">TOP</a>&nbsp;&gt;&nbsp;</li>
+			<li><a href="{$top}s/">絞込み検索</a>&nbsp;&gt;&nbsp;</li>
+			<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}/">{$info.kinmu_pref}</a>&nbsp;&gt;&nbsp;</li>
+			<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}/c{$info.kinmu_city_v}/">{$info.kinmu_city}</a>&nbsp;&gt;&nbsp;</li>
+			<li>{$info.title}</li>
+		</ul>
+	</div>
+	<!-- パンくず開始 -->
+
+	<!-- コンテンツ開始 -->
+	<article id="content" class="clearfix">
+
+		<div class="content_wrap clearfix">
+
+			<div class="recruit_info detail">
+				<h2 class="tit my-font02">{$info.title}</h2>
+				<div class="wrap">
+					<div class="info_wrap">
+						<div class="image_box">
+{if $info.image}
+							<img src="{$top}img.php?id={$info.image}" alt="{$info.title}" />
+{else}
+	{if $info.item_id%22  > 0 }
+		<img src="{$top}noimg/{$info.item_id%22}.jpg" alt="{$info.title}" />
+	{else}
+		<img src="{$top}noimg/22.jpg" alt="{$info.title}" />
+	{/if}
+							<!--img src="{$top}common/images/noimg.png" alt="{$info.title}" /-->
+{/if}
+						</div>
+						<div class="info">
+							<div class="data">
+{if $info.text02}
+								<dl>
+									<dt>施設名</dt>
+									<dd>{$info.text02}</dd>
+								</dl>
+{/if}	
+{if $info.text01}
+								<dl>
+									<dt>施設名</dt>
+									<dd>{$info.text01}</dd>
+								</dl>
+{/if}															
+{if $info.kinmu_pref}
+								<dl>
+									<dt>勤務地</dt>
+									<dd>{$info.kinmu_pref}{$info.kinmu_city}{$info.kinmu_address1}{$info.kinmu_address2}</dd>
+								</dl>
+{/if}
+{if $info.indeed}
+								<dl>
+									<dt>職種</dt>
+									<dd>{$info.indeed}</dd>
+								</dl>
+{/if}
+{if $info.koyou}
+								<dl>
+									<dt>雇用形態</dt>
+									<dd>{$info.koyou}</dd>
+								</dl>
+{/if}
+
+							</div>
+							<ul class="category">
+{foreach from=$mast_kodawari1 item="item2"}
+{if $info.kodawari1_v[$item2.id]}
+<li>{$item2.name}</li>
+{/if}
+{/foreach}
+							</ul>
+						</div>
+					</div>
+{if $info.pr}
+					<dl class="recommend_point">
+						<dt>PRメッセージ</dt>
+						<dd>{$info.pr|nl2br}</dd>
+					</dl>
+{/if}
+					<div class="btn_wrap">
+						<a class="btn02 opa" href="{$top}detail/{$info.item_id}/contact/">問い合わせる</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="recruit_data">
+				<h2 class="content-title my-font02">求人情報詳細</h2>
+				<table class="tb">
+{if $info.shigoto}
+					<tr>
+						<th>仕事内容</th>
+						<td>{$info.shigoto|nl2br}</td>
+					</tr>
+{/if}		
+					
+{if $info.kyuyo}
+					<tr>
+						<th>給与</th>
+						<td>{$info.kyuyo|nl2br}</td>
+					</tr>
+{/if}
+					
+{if $info.jikan}
+					<tr>
+						<th>勤務時間</th>
+						<td>{$info.jikan|nl2br}</td>
+					</tr>
+{/if}
+{if $info.kyujitsu}
+					<tr>
+						<th>休日</th>
+						<td>{$info.kyujitsu|nl2br}</td>
+					</tr>
+{/if}
+{if $info.shikaku}
+					<tr>
+						<th>応募資格</th>
+						<td>{$info.shikaku|nl2br}</td>
+					</tr>
+{/if}
+{if $info.teate}
+					<tr>
+						<th>手当</th>
+						<td>{$info.teate|nl2br}</td>
+					</tr>
+{/if}
+{if $info.fukuri}
+					<tr>
+						<th>待遇・福利厚生</th>
+						<td>{$info.fukuri|nl2br}</td>
+					</tr>
+{/if}
+{if $info.koutsuu}
+					<tr>
+						<th>最寄り駅</th>
+						<td>{$info.koutsuu|nl2br}</td>
+					</tr>
+{/if}
+				</table>
+				<div class="btn_wrap">
+					<a class="btn02 opa" href="{$top}detail/{$info.item_id}/contact/">問い合わせる</a>
+				</div>
+			</div>
+			
+
+
+{if $info.consult}
+			<div class="consultant_message">
+				<h2 class="content-title my-font02">コンサルタントからの一言</h2>
+				<img class="image" src="{$top}common/images/consultant.png" />
+				<div class="message">
+					<div class="balloon pc-only">
+						<p>{$info.consult|nl2br}</p>
+					</div>
+					<p class="sp-only">{$info.consult|nl2br}</p>
+				</div>
+			</div>
+{/if}
+
+
+			<div class="relation_wrap">
+				<h2 class="content-title my-font02">関連求人</h2>
+				<div class="slick-class01">
+{foreach from=$view item="item"}
+					<a href="/detail/{$item.item_id}/" class="box opa">
+						<div class="img_wrap">
+{if $item.image}
+						  <img src="{$top}img.php?id={$item.image}" alt="{$item.title}" />
+{else}
+	{if $item.item_id%22  > 0 }
+		<img src="{$top}noimg/{$item.item_id%22}.jpg" alt="{$item.title}" />
+	{else}
+		<img src="{$top}noimg/22.jpg" alt="{$item.title}" />
+	{/if}
+						  <!--img src="{$top}common/images/noimg.png" alt="{$item.title}" /-->
+{/if}
+{if $item.syokusyu}<div class="occu point-back02 white f13 lh10">{$item.syokusyu}</div>{/if}
+						</div><!-- //.img_wrap -->
+						<div class="txt_wrap">
+						  <div class="base-color01 tx-bold f14 lh16">{$item.title}</div>
+						
+						</div><!-- //.txt_wrap -->
+					</a><!-- //.box -->
+{/foreach}
+				</div><!-- //.slick-class01 -->
+			</div><!-- //.relation_wrap -->
+
+{if $recommend}
+			<div class="relation_wrap">
+				<h2 class="content-title my-font02">コンサルタントおすすめの求人</h2>
+				<div class="slick-class01">
+{foreach from=$recommend item="item"}
+					<a href="/detail/{$item.item_id}/" class="box opa">
+						<div class="img_wrap">
+{if $item.image}
+						  <img src="{$top}img.php?id={$item.image}" alt="{$item.title}" />
+{else}
+						  <img src="{$top}common/images/noimg.png" alt="{$item.title}" />
+{/if}
+{if $item.syokusyu}<div class="occu point-back02 white f13 lh10">{$item.syokusyu}</div>{/if}
+						</div><!-- //.img_wrap -->
+						<div class="txt_wrap">
+						  <div class="base-color01 tx-bold f14 lh16">{$item.title}</div>
+						  <p class="f13 lh18 base-color01">テキストが入るテキストが入るテキストが入るテキストが入る</p>
+						</div><!-- //.txt_wrap -->
+					</a><!-- //.box -->
+{/foreach}
+				</div><!-- //.slick-class01 -->
+			</div><!-- //.relation_wrap -->
+{/if}
+
+			
+			<div class="other_conditions">
+				<h2 class="content-title my-font02">この求人は以下の条件に合致しています<span class="note pc-only">※リンクをクリックすると以下の条件の求人情報一覧ページへ移動します。</span></h2>
+				<p class="note sp-only">※リンクをクリックすると以下の条件の求人情報一覧ページへ移動します。</p>
+				<dl>
+					<dt class="point-back02 white">勤務地</dt>
+					<dd>
+{if $info.kinmu_city_v}
+					  <ul>
+						<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}" class="opa">{$info.kinmu_pref}</a></li>
+						<li><a href="{$top}s/a{$info.kinmu_area}/t{$info.kinmu_pref_v}/c{$info.kinmu_city_v}" class="opa">{$info.kinmu_city}</a></li>
+					  </ul>
+{else}
+					  <ul>
+						<li><a href="{$top}s/t{$info.kinmu_pref_v}" class="opa">{$info.kinmu_pref}{$info.kinmu_city}</a></li>
+					  </ul>
+{/if}
+					</dd>
+				</dl>
+				<dl>
+					<dt class="point-back02 white">職種</dt>
+					<dd>
+{if $info.syokusyu_v}
+					  <ul>
+{foreach from=$info.syokusyu_v key="key" item="item"}
+						<li><a href="{$top}s/s{$key}/" class="opa">{$item}</a></li>
+
+{/foreach}
+					  </ul>
+{/if}
+					</dd>
+				</dl>
+				<dl>
+					<dt class="point-back02 white">雇用形態</dt>
+					<dd>
+{if $info.koyou_v}
+					  <ul>
+{foreach from=$info.koyou_v key="key" item="item"}
+						<li><a href="{$top}s/k{$key}/" class="opa">{$item}</a></li>
+{/foreach}
+					  </ul>
+{/if}
+					</dd>
+				</dl>
+				<dl>
+					<dt class="point-back02 white">こだわり</dt>
+					<dd>
+{if $info.kodawari1_v}
+					  <ul>
+{foreach from=$info.kodawari1_v key="key" item="item"}
+						<li><a href="{$top}s/x{$key}/" class="opa">{$item}</a></li>
+{/foreach}
+
+					  </ul>
+{/if}
+					</dd>
+				</dl>
+			</div>
+
+		</div>
+
+	</article>
+	<!-- コンテンツ終了 -->
+
+{include file="common/footer.tpl"}
+
+
+<!--<div class="sp-only">
+	<div id="follow-fotter">
+		<div class="flex flex-space-b">
+			<div class="box">
+				<a href="tel:03-5789-5255" class="foot-button1 green-back opa2 my-font01 point-color01"><i class="fa fa-phone" aria-hidden="true"></i>03-5789-5255</a>
+			</div>
+			<div class="box">
+				<a href="{$top}detail/{$info.item_id}/contact/" class="foot-button2 white opa2">コーディネーター<br>に相談する</a>
+			</div>
+		</div>
+	</div>
+</div>--><!-- //.sp-only -->
+
+</div>
+</body>
+</html>

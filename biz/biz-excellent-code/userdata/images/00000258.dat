@@ -1,0 +1,15 @@
+http://demo-reqruit.info/com/
+認証:test/test
+
+ログイン
+makiyama@palmgate.jp
+111777
+
+左メニューの「コンテンツ管理」にて
+新規登録から検証をお願いいたします。
+
+例:
+http://demo-reqruit.info/com/contents-edit.html&id=20
+の下部のコンテンツの設定にて、要素の追加、削除、編集ができるが、ここを触っているうちの順番が入れ替わるケースがあり、この再現をしたく思います。
+
+再現理由がわかれば修正ができますので。

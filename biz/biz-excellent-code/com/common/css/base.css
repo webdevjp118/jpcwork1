@@ -1,0 +1,362 @@
+@charset "UTF-8";
+
+
+
+/*
+
+                           _             
+                          (_)            
+ __      ____ _ _ __ _ __  _ _ __   __ _ 
+ \ \ /\ / / _` | '__| '_ \| | '_ \ / _` |
+  \ V  V / (_| | |  | | | | | | | | (_| |
+   \_/\_/ \__,_|_|  |_| |_|_|_| |_|\__, |
+                                    __/ |
+                                   |___/ 
+
+
+このCSSファイルは以前のスタイル専用です。
+
+*/
+
+
+/*-
+*リセットおよび初期化
+*/
+*{
+	padding:0;
+	margin:0;
+}
+
+body{
+	color:#555555;
+	font-family:"Meiryo","Meiryo UI","Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック";
+	font-size:75%;
+	line-height:160%;
+	letter-spacing:0px;
+	text-align:left;
+	background:#f2f2f2; /*- 背景色指定 -*/
+}
+
+table{
+	color:#555555;
+	font-family:"Meiryo","Meiryo UI","Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック";
+	font-size:100%;
+	line-height:140%;
+	letter-spacing:0px;
+}
+* html table{
+	font-size:90%;
+}
+
+ul,ol{
+	list-style:none;
+}
+
+a{
+	text-decoration:underline;
+	color:#0072ff;
+	/*デフォルトcolor:#000000;
+	text-decoration:none;*/
+}
+a:hover{
+	color:#a5cdff;
+	/*デフォルトtext-decoration:underline;*/
+}
+
+img{border:none}
+
+.err { color: #f00; }
+
+/*-
+*汎用パーツ
+*/
+.txt10{
+	font-size:85%;
+}
+
+.txt14{
+	font-size:115%;
+}
+
+.txt16{
+	font-size:130%;
+}
+
+.txt18{
+	font-size:145%;
+}
+
+.txtR{
+	text-align:right;
+}
+
+.txtL{
+	text-align:left;
+}
+
+.txtC{
+	text-align:center;
+}
+
+.txtC img{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.mTop05{
+	margin-top:5px;
+}
+
+.mTop10{
+	margin-top:10px;
+}
+
+.mTop15{
+	margin-top:15px;
+}
+
+.mTop20{
+	margin-top:20px;
+}
+
+.mTop25{
+	margin-top:25px;
+}
+
+.mTop30{
+	margin-top:30px;
+}
+
+.mTop35{
+	margin-top:35px;
+}
+
+.mTop40{
+	margin-top:40px;
+}
+
+.mTop45{
+	margin-top:45px;
+}
+
+.mTop50{
+	margin-top:50px;
+}
+
+.mTop55{
+	margin-top:55px;
+}
+
+.mTop60{
+	margin-top:60px;
+}
+
+.mBtm05{
+	margin-bottom:5px;
+}
+
+.mBtm10{
+	margin-bottom:10px;
+}
+
+.mBtm12{
+	margin-bottom:12px;
+}
+
+.mBtm15{
+	margin-bottom:15px;
+}
+
+.mBtm20{
+	margin-bottom:20px;
+}
+
+.mBtm25{
+	margin-bottom:25px;
+}
+
+.mBtm30{
+	margin-bottom:30px;
+}
+
+.mBtm35{
+	margin-bottom:35px;
+}
+
+.mBtm40{
+	margin-bottom:40px;
+}
+
+.mBtm45{
+	margin-bottom:45px;
+}
+
+.mBtm50{
+	margin-bottom:50px;
+}
+
+.mBtm55{
+	margin-bottom:55px;
+}
+
+.mBtm60{
+	margin-bottom:60px;
+}
+
+.mLft05{
+	margin-left:5px;
+}
+
+.mLft09{
+	margin-left:9px;
+}
+
+.mLft10{
+	margin-left:10px;
+}
+
+.mLft12{
+	margin-left:12px;
+}
+
+.mLft15{
+	margin-left:15px;
+}
+
+.mLft20{
+	margin-left:20px;
+}
+
+.mLft25{
+	margin-left:25px;
+}
+
+.mLft30{
+	margin-left:30px;
+}
+
+.mLft35{
+	margin-left:35px;
+}
+
+.mLft40{
+	margin-left:40px;
+}
+
+.mLft45{
+	margin-left:45px;
+}
+
+.mLft50{
+	margin-left:50px;
+}
+
+.mLft55{
+	margin-left:55px;
+}
+
+.mLft60{
+	margin-left:60px;
+}
+
+.mLft210{
+	margin-left:210px;
+}
+
+.mr05 {
+margin-right:5px; }
+
+.mr10 {
+margin-right:10px; }
+
+.mr15 {
+margin-right:15px; }
+
+.mr20 {
+margin-right:20px; }
+
+.mr25 {
+margin-right:25px; }
+
+.mr30 {
+margin-right:30px; }
+
+.mr35 {
+margin-right:35px; }
+
+.mr40 {
+margin-right:40px; }
+
+.mr45 {
+margin-right:45px; }
+
+.mr50 {
+margin-right:50px; }
+
+.mr55 {
+margin-right:55px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fl{
+	float:left;
+}
+
+.fr{
+	float:right;
+}
+
+.clear{
+	clear:both;
+}
+
+.w250{
+	width:250px;
+}
+
+.w160{
+	width:160px;
+}
+
+.w66{
+	width:66px;
+}
+
+
+.txt_w400 {
+	width: 400px;
+	height: 26px;
+	line-height: 26px;
+	border: 1px solid #d9d9d9;
+}
+
+.txt_w180 {
+	width: 180px;
+	height: 26px;
+	line-height: 26px;
+	border: 1px solid #d9d9d9;
+}
+
+.txt_w150 {
+width:150px;
+height:26px;
+line-height: 26px;
+border: 1px solid #d9d9d9;
+}
+
+
+.textarea_w400 {
+	width: 400px;
+	height: 90px;
+	border: 1px solid #d9d9d9;
+}

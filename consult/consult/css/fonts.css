@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'NotoSansCJKjp-Regular';
+    src: url('../fonts/NotoSansCJKjp-Regular.eot');
+    src: url('../fonts/NotoSansCJKjp-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/NotoSansCJKjp-Regular.woff2') format('woff2'),
+        url('../fonts/NotoSansCJKjp-Regular.woff') format('woff'),
+        url('../fonts/NotoSansCJKjp-Regular.ttf') format('truetype'),
+        url('../fonts/NotoSansCJKjp-Regular.svg#NotoSansCJKjp-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'NotoSansCJKjp-Medium';
+    src: url('../fonts/NotoSansCJKjp-Medium.eot');
+    src: url('../fonts/NotoSansCJKjp-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/NotoSansCJKjp-Medium.woff2') format('woff2'),
+        url('../fonts/NotoSansCJKjp-Medium.woff') format('woff'),
+        url('../fonts/NotoSansCJKjp-Medium.ttf') format('truetype'),
+        url('../fonts/NotoSansCJKjp-Medium.svg#NotoSansCJKjp-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NotoSansCJKjp-Bold';
+    src: url('../fonts/NotoSansCJKjp-Bold.eot');
+    src: url('../fonts/NotoSansCJKjp-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/NotoSansCJKjp-Bold.woff2') format('woff2'),
+        url('../fonts/NotoSansCJKjp-Bold.woff') format('woff'),
+        url('../fonts/NotoSansCJKjp-Bold.ttf') format('truetype'),
+        url('../fonts/NotoSansCJKjp-Bold.svg#NotoSansCJKjp-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KozGoPr6N-Regular';
+    src: url('../fonts/KozGoPr6N-Regular.eot');
+    src: url('../fonts/KozGoPr6N-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/KozGoPr6N-Regular.woff2') format('woff2'),
+        url('../fonts/KozGoPr6N-Regular.woff') format('woff'),
+        url('../fonts/KozGoPr6N-Regular.ttf') format('truetype'),
+        url('../fonts/KozGoPr6N-Regular.svg#KozGoPr6N-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'YuGothic-Medium';
+    src: url('../fonts/YuGothic-Medium.eot');
+    src: url('../fonts/YuGothic-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/YuGothic-Medium.woff2') format('woff2'),
+        url('../fonts/YuGothic-Medium.woff') format('woff'),
+        url('../fonts/YuGothic-Medium.ttf') format('truetype'),
+        url('../fonts/YuGothic-Medium.svg#YuGothic-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+

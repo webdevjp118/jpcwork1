@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>コンテンツ管理 | 管理画面</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="common/AdminLTE/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="common/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/AdminLTE.min.css">
+<link rel="stylesheet" href="common/AdminLTE/css/skins/_all-skins.min.css">
+
+<link rel="stylesheet" href="common/js/remodal/remodal.css">
+<link rel="stylesheet" href="common/js/remodal/remodal-default-theme.css">
+
+<link rel="stylesheet" href="common/css/common.css">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+
+{include file="common/header_.tpl"}
+
+{include file="common/side.tpl"}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+<h1>コンテンツ管理<small>編集</small></h1>
+<ol class="breadcrumb">
+<li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+<li><a href="">コンテンツ管理</a></li>
+<li class="active">基本情報</li>
+</ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+<div class="nav-tabs-custom">
+
+<ul class="nav nav-tabs menu_fixed">
+<li class="active"><a href="javascript:void(0)">基本情報</a></li>
+<li><a href="contents-edit-content.html">コンテンツ</a></li>
+<li class="pull-right"><a href="" class="text-muted" data-save-draft="true"><i class="fa fa-pencil-square-o"></i> 下書き保存</a></li>
+<li class="pull-right"><a href="" class="text-muted" data-save-complete="true"><i class="fa fa-retweet"></i> 登録</a></li>
+</ul>
+
+<div class="tab-content">
+
+<!--
+  _______    _       ____            _      
+ |__   __|  | |     |  _ \          (_)     
+    | | __ _| |__   | |_) | __ _ ___ _  ___ 
+    | |/ _` | '_ \  |  _ < / _` / __| |/ __|
+    | | (_| | |_) | | |_) | (_| \__ \ | (__ 
+    |_|\__,_|_.__/  |____/ \__,_|___/_|\___|
+    
+    tab basic
+-->
+<div class="tab-pane active" id="tab_1">
+
+<form name="form1" action="contents-edit.html" method="post" enctype="multipart/form-data">
+<input type="hidden" name="mode" value="form">
+<input type="hidden" name="seq" value="{$form.seq}">
+<table id="table_summary" class="table table-bordered table_edit" summary="表">
+<tbody>
+
+<tr>
+<th>タイトル<span>必須</span></th>
+<td>
+<input class="input_w10 form-control" type="text" name="title" value="{$form.title}" placeholder="タイトルを入力してください">
+{if $msg.title}
+<div class="error_message">
+<ul>
+<li>{$msg.title}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>公開・非公開</th>
+<td>
+
+<div class="btn-group btn_radio btn_radio_2col" data-toggle="buttons">
+<label class="btn btn-primary{if $form.status==1} active{/if}"><input type="radio" name="status" autocomplete="off" value="1" {if $form.status==1}checked="checked"{/if} />公開</label>
+<label class="btn btn-primary{if $form.status==2} active{/if}"><input type="radio" name="status" autocomplete="off" value="2" {if $form.status==2}checked="checked"{/if} />非公開</label>
+</div>
+
+</td>
+</tr>
+
+<tr>
+<th>登録日時<span>必須</span></th>
+<td>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<div class="input-group date">
+<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+<input type="text" class="form-control pull-right" name="contents_date" value="" id="datepicker_contents_date">
+</div>
+</div><!-- /.form group -->
+</div>
+<div class="col-sm-6">
+<!-- time Picker -->
+<div class="bootstrap-timepicker">
+<div class="form-group">
+<div class="input-group"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+<input type="text" class="form-control timepicker"></div><!-- /.input group -->
+</div><!-- /.form group -->
+</div>
+</div>
+</div>
+{if $msg.contents_date}
+<div class="error_message">
+<ul>
+<li>{$msg.contents_date}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>公開日時</th>
+<td>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<div class="input-group date">
+<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+<input type="text" class="form-control pull-right" name="contents_date" value="" id="datepicker_contents_date">
+</div>
+</div><!-- /.form group -->
+</div>
+<div class="col-sm-6">
+<!-- time Picker -->
+<div class="bootstrap-timepicker">
+<div class="form-group">
+<div class="input-group"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+<input type="text" class="form-control timepicker"></div><!-- /.input group -->
+</div><!-- /.form group -->
+</div>
+</div>
+</div>
+{if $msg.contents_date}
+<div class="error_message">
+<ul>
+<li>{$msg.contents_date}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>記事更新日時</th>
+<td>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<div class="input-group date">
+<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+<input type="text" class="form-control pull-right" name="contents_date" value="" id="datepicker_contents_date">
+</div>
+</div><!-- /.form group -->
+</div>
+<div class="col-sm-6">
+<!-- time Picker -->
+<div class="bootstrap-timepicker">
+<div class="form-group">
+<div class="input-group"><div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+<input type="text" class="form-control timepicker"></div><!-- /.input group -->
+</div><!-- /.form group -->
+</div>
+</div>
+</div>
+{if $msg.contents_date}
+<div class="error_message">
+<ul>
+<li>{$msg.contents_date}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>ピックアップ</th>
+<td>
+<div class="radio_context_toggle">
+
+<ul class="check_ul">
+<li><label><input type="radio" name="status" value="1" />&nbsp;表示しない</label></li>
+<li><label><input type="radio" name="status" value="2" data-show="true" />&nbsp;表示する</label></li>
+</ul>
+
+<!-- Date and time range -->
+<div id="pickup" class="radio_context clearfix">
+<div class="form-group pull-left">
+<div class="input-group">
+<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+<input type="text" class="form-control pull-right" id="reservationtime_pickup">
+</div><!-- /.input group -->
+</div><!-- /.form group -->
+</div>
+
+</div>
+</td>
+</tr>
+
+<tr>
+<th>サムネイル画像</th>
+<td>
+{if $form.list_image}
+<img src="../img.php?id={$form.list_image}" width="200"><br>
+<input type="hidden" name="list_image_old" value="{$form.list_image}">
+<input type="checkbox" name="list_image_del" value="1">削除する<br>
+{/if}
+<input type="file" name="list_image" />
+{if $msg.list_image}
+<div class="error_message">
+<ul>
+<li>{$msg.list_image}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>カテゴリ<span>必須</span></th>
+<td>
+<select name="kind" class="input_select form-control">
+<option value="">選択してください</option>
+{foreach from=$kind key="key" item="item"}
+<option value="{$key}" {if $form.kind==$key}selected="selected"{/if}>{$item}</option>
+{/foreach}
+</select>
+{if $msg.kind}
+<div class="error_message">
+<ul>
+<li>{$msg.kind}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>description<span>必須</span></th>
+<td>
+<input class="input_w10 form-control" type="text" name="contents" value="{$form.contents}" placeholder="Descriptionを入力してください">
+<p>※64文字まで</p>
+{if $msg.contents}
+<div class="error_message">
+<ul>
+<li>{$msg.contents}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>keywords<span>必須</span></th>
+<td>
+<input class="input_w10 form-control" type="text" name="keyword" value="{$form.keyword}" placeholder="Keywordを入力してください　例：オウンドメディア,ポータルサイト">
+<p>※半角カンマ区切り、1個～5個推奨</p>
+{if $msg.keyword}
+<div class="error_message">
+<ul>
+<li>{$msg.keyword}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+
+<tr>
+<th>ファイル名</th>
+<td>
+<input class="input_w10 form-control" type="text" name="url" value="{$form.url}" placeholder="指定しない場合は連番が自動的にふられます">
+<p>※半角英数字で入力してください。</p>
+{if $msg.url}
+<div class="error_message">
+<ul>
+<li>{$msg.url}</li>
+</ul>
+</div>
+{/if}
+</td>
+</tr>
+</tbody>
+</table>
+<div class="text-center"><a href="javascript:do_confirm()" class="btn btn-warning fs05"><i class="fa fa-floppy-o"></i> 保存してコンテンツ編集画面へ</a></div>
+</form>
+</div><!-- /.tab-pane -->
+
+</div><!-- /.tab-content -->
+</div>
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{include file="common/footer_.tpl"}
+
+
+
+
+
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+
+<script src="common/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="common/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="common/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="common/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="common/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="common/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="common/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="common/AdminLTE/plugins/fastclick/fastclick.js"></script>
+<script src="common/AdminLTE/js/app.min.js"></script>
+<script src="common/AdminLTE/js/demo.js"></script>
+
+{literal}
+<script src="common/js/remodal/remodal.min.js"></script>
+<script src="common/js/common.js"></script>
+<script>
+$(function () {
+
+	//Datemask dd/mm/yyyy
+	$("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+	
+	//Datemask2 mm/dd/yyyy
+	$("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+	
+	//Money Euro
+	$("[data-mask]").inputmask();
+
+	//Date range picker
+	$('#reservation').daterangepicker();
+	
+	//Date range picker with time picker
+	$('#reservationtime,#reservationtime_pickup').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+
+	//Date range as a button
+	$('#daterange-btn').daterangepicker(
+		{
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			},
+			
+			startDate: moment().subtract(29, 'days'),
+			endDate: moment()
+		},
+		function (start, end) {
+			
+			$('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+		}
+	);
+	//Date picker
+	$('#datepicker,#datepicker_contents_date').datepicker({
+		autoclose: true
+	});
+
+	//Timepicker
+	$(".timepicker").timepicker({
+		showInputs: false
+	});
+});
+
+//----------------------------------------------
+
+/*
+function do_confirm(){
+	
+	if (confirm("以下の内容で登録しますか？")) {
+		document.form1.submit();
+	}
+}
+*/
+</script>
+{/literal}
+
+</body>
+</html>

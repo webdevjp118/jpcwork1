@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'Font Awesome';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/fa-regular-400.eot");
+    src: url("../fonts/fa-regular-400.woff2") format('woff2'),
+         url("../fonts/fa-regular-400.woff") format('woff'),
+         url("../fonts/fa-regular-400.svg") format('svg'),
+         url("../fonts/fa-regular-400.ttf") format('opentype');
+}
+@font-face {
+    font-family: 'Font Awesome';
+    font-style: solid;
+    font-weight: 900;
+    src: url("../fonts/fa-solid-900.eot");
+    src: url("../fonts/fa-solid-900.woff2") format('woff2'),
+         url("../fonts/fa-solid-900.woff") format('woff'),
+         url("../fonts/fa-solid-900.svg") format('svg'),
+         url("../fonts/fa-solid-900.ttf") format('opentype');
+}
+@font-face {
+    font-family: 'Font Awesome';
+    font-style: brands;
+    font-weight: 400;
+    src: url("../fonts/fa-brands-400.eot");
+    src: url("../fonts/fa-brands-400.woff2") format('woff2'),
+         url("../fonts/fa-brands-400.woff") format('woff'),
+         url("../fonts/fa-brands-400.svg") format('svg'),
+         url("../fonts/fa-brands-400.ttf") format('opentype');
+}
+
+@font-face {
+    font-family: 'DIN 2014 Bold';
+    src: url("../fonts/din-2014-bold.eot");
+    src: url("../fonts/din-2014-bold.woff2") format('woff2'),
+        url("../fonts/din-2014-bold.woff") format('woff'),
+        url("../fonts/din-2014-bold.svg") format('svg'),
+        url("../fonts/din-2014-bold.ttf") format('opentype');
+}
+
+@font-face {
+    font-family: 'DIN 2014 Regular';
+    src: url("../fonts/din-2014-regular.eot");
+    src: url("../fonts/din-2014-regular.woff2") format('woff2'),
+        url("../fonts/din-2014-regular.woff") format('woff'),
+        url("../fonts/din-2014-regular.svg") format('svg'),
+        url("../fonts/din-2014-regular.ttf") format('opentype');
+}
+
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 200;
+    src: url("../fonts/source-han-sans-jp-200.otf") format('otf');
+}
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 300;
+    src: url("../fonts/source-han-sans-jp-300.otf") format('otf');
+}
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 400;
+    src: url("../fonts/source-han-sans-jp-400.otf") format('otf');
+}
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 500;
+    src: url("../fonts/source-han-sans-jp-600.otf") format('otf');
+}
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 700;
+    src: url("../fonts/source-han-sans-jp-700.otf") format('otf');
+}
+@font-face {
+    font-family: 'Source Han Sans JP';
+    font-weight: 900;
+    src: url("../fonts/source-han-sans-jp-900.otf") format('otf');
+}
+
+@font-face {
+    font-family: 'Hiragino Kaku Gothic ProN';
+    font-weight: 600;
+    src: url("../fonts/hiragino-kaku-gothic-pron-w6.otf") format('otf');
+}

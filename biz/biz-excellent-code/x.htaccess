@@ -1,0 +1,25 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^event/$ index.php?act=event [L]
+RewriteRule ^news/$ index.php?act=news [L]
+RewriteRule ^event/(.*)$ index.php?act=event-detail&id=$1 [L]
+RewriteRule ^news/(.*)$ index.php?act=news-detail&id=$1 [L]
+
+RewriteRule ^detail/(.*)/contact/$ index.php?act=detail-contact&id=$1 [L]
+RewriteRule ^detail/(.*)$ index.php?act=detail&id=$1 [L]
+
+#RewriteRule ^consultant/(.*)$ index.php?act=consultant&id=$1 [L]
+RewriteRule ^consultant/(.*)$ index.php?act=detail-contact&id=$1 [L]
+RewriteRule ^consultant.html$ index.php?act=detail-contact&id=$1 [L]
+
+RewriteRule ^contents/$ index.php?act=contents [L]
+RewriteRule ^contents/([^/]*)/(.*)$ index.php?act=contents-detail&id=$2 [L]
+RewriteRule ^contents/(.*)$ index.php?act=contents-category&keyword=$1 [L]
+
+RewriteRule ^s/(.*)$ index.php?act=search&s=$1 [L]
+
+RewriteRule ^([^\.]+).html$ index.php?act=$1 [L]
+RewriteRule ^([^\.]+).html(.*)$ index.php?act=$1$2 [L]
+RewriteRule ^$ index.php [L]

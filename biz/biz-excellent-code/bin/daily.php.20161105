@@ -1,0 +1,16 @@
+<?php
+require_once(realpath(dirname(__FILE__) . "/../") . "/lib/config.php");
+require_once("item.php");
+require_once("user.php");
+
+$inst = DBConnection::getConnection($DB_URI);
+
+$sql = "update `item` set oubo=(select count(*) from oubo where item_id=item.item_id) WHERE 1";
+$inst->db_exec($sql);
+$sql = "update user set count=(select count(*) from oubo where user_id=user.user_id) where 1";
+$inst->db_exec($sql);
+$sql = "update station set count=(select count(*) from search where kind='station' and value=station.station_cd) where 1";
+$inst->db_exec($sql);
+$sql = "update address set count=(select count(*) from search where kind='kinmu_city' and value=address.city_cd) where 1";
+$inst->db_exec($sql);
+?>

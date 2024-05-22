@@ -1,0 +1,2430 @@
+/*fonts css start*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/*font-family: 'Roboto', sans-serif;*/
+@font-face {
+    font-family: 'Noto Sans CJK JP Regular';
+    src: url('../fonts/NotoSansCJKjp-Regular.woff2') format('woff2'),
+    url('../fonts/NotoSansCJKjp-Regular.woff') format('woff'),
+    url('../fonts/NotoSansCJKjp-Regular.ttf')  format('truetype'),
+    url('../fonts/NotoSansCJKjp-Regular.eot') format('embedded-opentype');
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Medium';
+    src: url('../fonts/NotoSansCJKjp-Medium.woff2') format('woff2'),
+    url('../fonts/NotoSansCJKjp-Medium.woff') format('woff'),
+    url('../fonts/NotoSansCJKjp-Medium.ttf')  format('truetype'),
+    url('../fonts/NotoSansCJKjp-Medium.eot') format('embedded-opentype');
+    font-style: normal;
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Noto Sans CJK JP Bold';
+    src: url('../fonts/NotoSansCJKjp-Bold.woff2') format('woff2'),
+    url('../fonts/NotoSansCJKjp-Bold.woff') format('woff'),
+    url('../fonts/NotoSansCJKjp-Bold.ttf')  format('truetype'),
+    url('../fonts/NotoSansCJKjp-Bold.eot') format('embedded-opentype');
+    font-style: initial;
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Source Han Sans JP Regular';
+    src: url('../fonts/SourceHanSansJP-Regular.eot');
+    src: url('../fonts/SourceHanSansJP-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceHanSansJP-Regular.woff2') format('woff2'),
+    url('../fonts/SourceHanSansJP-Regular.woff') format('woff'),
+    url('../fonts/SourceHanSansJP-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Han Sans JP Bold';
+    src: url('../fonts/SourceHanSansJP-Bold.woff') format('woff'),
+    url('../fonts/SourceHanSansJP-Bold.woff2') format('woff2'),
+    url('../fonts/SourceHanSansJP-Bold.eot'),
+    url('../fonts/SourceHanSansJP-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SourceHanSansJP-Bold.otf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'A-OTF Mincho STB Bold';
+    src: url('../fonts/a-otf-a1minchostd-bold.eot');
+    src: url('../fonts/a-otf-a1minchostd-bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/a-otf-a1minchostd-bold.woff2') format('woff2'),
+    url('../fonts/a-otf-a1minchostd-bold.woff') format('woff'),
+    url('../fonts/a-otf-a1minchostd-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Watercoral Regular';
+    src: url('../fonts/watercoral.eot');
+    src: url('../fonts/watercoral.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/watercoral.woff2') format('woff2'),
+    url('../fonts/watercoral.woff') format('woff'),
+    url('../fonts/watercoral.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+
+}
+/*fonts css end*/
+
+/*common css start*/
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body, h1, h2, h3, h4, h5, h6, ul, li, p, a, span{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -font-smoothing: antialiased;
+    font-family: "Noto Sans CJK JP Regular";
+}
+body.no_scroll {
+    overflow: hidden;
+}
+a, button, input[type=submit], select{
+    cursor: pointer;
+}
+a, a:hover, a:focus, 
+button, button:hover, button:focus,
+input, input:hover, input:focus, 
+textarea, textarea:hover, textarea:focus,
+select, select:hover, select:focus{
+    outline: 0;
+    box-shadow: none;
+    text-decoration: none;
+}
+ul, ol, li{
+    list-style: none;
+}
+img{
+    max-width: 100%;
+    display: block;
+}
+.cpc {
+    display: block !important;
+}
+.csp {
+    display: none !important;
+}
+.cpc-1024 {
+    display: block !important;
+}
+.csp-1024 {
+    display: none !important;
+}
+@media (max-width: 1024px){
+    .cpc-1024 {
+        display: none !important;
+    }
+    .csp-1024 {
+        display: block !important;
+    }
+}
+@media (max-width: 900px){
+    .cpc{
+        display: none !important;
+    }
+    .csp{
+        display: block !important;
+    }
+}
+a.button_blue {
+    display: inline-block;
+    color: #0053B1;
+    border: 1px solid #0053B1;
+    padding: 17px 21px;
+    min-width: 250px;
+    text-align: left;
+    position: relative;
+    transition: all 0.4s;
+}
+a.button_blue:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 35px;
+    top: 0;
+    bottom: 0;
+    right: -12px;
+    margin: auto;
+    background-color: #0053B1;
+    transition: all 0.4s;
+}
+a.button_blue:hover {
+    background-color: #0053B1;
+    color: #fff;
+}
+a.button_blue:hover:after {
+    width: 0;
+}
+/*common css end*/
+
+/*page pre-loader css start*/
+.loader-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    pointer-events: none;
+    background-color: #fff;
+}
+.loader-wrapper .loader {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border-top: 3px solid rgba(62, 174, 230, 0.2);
+    border-right: 3px solid rgba(62, 174, 230, 0.2);
+    border-bottom: 3px solid rgba(62, 174, 230, 0.2);
+    border-left: 3px solid rgba(62, 174, 230, 0.8);
+    -webkit-animation: loaderSpin 1.5s infinite linear;
+    animation: loaderSpin 1.5s infinite linear;
+}
+@-webkit-keyframes loaderSpin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loaderSpin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/*page pre-loader css end*/
+
+/*header section css start*/
+header.site_header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 11px 20px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    box-shadow: 0px 3px 10px rgb(0 0 0 / 20%);
+    z-index: 9999;
+}
+nav.custom_navbar {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+nav.custom_navbar ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: 40px;
+}
+nav.custom_navbar ul li {
+    margin-right: 30px;
+}
+nav.custom_navbar ul li a {
+    font-family: 'Source Han Sans JP Regular';
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    transition: all 0.4s;
+    position: relative;
+    display: inline-block;
+}
+nav.custom_navbar ul li a.active,
+nav.custom_navbar ul li a:hover {
+    color: #0053B1;
+}
+nav.custom_navbar ul li a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    background-color: #0053B1;
+    height: 2px;
+    width: 0px;
+    transition: all 0.4s;
+    margin: auto;
+}
+nav.custom_navbar ul li a.active:after,
+nav.custom_navbar ul li a:hover:after {
+    width: 38px;
+}
+nav.custom_navbar a.header_contact_details {
+    background-color: #EAF4F5;
+    padding: 2px 7px 2px 12px;
+    border-radius: 5px;
+    margin-right: 24px;
+}
+nav.custom_navbar a.header_contact_details span {
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: 700;
+    font-size: 12px;
+    color: #0053B1;
+}
+nav.custom_navbar a.header_contact_details p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    color: #0053B1;
+    line-height: 30px;
+}
+nav.custom_navbar a.header_contact_details p img {
+    display: inline-block;
+    margin-right: 10px;
+}
+nav.custom_navbar a.header_inquiry_button {
+    display: inline-block;
+    background: rgb(76,176,229);
+    background: -moz-linear-gradient(90deg, rgba(76,176,229,1) 0%, rgba(38,122,185,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(76,176,229,1) 0%, rgba(38,122,185,1) 100%);
+    background: linear-gradient(90deg, rgba(76,176,229,1) 0%, rgba(38,122,185,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4cb0e5",endColorstr="#267ab9",GradientType=1);
+    border-radius: 50px;
+    padding: 14px;
+    color: #fff;
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: 700;
+    font-size: 14px;
+    min-width: 190px;
+    text-align: center;
+}
+nav.custom_navbar a.header_inquiry_button i {
+    margin-right: 10px;
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.navbar_toggler {
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    border: none;
+    outline: none !important;
+    background-color: transparent;
+    border-radius: 5px;
+    position: relative;
+    margin: auto 0px auto auto;
+    z-index: 9999;
+}
+.navbar_toggler .navbar_toggler_inner,
+.navbar_toggler .navbar_toggler_inner:after,
+.navbar_toggler .navbar_toggler_inner:before {
+    width: 30px;
+    height: 4px;
+    transition-timing-function: ease;
+    transition-duration: 0.3s;
+    transition-property: transform;
+    border-radius: 4px;
+    background-color: #00689E;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.navbar_toggler .navbar_toggler_inner{
+    transition: top 75ms ease 0.12s,transform 75ms cubic-bezier(.55,.055,.675,.19);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.navbar_toggler .navbar_toggler_inner:after,
+.navbar_toggler .navbar_toggler_inner:before {
+    display: block;
+    content: "";
+}
+.navbar_toggler .navbar_toggler_inner:before {
+    transition: top 75ms ease 0.12s,opacity 75ms ease;
+    top: -10px;
+}
+.navbar_toggler .navbar_toggler_inner:after {
+    transition: bottom 75ms ease 0.12s,transform 75ms cubic-bezier(.55,.055,.675,.19);
+    bottom: -10px;
+}
+.navbar_toggler.open_menu .navbar_toggler_inner {
+    transition: top 75ms ease,transform 75ms cubic-bezier(.215,.61,.355,1) 0.12s;
+    transform: rotate(45deg);
+    top: 0;
+}
+.navbar_toggler.open_menu .navbar_toggler_inner:before {
+    top: 0;
+    transition: top 75ms ease,opacity 75ms ease 0.12s;
+    opacity: 0;
+}
+.navbar_toggler.open_menu .navbar_toggler_inner:after {
+    bottom: 0;
+    transition: bottom 75ms ease,transform 75ms cubic-bezier(.215,.61,.355,1) 0.12s;
+    transform: rotate(-90deg);
+}
+/*header section css end*/
+
+/*home banner section css start*/
+.home_banner_section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.home_banner_section img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.home_banner_section h1 {
+    position: relative;
+    z-index: 1;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #fff;
+    text-shadow: 0px 0px 10px #000;
+    letter-spacing: 9px;
+    font-size: 42px;
+}
+/*home banner section css end*/
+
+/*beautiful land of japan section css start*/
+.beautiful_land_of_japan_section {
+    padding: 115px 0px 90px;
+}
+.beautiful_land_of_japan_content .custom_container {
+    width: 100%;
+    max-width: 1030px;
+    padding: 0px 15px;
+    margin: auto;
+    text-align: center;
+}
+.beautiful_land_of_japan_content h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 50px;
+}
+.beautiful_image_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0px;
+    position: relative;
+    z-index: 1;
+}
+.beautiful_image_container img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1
+}
+.beautiful_image_container h5 {
+    position: relative;
+    font-family: 'Noto Sans CJK JP Bold';
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 50px;
+    padding: 5px 40px;
+    color: #b2b2b2;
+    border: 1px solid #707070;
+    background-color: #ffffff;
+    display: table;
+    margin: auto;
+}
+.beautiful_land_of_japan_content p {
+    font-family: 'Noto Sans CJK JP Regular';
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 35px;
+    color: #000;
+}
+.beautiful_land_of_japan_content h4 {
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 70px 0px 40px;
+}
+.beautiful_land_of_japan_content a.button_blue {
+    margin-top: 40px;
+}
+/*beautiful land of japan section css end*/
+
+/*maid in japan high quality section css start*/
+.maid_in_japan_high_quality_section {
+    background-color: #F0F3F5;
+    padding: 60px 0px 80px;
+}
+.maid_in_japan_high_quality_section .custom_container {
+    width: 100%;
+    max-width: 1030px;
+    padding: 0px 15px;
+    margin: auto;
+    text-align: center;
+}
+.maid_in_japan_high_quality_section h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 50px;
+}
+.maid_in_japan_high_quality_section p {
+    font-family: 'Noto Sans CJK JP Regular';
+    font-size: 16px;
+    line-height: 32px;
+    margin-bottom: 35px;
+    color: #000;
+    text-align: left;
+}
+.maid_in_japan_high_quality_section h4 {
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 70px 0px 40px;
+}
+.strengths_of_core_pack_table_container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    background-color: #fff;
+    padding: 40px 20px 70px;
+}
+.maid_in_japan_high_quality_image_container img {
+    width: 100%;
+}
+.strength_table {
+    display: table;
+    width: 1000px;
+    max-width: 100%;
+    margin: auto;
+}
+.strength_table_row {
+    display: table-row;
+}
+.strength_table_th, .strength_table_td {
+    display: table-cell;
+    border-bottom: 1px solid #C4C4C4;
+}
+.strength_table_th p, .strength_table_td p {
+    margin: 0px !important;
+    padding: 24px;
+}
+.strengths_of_core_pack_table_container a.button_blue {
+    display: table;
+    margin: 55px auto 0px;
+}
+/*maid in japan high quality section css end*/
+
+/*used for multiple purpose section css start*/
+.used_for_multiple_purpose_section {
+    padding: 90px 0px 70px;
+}
+.used_for_multiple_purpose_section .custom_container {
+    width: 100%;
+    max-width: 1080px;
+    padding: 0px 40px;
+    margin: auto;
+    text-align: center;
+}
+.used_for_multiple_purpose_section h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 50px;
+}
+.used_for_multiple_purpose_section h4 {
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 90px 0px 50px;
+}
+.used_for_multiple_purpose_image img {
+    width: 100%;
+}
+.used_for_multiple_purpose_section .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -40px;
+}
+.used_for_multiple_purpose_section .custom_col_6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0px 40px;
+}
+.used_for_multiple_purpose_section .custom_col_12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0px 40px;
+}
+.product_info_image_box {
+    position: relative;
+    display: table;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 65.22%;
+}
+.product_info_image_box img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.product_info_image_box h5 {
+    color: #fff;
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: 700;
+    font-size: 23px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.used_for_multiple_purpose_section a.button_blue {
+    margin-top: 100px;
+}
+/*used for multiple purpose section css end*/
+
+/*product info section css start*/
+.product_info_section {
+    background-color: #F0F3F5;
+    padding: 65px 0px 100px;
+}
+.product_info_section .custom_container {
+    width: 100%;
+    max-width: 1030px;
+    padding: 0px 15px;
+    margin: auto;
+    text-align: center;
+}
+.product_info_section h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 50px;
+}
+.product_info_table {
+    display: table;
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid #E3E3E3;
+}
+.product_info_table_row {
+    display: table-row;
+}
+.product_info_table_th, .product_info_table_td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 32px;
+    border-bottom: 1px solid #E3E3E3;
+}
+.product_info_table_th p, .product_info_table_td p {
+    font-family: 'Noto Sans CJK JP Regular';
+    font-size: 16px;
+    line-height: 32px;
+    color: #000;
+}
+.product_info_table_td a {
+    float: right;
+}
+/*product info section css end*/
+
+/*footer section css start*/
+.footer_top {
+    position: relative;
+}
+.footer_top h2 {
+    position: absolute;
+    font-size: 84px;
+    font-family: 'Watercoral Regular';
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    text-align: center;
+    color: #ffffff;
+}
+.footer_top .custom_container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0px;
+}
+.footer_top .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer_top .custom_col_6 {
+    flex: 0 0 50%;
+}
+.footer_top .contact_details_call_email{
+    padding: 152px 84px;
+}
+.contact_details_call_email.box_call {
+    background-image: url(../images/footer_contact_bg_left.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.contact_details_call_email.box_email {
+    background-image: url(../images/footer_contact_bg_right.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.contact_details_call_email .text_with_white_box {
+    background-color: #fff;
+    min-height: 202px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.contact_details_call_email.box_call .text_with_white_box {
+    background-image: url(../images/call_bg.png);
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+.contact_details_call_email.box_email .text_with_white_box {
+    background-image: url(../images/email_bg.png);
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+.contact_details_call_email .text_with_white_box h5 {
+    font-family: 'Noto Sans CJK JP Bold';
+    font-size: 19px;
+    padding-bottom: 5px;
+    color: #000000;
+}
+.contact_details_call_email .text_with_white_box a.contact_number {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 37px;
+    color: #0053B1;
+    line-height: 30px;
+}
+.contact_details_call_email .text_with_white_box p {
+    font-family: 'Source Han Sans JP Regular';
+    font-size: 12px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.footer_middle {
+    padding: 60px 0px 75px;
+    background-color: #132733;
+    background-image: url(../images/footer_menu_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.footer_middle .custom_container {
+    width: 100%;
+    max-width: 1080px;
+    padding: 0px 40px;
+    margin: auto;
+}
+.footer_middle .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -40px;
+}
+.footer_middle .custom_col_4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 0px 40px;
+}
+.footer_main_list > li {
+    padding: 20px 0px;
+    border-bottom: 1px solid #82898D;
+}
+.footer_main_list > li > ul {
+    padding: 0px 30px;
+}
+.footer_main_list > li > h5, .footer_main_list > li > a, .footer_main_list > li > ul > li > a {
+    font-family: 'Noto Sans CJK JP Regular';
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 30px;
+}
+.footer_main_list > li > h5 {
+    padding-bottom: 20px;
+}
+.footer_bottom {
+    background-color: #112027;
+    padding: 50px 0px 30px;
+}
+.footer_bottom .custom_container {
+    width: 100%;
+    max-width: 1030px;
+    padding: 0px 15px;
+    margin: auto;
+}
+.footer_bottom .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -15px;
+}
+.logo_with_text_col, .line_to_youtube_and_president_room {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0px 15px;
+}
+.logo_with_text_col p {
+    font-family: 'Source Han Sans JP Regular';
+    font-size: 14px;
+    line-height: 32px;
+    color: #ffffff;
+    font-weight: 400;
+    padding-top: 10px;
+}
+.line_to_youtube_and_president_room {
+    text-align: right;
+}
+.line_to_youtube_and_president_room ul {
+    text-align: right;
+}
+.line_to_youtube_and_president_room ul li {
+    display: inline-block;
+    vertical-align: middle;
+}
+.line_to_youtube_and_president_room ul li a.footer_button_white {
+    padding: 10px 62px;
+    background-color: #fff;
+    min-width: 205px;
+    color: #39474E;
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: 700;
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 40px;
+    margin-right: 25px;
+    display: inline-block;
+    text-align: center;
+}
+.copy_right_footer {
+    text-align: center;
+    font-size: 10px;
+    padding-top: 35px;
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: 700;
+    color: #ffffff;
+}
+/*footer section css end*/
+
+/*contact page form css start*/
+.input_form_section {
+    padding: 60px 0px 190px;
+}
+.input_form_section .custom_container {
+    width: 100%;
+    max-width: 1030px;
+    padding: 0px 15px;
+    margin: auto;
+}
+.common_section_title {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #D9E3E8;
+    padding-bottom: 4px;
+    margin-bottom: 35px;
+}
+.common_section_title h3 {
+    font-size: 24px;
+    margin-bottom: 0;
+    padding-left: 15px;
+    color: #000;
+    font-family: 'Noto Sans CJK JP Bold';
+    font-weight: 700;
+}
+.input_form_section .text_content p {
+    font-family: 'Source Han Sans JP Regular';
+    font-size: 16px;
+    line-height: 32px;
+    color: #000000;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+.input_form_container, .questionnaire_form_container {
+    background-color: #F0F3F5;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+.input_form_container form, .questionnaire_form_container form {
+    display: table;
+    width: 100%;
+}
+.single_input_row {
+    display: table-row;
+}
+.full_width_row {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 28px 20px 10px;
+}
+.label_td {
+    width: 335px;
+}
+.label_td, .input_field_td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 18px 8px;
+    border-bottom: 1px dashed #C4C4C4;
+}
+.label_td.top_align, .input_field_td.top_align {
+    vertical-align: top;
+}
+.label_td p {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 38px;
+    position: relative;
+    font-family: 'Noto Sans CJK JP Medium';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+.label_td p img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.full_width_row p {
+    font-family: 'Noto Sans CJK JP Medium';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+.input_field_td span {
+    font-family: 'Noto Sans CJK JP Medium';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    display: inline-block;
+    padding: 10px 0px 0px;
+}
+.input_field_td input:not([type="radio"], [type="checkbox"]), .input_field_td select, .input_field_td textarea {
+    border: 1px solid #333333;
+    width: 100%;
+    height: 50px;
+    padding: 0px 20px;
+    color: #000000;
+     font-family: 'Noto Sans CJK JP Regular';
+    font-weight: 400;
+    font-size: 16px;
+}
+.input_field_td select {
+    -webkit-appearance: none;
+    padding-right: 30px;
+    background-image: url(../images/select_arrow.png);
+    background-repeat: no-repeat;
+    background-position: center right 15px;
+    max-width: 140px;
+}
+.input_field_td textarea {
+    height: 170px;
+    padding: 10px;
+    resize: none;
+}
+.input_field_td .width_1 {
+    max-width: 490px;
+}
+.input_field_td .width_2 {
+    max-width: 440px;
+}
+.input_field_td .width_3 {
+    max-width: 300px;
+}
+.input_field_td .width_4 {
+    max-width: 220px;
+}
+.two_input_container {
+    padding: 0px;
+}
+.two_input_row {
+    display: flex;
+    margin: 0px -8px;
+    flex-wrap: wrap;
+}
+.two_input_col {
+    padding: 0px 8px;
+}
+.two_opt_inline {
+    display: flex;
+    flex-wrap: wrap;
+}
+.all_opt_inline {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 440px;
+    justify-content: space-between;
+}
+.two_opt_inline .single_radio {
+    flex: 0 0 35%;
+}
+.holder_col {
+    color: #B0A99A !important;
+}
+.active_col {
+    color: #000000 !important;
+}
+.submit_form_button {
+    text-align: center;
+}
+/*contact page form css end*/
+
+/*full width banner section css start*/
+.full_width_banner_section {
+    padding: 183px 15px 165px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 55px;
+    z-index: 1;
+}
+.full_width_banner_section img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+.full_width_banner_section h3 {
+    font-size: 33px;
+    font-family: 'Noto Sans CJK JP Bold';
+    color: #ffffff;
+}
+/*full width banner section css end*/
+
+/*dominate and handmade elaborate gem section css start*/
+.dominate_and_handmade_elaborate_gem_section {
+    padding: 90px 0px 145px;
+}
+.dominate_and_handmade_elaborate_gem_inner h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+.dominate_and_handmade_elaborate_gem_inner .custom_container {
+    padding: 0px 15px;
+}
+.dominate_and_handmade_elaborate_gem_inner .custom_row {
+    margin: 0px -15px;
+    padding: 50px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.dominate_and_handmade_elaborate_gem_inner .custom_row.custom_row_reverse {
+    flex-direction: row-reverse;
+}
+.dominate_and_handmade_elaborate_gem_inner .image_col {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.dominate_and_handmade_elaborate_gem_inner .text_col {
+    flex: 0 0 560px;
+    max-width: 560px;
+    padding: 0 60px;
+}
+.dominate_and_handmade_elaborate_gem_inner .image_container {
+    position: relative;
+    overflow: hidden;
+    padding: 35.31% 15px;
+}
+.dominate_and_handmade_elaborate_gem_inner .image_container img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.dominate_and_handmade_elaborate_gem_inner .image_container h5 {
+    position: relative;
+    font-family: 'Noto Sans CJK JP Bold';
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 50px;
+    padding: 5px 40px;
+    color: #b2b2b2;
+    border: 1px solid #707070;
+    background-color: #ffffff;
+    display: table;
+    margin: auto;
+}
+.dominate_and_handmade_elaborate_gem_inner .text_content_with_description h5 {
+    font-family: 'A-OTF Mincho STB Bold';
+    line-height: 50px;
+    font-size: 26px;
+    color: #000000;
+}
+.dominate_and_handmade_elaborate_gem_inner .text_content_with_description h2 {
+    font-family: 'A-OTF Mincho STB Bold';
+    line-height: 50px;
+    font-size: 38px;
+    color: #0053B1;
+    padding-bottom: 40px;
+}
+.dominate_and_handmade_elaborate_gem_inner .text_content_with_description p {
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 32px;
+    font-size: 16px;
+    color: #000000;
+}
+/*dominate and handmade elaborate gem section css end*/
+
+/*inner page maid in japan section css start*/
+.maid_in_japan_high_quality_section.inner_page_maid_in_japan_section {
+    background-color: #ffffff;
+}
+.inner_page_maid_in_japan_section .strengths_of_core_pack_table_container {
+    background-color: #F0F3F5;
+}
+.inner_page_maid_in_japan_section .strength_table_th, .inner_page_maid_in_japan_section .strength_table_td {
+    border-bottom-color: #ffffff;
+}
+/*inner page maid in japan section css end*/
+
+/*main achievements section css start*/
+.main_achievements_section {
+    padding: 60px 0px 80px;
+}
+.main_achievements_section .custom_container {
+    width: 100%;
+    max-width: 1080px;
+    padding: 0px 45px;
+    margin: auto;
+}
+.main_achievements_section .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px -45px;
+    align-items: center;
+    padding: 50px 0px;
+}
+.main_achievements_section .custom_row.custom_row_reverse {
+    flex-direction: row-reverse;
+}
+.main_achievements_section .custom_col_6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0px 45px;
+}
+.main_achievements_image img {
+    width: 100%;
+}
+.main_achievements_section .numaric_text {
+    text-align: center;
+}
+.main_achievements_section .text_content_with_description h5 {
+    font-family: 'A-OTF Mincho STB Bold';
+    line-height: 50px;
+    font-size: 26px;
+    color: #000000;
+}
+.main_achievements_section .text_content_with_description h2 {
+    font-family: 'A-OTF Mincho STB Bold';
+    line-height: 50px;
+    font-size: 38px;
+    color: #0053B1;
+    padding-bottom: 40px;
+}
+.main_achievements_section .text_content_with_description p {
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 32px;
+    font-size: 16px;
+    color: #000000;
+}
+.main_achievements_section .numaric_text h2 {
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #0053B1;
+}
+.main_achievements_section .numaric_text h2.big_text {
+    font-size: 250px;
+    line-height: 330px;
+}
+.main_achievements_section .numaric_text h2.small_text {
+    font-size: 150px;
+    line-height: 200px;
+}
+/*main achievements section css end*/
+
+/*breadcrumb section css start*/
+.breadcrumb_section {
+    padding: 165px 0 100px;
+    border-bottom: 1px solid #707070;
+}
+.breadcrumb_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.breadcrumb_section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'A-OTF Mincho STB Bold';
+}
+.breadcrumb_section h2 {
+    font-size: 36px;
+    margin-bottom: 0px;
+    font-family: 'A-OTF Mincho STB Bold';
+    letter-spacing: 6px;
+}
+/*breadcrumb section css end*/
+
+/*about banner section css start*/
+.inner_page_banner_section {
+    background-image: url('../images/about_banner.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 183px 15px 165px;
+    text-align: center;
+    border: 1px solid #707070;
+    margin-top: 55px;
+}
+.inner_page_banner_section h3 {
+    font-size: 33px;
+    font-family: 'Noto Sans CJK JP Bold';
+    color: rgba(0, 0, 0, 0.30);
+}
+/*about banner section css end*/
+
+/*to hold section css start*/
+.to_hold_section {
+    padding: 95px 0 160px;
+}
+.to_hold_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.header_sec h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+.to_hold_section p {
+    font-size: 16px;
+    line-height: 30px;
+    font-family: 'Source Han Sans JP Regular';
+}
+.to_hold_contant_heading {
+    margin-bottom: 40px;
+}
+/*to hold section css end*/
+
+/*corporate section css start*/
+.corporate_section {
+    padding-bottom: 180px;
+}
+.corporate_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.corporate_contant {
+    padding-bottom: 100px;
+}
+.corporate_contant p {
+    margin-bottom: 45px;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: 'Source Han Sans JP Regular';
+}
+.corporate_contant p:last-child {
+    margin-bottom: 0;
+}
+.corporate_image_sec img {
+    width: 100%;
+}
+.corporate_btns {
+    padding: 90px 0 0;
+}
+.corporate_btns .custom_container {
+    max-width: 676px !important;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*corporate section css end*/
+
+/*history banner section css start*/
+.history_banner_section{
+    margin-top: 45px;
+}
+.history_banner_section img{
+    width: 100%;
+}
+
+/*history banner section css end*/
+
+/*showa section css start*/
+.showa_section {
+    padding: 35px 0 200px;
+}
+.showa_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.showa_table {
+    display: table;
+    width: 100%;
+    margin: auto;
+}
+.showa_table_row {
+    display: table-row;
+}
+.showa_table_th, .showa_table_td {
+    display: table-cell;
+    border-bottom: 1px solid #D3D3D3;
+    padding: 28px 25px;
+}
+.showa_table_td {
+    padding-right: 0;
+}
+.showa_table_th p, .showa_table_td p {
+    font-size: 16px;
+    line-height: 30px;
+}
+.showa_table_image {
+    display: flex;
+    justify-content: space-between;
+}
+.showa_image_first {
+    padding-top: 16px;
+}
+/*showa section css end*/
+
+/*rich in variation section css start*/
+.rich_in_variation_section {
+    text-align: center;
+    padding: 85px 15px 130px;
+}
+.rich_in_variation_section h3 {
+    line-height: 82px;
+    font-family: 'A-OTF Mincho STB Bold';
+    color: #000000;
+    letter-spacing: 6px;
+    font-size: 42px;
+    padding-bottom: 0 !important;
+}
+/*rich in variation section css end*/
+
+/*production banner section css start*/
+.production_banner_section {
+    margin-top: 0 !important;
+}
+/*production banner section css end*/
+
+/*diamond bit and core pack section css start*/
+.diamond_bit_and_core_pack_section {
+    padding: 0 0 80px !important;
+}
+.diamond_bit_and_core_pack_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.diamond_bit_and_core_pack_contant p{
+    padding: 60px 0;
+    font-size: 16px;
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 30px;
+    text-align: left;
+}
+/*diamond bit and core pack section css end*/
+
+/*manufactured section css start*/
+.manufactured_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.manufactured_section .image_heading,
+.pamphlet_section .image_heading {
+    margin-bottom: 30px;
+}
+.manufactured_content_sec p {
+    font-family: 'Source Han Sans JP Regular';
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.manufactured_table {
+    display: table;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 40px;
+}
+.manufactured_table:last-child {
+    margin-bottom: 0;
+}
+.manufactured_row {
+    display: table-row;
+}
+.manufactured_th {
+    background-color: #F0F3F5;
+    border-bottom: 2px solid #0053B1;
+    padding: 10px 15px;
+    text-align: left;
+}
+.manufactured_th p {
+    color: #0053B1;
+    font-size: 18px;
+    font-family: 'Source Han Sans JP Bold';
+    font-weight: bold;
+}
+.manufactured_th, .manufactured_td {
+    display: table-cell;
+}
+.manufactured_td {
+    padding: 0px 15px 0;
+}
+.manufactured_td_first {
+    padding-top: 20px;
+}
+.manufactured_td p {
+    font-size: 16px;
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 30px;
+}
+.manufactured_th a, .manufactured_td a {
+    color: #0053B1;
+    font-family: 'Source Han Sans JP Regular';
+}
+.manufactured_td a span {
+    margin-left: 20px;
+}
+.manufactured_table_space {
+    padding-bottom: 55px;
+}
+.manufactured_table .manufactured_row .manufactured_td:first-child {
+    width: 360px;
+}
+/*manufactured section css end*/
+
+/*pamphlet section css start*/
+.pamphlet_section {
+    padding: 100px 0 145px;
+}
+.pamphlet_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.pamphlet_content_sec {
+    padding-bottom: 150px;
+}
+.pamphlet_section .custom_row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.pamphlet_section .text_col {
+    flex: 0 0 calc(100% - 400px);
+    max-width: calc(100% - 400px);
+    padding: 0 15px;
+}
+.pamphlet_section .image_col {
+    flex: 0 0 400px;
+    max-width: 400px;
+    padding: 0 15px;
+}
+.pamphlet_content p,
+.pamphlet_content a {
+    font-size: 16px;
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 30px;
+}
+.pamphlet_content a {
+    color: #0053B1;
+}
+.pamphlet_image img {
+    width: 100%;
+}
+.pamphlet_btn .custom_container {
+    max-width: 690px !important;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*pamphlet section css end*/
+
+/*company banner section css start*/
+.company_banner_section {
+    margin-top: 55px;
+}
+.company_banner_section img {
+    width: 100%;
+}
+/*company banner section css end*/
+
+/*company profile section css start*/
+.company_profile_section {
+    padding: 90px 0 80px;
+}
+.company_profile_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.company_profile_heading {
+    margin-bottom: 25px;
+}
+.company_profile_content p {
+    font-size: 16px;
+    font-family: 'Source Han Sans JP Regular';
+    line-height: 30px;
+    margin-bottom: 45px;
+}
+.company_profile_content p:last-child {
+    margin-bottom: 0;
+}
+.company_profile_table {
+    display: table;
+    width: 100%;
+    margin: auto;
+}
+.company_profile_row {
+    display: table-row;
+}
+.company_profile_th, .company_profile_td {
+    display: table-cell;
+    border-bottom: 1px solid #D3D3D3;
+    padding: 25px 15px;
+}
+.company_profile_th {
+    min-width: 215px;
+}
+.company_profile_table_inner .company_profile_th, .company_profile_table_inner .company_profile_td {
+    border-bottom: none;
+    padding: 0;
+    padding-bottom: 30px;
+    min-width: auto;
+}
+.company_profile_table_inner .company_profile_row:last-child .company_profile_th,
+.company_profile_table_inner .company_profile_row:last-child .company_profile_td{
+    padding-bottom: 0px;
+}
+.company_profile_content {
+    padding-bottom: 90px;
+}
+.company_profile_table p,
+.company_profile_table a {
+    font-size: 16px;
+    line-height: 30px;
+    color: #000;
+    font-family: 'Noto Sans CJK JP Regular';
+}
+.company_profile_table p span {
+    margin-left: 90px;
+}
+.company_profile_td li {
+    position: relative;
+    padding-left: 15px;
+}
+.company_profile_td li:after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 5px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #000;
+}
+/*company profile section css end*/
+
+/*access section css start*/
+.access_section {
+    padding-bottom: 190px;
+}
+.access_section .custom_container {
+    max-width: 1030px;
+    width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}
+.access_heading {
+    margin-bottom: 30px;
+}
+.access_content a, .access_content p {
+    font-family: 'Noto Sans CJK JP Regular';
+    color: #000;
+    font-size: 16px;
+    line-height: 30px;
+}
+.access_map {
+    margin-top: 30px;
+}
+.access_map iframe {
+    max-width: 100%;
+}
+/*access section css end*/
+
+/*responsive css start*/
+@media(max-width: 1279px) {
+    a.button_blue {
+        padding: 12px 21px;
+        min-width: 240px;
+    }
+    header.site_header {
+        padding: 10px;
+    }
+    .header_logo img {
+        max-width: 180px;
+    }
+    nav.custom_navbar ul {
+        margin-right: 0px;
+    }
+    nav.custom_navbar ul li {
+        margin-right: 25px;
+    }
+    nav.custom_navbar a.header_contact_details {
+        margin-right: 15px;
+    }
+    nav.custom_navbar a.header_contact_details p {
+        font-size: 20px;
+    }
+    nav.custom_navbar a.header_contact_details p img {
+        max-width: 20px;
+        margin-right: 5px;
+    }
+    nav.custom_navbar a.header_inquiry_button {
+        min-width: 160px;
+    }
+    .home_banner_section h1 {
+        letter-spacing: 6px;
+        font-size: 36px;
+    }
+    .beautiful_land_of_japan_content h3,
+    .maid_in_japan_high_quality_section h3,
+    .used_for_multiple_purpose_section h3,
+    .product_info_section h3,
+    .header_sec h3,
+    .rich_in_variation_section h3,
+    .dominate_and_handmade_elaborate_gem_inner h3 {
+        line-height: 60px;
+        letter-spacing: 4px;
+        font-size: 36px;
+        padding-bottom: 30px;
+    }
+    .beautiful_image_container h5,
+    .dominate_and_handmade_elaborate_gem_inner .image_container h5 {
+        font-size: 24px;
+    }
+    .beautiful_land_of_japan_content h4,
+    .maid_in_japan_high_quality_section h4,
+    .used_for_multiple_purpose_section h4 {
+        font-size: 24px;
+        padding: 45px 0px 30px;
+    }
+    .beautiful_land_of_japan_content p {
+        margin-bottom: 20px;
+    }
+    .maid_in_japan_high_quality_section h4 {
+        font-size: 24px;
+        padding: 40px 0px 20px;
+    }
+    .maid_in_japan_high_quality_section p {
+        margin-bottom: 20px;
+    }
+    .strengths_of_core_pack_table_container {
+        max-width: 1080px;
+    }
+}
+@media(max-width: 1160px) {
+    .beautiful_land_of_japan_content .custom_container,
+    .maid_in_japan_high_quality_section .custom_container,
+    .maid_in_japan_high_quality_section .custom_container,
+    .used_for_multiple_purpose_section .custom_container,
+    .product_info_section .custom_container,
+    .footer_middle .custom_container,
+    .footer_bottom .custom_container,
+    .input_form_section .custom_container,
+    .company_profile_section .custom_container,
+    .main_achievements_section .custom_container {
+        max-width: 900px;
+    }
+    .used_for_multiple_purpose_section .custom_container,
+    .footer_middle .custom_container,
+    .main_achievements_section .custom_container {
+        padding: 0px 15px;
+    }
+    .used_for_multiple_purpose_section .custom_row,
+    .footer_middle .custom_row,
+    .main_achievements_section .custom_row {
+        margin: 0px -15px;
+    }
+    .used_for_multiple_purpose_section .custom_col_6,
+    .used_for_multiple_purpose_section .custom_col_12,
+    .footer_middle .custom_col_4,
+    .main_achievements_section .custom_col_6 {
+        padding: 0px 15px;
+    }
+    .used_for_multiple_purpose_section a.button_blue {
+        margin-top: 50px;
+    }
+    .footer_middle {
+        padding: 40px 0px;
+    }
+    .line_to_youtube_and_president_room ul li a.footer_button_white {
+        padding: 10px 30px;
+        min-width: auto;
+    }
+    .beautiful_land_of_japan_section,
+    .maid_in_japan_high_quality_section,
+    .used_for_multiple_purpose_section,
+    .product_info_section,
+    .input_form_section,
+    .dominate_and_handmade_elaborate_gem_section,
+    .main_achievements_section {
+        padding: 50px 0px;
+    }
+    .strengths_of_core_pack_table_container {
+        max-width: 870px;
+        padding: 20px;
+    }
+    .strengths_of_core_pack_table_container a.button_blue {
+        margin: 25px auto auto;
+    }
+    .footer_top h2 {
+        font-size: 60px;
+    }
+    .footer_top .contact_details_call_email{
+        padding: 110px 40px;
+    }
+    .input_form_container, .questionnaire_form_container {
+        padding: 20px;
+        margin-bottom: 35px;
+    }
+    .input_field_td .width_1 {
+        max-width: 430px;
+    }
+    .input_field_td .width_2 {
+        max-width: 400px;
+    }
+    .input_field_td .width_3 {
+        max-width: 270px;
+    }
+    .input_field_td .width_4 {
+        max-width: 190px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_content_with_description h5,
+    .main_achievements_section .text_content_with_description h5 {
+        font-size: 22px;
+        line-height: 40px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_content_with_description h2,
+    .main_achievements_section .text_content_with_description h2 {
+        font-size: 30px;
+        line-height: 40px;
+        padding-bottom: 25px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_content_with_description p,
+    .main_achievements_section .text_content_with_description p {
+        line-height: 28px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_col {
+        flex: 0 0 500px;
+        max-width: 500px;
+        padding: 0 40px;
+    }
+    .main_achievements_section .numaric_text h2.big_text {
+        font-size: 200px;
+        line-height: normal;
+    }
+    .main_achievements_section .numaric_text h2.small_text {
+        font-size: 120px;
+        line-height: normal;
+    }
+    .breadcrumb_section {
+        padding: 130px 0 80px;
+    }
+    .breadcrumb_section h2 {
+        font-size: 32px;
+    }
+    .inner_page_banner_section {
+        padding: 120px 15px 120px;
+        margin-top: 35px;
+    }
+    .inner_page_banner_section h3 {
+        font-size: 28px;
+    }
+    .to_hold_section {
+        padding: 75px 0 130px;
+    }
+    .to_hold_contant_heading {
+        margin-bottom: 30px;
+    }
+    .corporate_contant p {
+        margin-bottom: 40px;
+    }
+    .corporate_section {
+        padding-bottom: 140px;
+    }
+    .corporate_btns {
+        padding-top: 50px;
+    }
+    .breadcrumb_section .custom_container,
+    .showa_section .custom_container,
+    .diamond_bit_and_core_pack_section .custom_container,
+    .manufactured_section .custom_container,
+    .pamphlet_section .custom_container{
+        max-width: 900px;
+    }
+    .showa_table_th {
+        width: 120px;
+    }
+    .showa_table_th p, .showa_table_td p {
+        padding-right: 15px;
+    }
+    .showa_table_th, .showa_table_td {
+        padding: 22px 18px;
+    }
+    .showa_image_first {
+        padding-top: 15px;
+    }
+    .showa_section {
+        padding: 25px 0 160px;
+    }
+    .history_banner_section {
+        margin-top: 35px;
+    }
+    .rich_in_variation_section {
+        padding: 80px 15px 80px;
+    }
+    .diamond_bit_and_core_pack_contant p {
+        padding: 45px 0;
+    }
+    .diamond_bit_and_core_pack_section {
+        padding: 0 0 60px !important;
+    }
+    .manufactured_section .image_heading, .pamphlet_section .image_heading {
+        margin-bottom: 20px;
+    }
+    .manufactured_content_sec p {
+        margin-bottom: 20px;
+    }
+    .manufactured_table .manufactured_row .manufactured_td:first-child {
+        width: 320px;
+    }
+    .manufactured_table {
+        margin-bottom: 25px;
+    }
+    .manufactured_table_space {
+        padding-bottom: 35px;
+    }
+    .pamphlet_section .text_col {
+        flex: 0 0 calc(100% - 360px);
+        max-width: calc(100% - 360px);
+    }
+    .pamphlet_section .image_col {
+        flex: 0 0 360px;
+        max-width: 360px;
+    }
+    .pamphlet_section {
+        padding: 60px 0 105px;
+    }
+    .pamphlet_content_sec {
+        padding-bottom: 110px;
+    }
+    .corporate_contant {
+        padding-bottom: 85px;
+    }
+    .company_profile_content p {
+        margin-bottom: 30px;
+    }
+    .company_profile_content {
+        padding-bottom: 65px;
+    }
+    .company_banner_section {
+        margin-top: 40px;
+    }
+    .company_profile_section {
+        padding: 70px 0 60px;
+    }
+    .company_profile_th {
+        min-width: 150px;
+    }
+    .company_profile_table p span {
+        margin-left: 10px;
+    }
+    .access_heading {
+        margin-bottom: 20px;
+    }
+    .access_section {
+        padding-bottom: 160px;
+    }
+    .showa_table_td {
+        padding-right: 0;
+    }
+    .manufactured_td_first {
+        padding-top: 15px;
+    }
+}
+@media(max-width: 1024px) {
+    header.site_header {
+        padding: 10px 20px;
+    }
+    .header_logo img {
+        max-width: none;
+        max-height: 45px;
+    }
+    nav.custom_navbar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: -300px;
+        display: block;
+        align-items: normal;
+        background-color: #fff;
+        box-shadow: 0px 3px 10px rgb(0 0 0 / 20%);
+        padding: 80px 20px 20px;
+        width: 275px;
+        max-width: 275px;
+        transition: all 0.4s;
+    }
+    nav.custom_navbar.navbar_animate {
+        right: 0;
+    }
+    nav.custom_navbar ul {
+        display: block;
+    }
+    nav.custom_navbar ul li {
+        margin: 0px 0px 30px 0px;
+    }
+    nav.custom_navbar ul li a:after {
+        right: auto;
+    }
+    nav.custom_navbar a.header_contact_details {
+        margin: 0px 0px 20px;
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+    }
+    nav.custom_navbar a.header_inquiry_button {
+        min-width: 100%;
+    }
+    .common_section_title h3 {
+        font-size: 20px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .image_col, .dominate_and_handmade_elaborate_gem_inner .text_col {
+        padding: 0px 15px;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+}
+@media(max-width: 900px) {
+    .home_banner_section h1 {
+        letter-spacing: 0;
+        font-size: 30px;
+    }
+    .beautiful_land_of_japan_section,
+    .maid_in_japan_high_quality_section,
+    .used_for_multiple_purpose_section,
+    .product_info_section,
+    .input_form_section,
+    .dominate_and_handmade_elaborate_gem_section,
+    .main_achievements_section {
+        padding: 40px 0px;
+    }
+    .beautiful_land_of_japan_content h3,
+    .maid_in_japan_high_quality_section h3,
+    .used_for_multiple_purpose_section h3,
+    .product_info_section h3,
+    .header_sec h3,
+    .rich_in_variation_section h3,
+    .dominate_and_handmade_elaborate_gem_inner h3 {
+        line-height: normal;
+        letter-spacing: 0;
+        font-size: 24px;
+        padding-bottom: 20px;
+    }
+    .beautiful_land_of_japan_content h4,
+    .maid_in_japan_high_quality_section h4,
+    .used_for_multiple_purpose_section h4 {
+        font-size: 20px;
+        padding: 25px 0px 15px;
+    }
+    .beautiful_image_container {
+        padding: 100px 0px;
+    }
+    .beautiful_image_container h5,
+    .dominate_and_handmade_elaborate_gem_inner .image_container h5 {
+        font-size: 17px;
+        line-height: 36px;
+        padding: 5px 20px;
+    }
+    .beautiful_land_of_japan_content a.button_blue {
+        margin-top: 0px;
+    }
+    .strengths_of_core_pack_table_container {
+        max-width: calc(100% - 30px);
+        padding: 15px;
+    }
+    .strength_table_row {
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #C4C4C4;
+    }
+    .strength_table_th, .strength_table_td {
+        display: block;
+        border-bottom: none;
+    }
+    .strength_table_th p, .strength_table_td p {
+        padding: 5px;
+    }
+    .footer_top .custom_col_6 {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .footer_top .contact_details_call_email{
+        padding: 110px 15px 40px;
+    }
+    .footer_top .contact_details_call_email.box_email {
+        padding-top: 40px;
+    }
+    .contact_details_call_email .text_with_white_box {
+        padding: 10px;
+        min-height: 150px;
+    }
+    .footer_middle .custom_col_4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .logo_with_text_col, .line_to_youtube_and_president_room {
+        flex: 0 0 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .logo_with_text_col p {
+        padding: 20px 0px 30px;
+    }
+    .line_to_youtube_and_president_room ul li a.footer_button_white {
+        margin-right: 0px;
+    }
+    .line_to_youtube_and_president_room ul li {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .copy_right_footer {
+        padding-top: 15px;
+    }
+    .footer_main_list > li {
+        padding: 10px 0px;
+    }
+    .single_input_row {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px dashed #C4C4C4;
+    }
+    .label_td, .input_field_td {
+        padding: 8px;
+        display: inline-block;
+        width: 100%;
+        border: none;
+    }
+    .input_field_td .width_1, .input_field_td .width_2, .input_field_td .width_3, .input_field_td .width_4 {
+        max-width: none;
+        width: 100%;
+    }
+    .input_field_td select {
+        width: 100%;
+        max-width: none;
+    }
+    .two_input_col {
+        flex: 0 0 50%;
+    }
+    .label_td p {
+        padding-left: 0px;
+        padding-right: 38px;
+        white-space: normal;
+    }
+    .label_td p img {
+        left: auto;
+        right: 0px;
+    }
+    .two_opt_inline .single_radio {
+        flex: 0 0 100%;
+    }
+    .all_opt_inline {
+        max-width: none;
+    }
+    .all_opt_inline .single_radio {
+        flex: 0 0 100%;
+    }
+    .input_form_container, .questionnaire_form_container {
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    .input_form_section .text_content p {
+        margin-bottom: 20px;
+        line-height: normal;
+    }
+    .common_section_title {
+        margin-bottom: 20px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .custom_row {
+        padding: 0px 0px 30px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .image_col, .dominate_and_handmade_elaborate_gem_inner .text_col {
+        flex: 0 0 70%;
+        max-width: 70%;
+        margin: auto;
+        text-align: center;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_content_with_description h5,
+    .main_achievements_section .text_content_with_description h5 {
+        font-size: 17px;
+        line-height: 32px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .text_content_with_description h2,
+    .main_achievements_section .text_content_with_description h2 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .inner_page_maid_in_japan_section .strength_table_row {
+        border-bottom-color: #ffffff;
+    }
+    .main_achievements_section .custom_col_6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    .main_achievements_section .custom_row {
+        padding: 20px 0px 0px;
+    }
+    .main_achievements_section .numaric_text h2 {
+        font-size: 80px !important;
+    }
+    .breadcrumb_section {
+        padding: 110px 0 50px;
+    }
+    .breadcrumb_section p {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .breadcrumb_section h2 {
+        font-size: 24px;
+    }
+    .inner_page_banner_section {
+        padding: 80px 15px 80px;
+        margin-top: 25px;
+    }
+    .to_hold_section {
+        padding: 55px 0 90px;
+    }
+    .to_hold_contant_heading {
+        margin-bottom: 20px;
+    }
+    .corporate_contant p {
+        margin-bottom: 25px;
+    }
+    .corporate_section {
+        padding-bottom: 100px;
+    }
+    .corporate_btns {
+        padding-top: 30px;
+    }
+    .inner_page_banner_section h3 {
+        font-size: 22px;
+    }
+    .history_banner_section {
+        margin-top: 25px;
+    }
+    .showa_table,
+    .showa_table_row,
+    .showa_table_th,
+    .showa_table_td,
+    .showa_table_image {
+        display: block;
+    }
+    .showa_table_row {
+        border-bottom: 1px solid #D3D3D3;
+    }
+    .showa_table_th {
+        width: 100%;
+    }
+    .showa_table_th, .showa_table_td {
+        padding: 5px;
+        border-bottom: none;
+    }
+    .showa_table_image img {
+        padding-top: 10px;
+        padding-right: 0;
+    }
+    .showa_table_th p, .showa_table_td p {
+        padding-right: 0px;
+    }
+    .showa_section {
+        padding: 20px 0 100px;
+    }
+    .pamphlet_btn .custom_container,
+    .corporate_btns .custom_container {
+        max-width: 600px !important;
+        flex-direction: column;
+        align-items: center;
+    }
+    .pamphlet_btn .custom_container .button_blue,
+    .corporate_btns .custom_container .button_blue {
+        margin: 5px 0px;
+    }
+    .rich_in_variation_section {
+        padding: 60px 15px 60px;
+    }
+    .diamond_bit_and_core_pack_contant p {
+        padding: 35px 0;
+    }
+    .diamond_bit_and_core_pack_section {
+        padding: 0 0 40px !important;
+    }
+    .manufactured_table td,
+    .manufactured_table th {
+        display: block;
+        width: 100% !important;
+    }
+    .manufactured_table th {
+        border-bottom: none;
+    }
+    .manufactured_table td {
+        padding: 12px 15px 0 !important;
+    }
+    .manufactured_table thead tr {
+        border-bottom: 2px solid #0053B1;
+    }
+    .pamphlet_content a {
+        margin-bottom: 15px;
+        display: block;
+    }
+    .pamphlet_section {
+        padding: 40px 0 80px;
+    }
+    .pamphlet_content_sec {
+        padding-bottom: 80px;
+    }
+    .corporate_contant {
+        padding-bottom: 65px;
+    }
+    .company_profile_section {
+        padding: 50px 0 40px;
+    }
+    .company_profile_content p {
+        margin-bottom: 20px;
+    }
+    .company_profile_content {
+        padding-bottom: 45px;
+    }
+    .company_profile_row {
+        border-bottom: 1px solid #D3D3D3;
+        display: block;
+    }
+    .company_profile_table_inner .company_profile_th,
+    .company_profile_table_inner .company_profile_td {
+        padding-bottom: 0;
+    }
+    .company_profile_table_inner .company_profile_row:last-child .company_profile_th {
+        padding-top: 15px;
+    }
+    .company_profile_th, .company_profile_td {
+        display: block;
+        width: 100%;
+        border-bottom: none;
+        padding: 5px;
+    }
+    .company_profile_table p span {
+        margin-left: 10px;
+    }
+    .company_profile_table_inner .company_profile_row {
+        padding-left: 15px;
+        border: none;
+    }
+    .access_map {
+        margin-top: 20px;
+    }
+    .access_section {
+        padding-bottom: 100px;
+    }
+    .manufactured_td a span {
+        margin-left: 10px;
+    }
+}
+@media (max-width: 675px) {
+    .beautiful_land_of_japan_content h3,
+    .maid_in_japan_high_quality_section h3,
+    .used_for_multiple_purpose_section h3,
+    .product_info_section h3,
+    .header_sec h3,
+    .rich_in_variation_section h3,
+    .dominate_and_handmade_elaborate_gem_inner h3 {
+        font-size: 20px;
+    }
+    .beautiful_land_of_japan_content h4,
+    .maid_in_japan_high_quality_section h4,
+    .used_for_multiple_purpose_section h4 {
+        font-size: 18px;
+    }
+    .used_for_multiple_purpose_section .custom_col_6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+    .product_info_table_row {
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #E3E3E3;
+    }
+    .product_info_table_th, .product_info_table_td {
+        display: inline-block;
+        width: 100%;
+        border-bottom: none;
+        padding: 5px 20px;
+    }
+    .two_input_col {
+        flex: 0 0 100%;
+        padding: 8px 8px 0px;
+    }
+    .input_field_td textarea {
+        height: 120px;
+    }
+    .full_width_row {
+        padding: 10px 10px 0px;
+    }
+    .dominate_and_handmade_elaborate_gem_inner .image_col, .dominate_and_handmade_elaborate_gem_inner .text_col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .pamphlet_section .text_col,
+    .pamphlet_section .image_col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .manufactured_table .manufactured_row .manufactured_td:first-child {
+        width: 100%;
+    }
+    .manufactured_row,.manufactured_th, .manufactured_td{
+        display: block;
+        border: none;
+    }
+    .manufactured_th:last-child{
+        padding: 0;
+    }
+    .manufactured_table:last-child .manufactured_th,.manufactured_th, .manufactured_td {
+        padding: 5px 15px;
+    }
+    .manufactured_row:first-child {
+        border-bottom: 2px solid #0053B1;
+    }
+    .manufactured_row {
+        border-bottom: 1px solid #0053B1;
+    }
+    .manufactured_td p {
+        line-height: normal;
+    }
+}
+/*responsive css end*/

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>会員管理｜管理画面</title>
+<link rel="stylesheet" type="text/css" href="common/css/import.css" media="all" />
+<script type="text/javascript" src="common/js/jquery.js" charset="utf-8"></script>
+<script type="text/javascript" src="common/js/rollover.js" charset="utf-8"></script>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+{literal}
+function do_delete(id)
+{
+if (confirm('削除しても良いですか？')) {
+location = './admin-user.html&mode=delete&id=' + id;
+}
+}
+function do_page(page)
+{
+document.form1.page.value = page;
+document.form1.submit();
+}
+function do_csv()
+{
+document.form1.csv.value = 1;
+document.form1.submit();
+}
+function do_order(ord)
+{
+document.form1.order.value = ord;
+document.form1.page.value = "";
+document.form1.submit();
+}
+{/literal}
+</script>
+</head>
+<body>
+<div id="wrapper">
+{include file="common/header.tpl"}
+<!--コンテンツ開始-->
+<div id="content">
+<div class="wrap">
+<h2 class="admin_h2_title">会員管理</h2>
+<div class="search_area_01">
+<form name="form1" action="./" method="get">
+<input type="hidden" name="act" value="admin-user">
+<input type="hidden" name="mode" value="form">
+<input type="hidden" name="page" value="">
+<input type="hidden" name="order" value="">
+<input type="hidden" name="csv" value="">
+<div class="search_icon_01">
+<input class="input_w10 form-control" type="text" name="keyword" value="{$form.keyword}">&nbsp;(会員名、会員名ふりがな、会員No、メールアドレス)
+<span class="fr mr15"><img class="over" src="common/img/search_btn_02.png" width="160" height="36" alt="検索する" onClick="document.form1.submit()" /></span>
+</div>
+<!--
+<div class="mBtm10 mLft50">
+<input class="input_w10 form-control" type="text" name="item" value="{$form.item}">&nbsp;(求人タイトル、求人No)
+</div>
+<ul class="">
+<li>ステータス&nbsp;
+<select name="status" class="input_w04 form-control">
+<option value="">---&nbsp;指定しない&nbsp;---</option>
+<option value="0" {if $form.status==0}selected="selected"{/if}>未対応</option>
+<option value="1" {if $form.status==1}selected="selected"{/if}>対応中</option>
+<option value="2" {if $form.status==2}selected="selected"{/if}>対応終了</option>
+</select>
+</li>
+</ul>
+-->
+</form>
+</div>
+<div class="ex_02">
+{if $admin.auth3.4}
+<a href="javascript:do_csv()"><p class="">会員情報をエクスポートする</p></a>
+{/if}
+</div>
+{if $list}
+<table class="table_01" cellspacing="0" summary="表">
+<tr>
+<th>
+{if $order==1}
+▲
+{else}
+<a href="javascript:do_order(1)">▲</a>
+{/if}
+{if $order==2}
+▼
+{else}
+<a href="javascript:do_order(2)">▼</a>
+{/if}
+&nbsp;登録日</th>
+<th>会員名</th>
+<th>メールアドレス</th>
+<th>
+{if $order==3}
+▲
+{else}
+<a href="javascript:do_order(3)">▲</a>
+{/if}
+{if $order==4}
+▼
+{else}
+<a href="javascript:do_order(4)">▼</a>
+{/if}
+&nbsp;応募件数</th>
+<th>直近応募ステータス</th>
+{if $admin.auth3.2}
+<th>確認</th>
+{/if}
+{if $admin.auth3.3}
+<th>削除</th>
+{/if}
+</tr>
+{assign var="class" value="bg01"}
+{foreach from=$list item="item"}
+<tr class="{$class}" onmouseover="this.style.backgroundColor='#fff4c2'" onmouseout="this.style.backgroundColor=''">
+<td>{$item.reg_date|date_format:"%Y/%m/%d %H:%M:%S"}</td>
+<td>
+{if $item.oubo}
+<a href="admin-user-edit.html&id={$item.user_id}">{$item.name}　（{$item.name_kana}）</a><p class="no_01">会員No.{$item.user_id}</p>
+{else}
+{$item.name}　（{$item.name_kana}）<p class="no_01">会員No.{$item.user_id}</p>
+{/if}
+</td>
+<td><a href="mailto:{$item.email}">{$item.email}</a></td>
+<td><a href="admin-entry.html&name={$item.user_id}">{$item.count}&nbsp;件</a></td>
+<td>
+{if $item.oubo}
+{$item.oubo.status}<br /><a href="admin-entry-detail.html&id={$item.oubo.seq}">⇒直近の応募を見る</a>
+{/if}
+</td>
+{if $admin.auth3.2}
+<td class="w66">
+<a href="admin-user-edit.html&id={$item.user_id}"><img class="over" src="common/img/btn_11.jpg" width="47" height="21" alt="確認" /></a>
+</td>
+{/if}
+{if $admin.auth3.3}
+<td class="w66">
+<a href="javascript:do_delete({$item.user_id})"><img class="over" src="common/img/btn_05.jpg" width="47" height="21" alt="削除" /></a>
+</td>
+{/if}
+</tr>
+{if $class=="bg01"}
+{assign var="class" value="bg02"}
+{else}
+{assign var="class" value="bg01"}
+{/if}
+{/foreach}
+</table>
+<div class="paging">
+{if $pager.prev}
+<a href="javascript:do_page({$pager.prev.no})">前の10件</a>
+{/if}
+{if $pager.prev_skip}
+<!--a href="javascript:do_page({$pager.top.no})">{$pager.top.name}</a>
+&nbsp;…&nbsp;-->
+{/if}
+{foreach from=$pager.list item="item"}
+{if $item.link}
+<a href="javascript:do_page({$item.no})">{$item.name}</a>
+{else}
+<span>{$item.name}</span>
+{/if}
+{/foreach}
+{if $pager.next_skip}
+<!--&nbsp;…&nbsp;
+<a href="javascript:do_page({$pager.last.no})">{$pager.last.name}</a-->
+{/if}
+{if $pager.next}
+<a href="javascript:do_page({$pager.next.no})">次の10件</a>
+{/if}
+<p>対象件数({$total}件)</p>
+</div>
+{else}
+<div class="paging">
+<p>登録情報がありません。</p>
+</div>
+{/if}
+</div></div>
+<!--コンテンツ：右コンテンツ終了-->
+
+</div>
+<!--コンテンツ終了-->
+{include file="common/footer.tpl"}
+</div><!--div#wrapper:end-->
+</body>
+</html>
+</html>
